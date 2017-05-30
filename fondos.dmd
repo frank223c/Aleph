@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="fondos" id="EA8155BB-1E67-85F9-ABD1-37848562E642" version="3.5">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:28:16 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<modelPersistence>2</modelPersistence>
+<capitalNames>false</capitalNames>
+<designId>EA8155BB-1E67-85F9-ABD1-37848562E642</designId>
+</OSDM_Design>

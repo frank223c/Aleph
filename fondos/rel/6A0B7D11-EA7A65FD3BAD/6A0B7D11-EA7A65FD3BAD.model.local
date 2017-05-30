@@ -1,0 +1,2505 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<relationalModel class="oracle.dbtools.crest.model.design.relational.RelationalDesign" name="Relational_1" id="6A0B7D11-D662-73E5-F312-EA7A65FD3BAD" mainViewID="B0EC5ACD-8FE3-1750-2E38-EC77156BC2FF">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:29:41 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+<selectedRDBMSSite>32076570-2523-435C-2E92-BF29817DFF70</selectedRDBMSSite>
+<Tables>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F93F4AD4-F6E4-FBC1-DB99-5ECBD5E56D3D" name="arqueo_materiales">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ARQUEOLOGIA_idArque" id="4E175B8D-7B00-19F9-7872-1E3695B17DF1">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EFDCEB8A-A7B2-A85A-D3A1-A94DCA002A20" referredColumn="ED9CC8D1-2F0C-0275-4ACE-A98354935860"/>
+</associations>
+</Column>
+<Column name="MATERIALES_idMat" id="F9747A5C-4352-44F0-E987-F39E3A7683F5">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="68BB8A4D-FB94-964D-61C8-53FEFB9B8572" referredColumn="C008A274-0238-4080-C4A0-B36AAB6137AC"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="89B3B9F7-7AF3-EFBA-AAEB-AAF6671DAA43" name="arqueo_materiales_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4E175B8D-7B00-19F9-7872-1E3695B17DF1"/>
+<colUsage columnID="F9747A5C-4352-44F0-E987-F39E3A7683F5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5BF5CA42-7110-FE8C-F729-CD48DB1E14AC" name="arqueo_materiales_ARQUEOLOGIA_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>B0A8EBA7-5D3B-84C1-0A25-9792FF048F23</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4E175B8D-7B00-19F9-7872-1E3695B17DF1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="391683AD-64E3-9682-7CA0-B52552F863F7" name="arqueo_materiales_MATERIALES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>B0A8EBA7-5D3B-84C1-0A25-9792FF048F23</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F9747A5C-4352-44F0-E987-F39E3A7683F5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="08B4C221-9EA4-4B48-0339-9B5FB0849820" name="ARQUEOLOGIA">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>5CE764AE-09D0-54E7-00A4-1A2E3F2141CE</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idArque" id="ED9CC8D1-2F0C-0275-4ACE-A98354935860">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>DCA183EF-17DF-BBB7-2F85-5C0DB2355971</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="D750A31D-DC27-2443-EAD5-B2690067BFD5">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>4F10D556-D090-F5EB-4060-1B2FE50B52A0</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="hallazgos" id="1EE63C19-5806-DBDD-E270-B7B16C55C0EB">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>C6501917-20CB-8D82-A58A-7CC7F5043DCE</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="depositadoPor" id="8DEFE6D0-783C-7A44-4703-8F5B5C4D0D9C">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>18004804-E4E5-9F51-328D-758901D6C373</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nivcon" id="03296247-F0D7-2802-D0E5-7B9E1740AAA3">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<comment>Nivel de conservacion, del 1 al 3 valorado por el trabajdor</comment>
+<generatorID>88287F50-6EA2-2BC7-6890-75D64440B094</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="edad" id="69C1AA32-D08F-AFDA-C3FF-49CB0FE5BDDD">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<comment>Edad de la que data el objeto</comment>
+<generatorID>38A09C83-F50F-74AB-C68A-1E78520C13CC</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="OBJETO_numInv" id="205A7AFC-0AAB-52FC-6489-BAF4828BEB16">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<comment>Es como el DNI del objeto, y sirve como identificador único para un objeto de la colección</comment>
+<generatorID>9B5B94F2-796E-1B0D-7BA7-C3641BA16886</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6AD1CC2E-F1DD-06EA-E2F0-8CF3C3CC4481" referredColumn="7F80BC03-B1BA-56CD-C61F-166FA6EE17B5"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9B697EE8-42F0-6DE0-1C8E-CD6A2A5DF678" name="ARQUEOLOGIA_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>06DBC99B-7010-B9B1-1D68-8595A5514D6F</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ED9CC8D1-2F0C-0275-4ACE-A98354935860"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="06C94C1D-DA71-5398-4027-268C6F100F02" name="ARQUEOLOGIA__IDX">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>14B0FAC7-3298-37B9-C893-BD4F5E082512</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="205A7AFC-0AAB-52FC-6489-BAF4828BEB16"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D03A0608-494B-7CDD-B492-60F8AA534109" name="ARQUEOLOGIA_OBJETO_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>14B0FAC7-3298-37B9-C893-BD4F5E082512</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="205A7AFC-0AAB-52FC-6489-BAF4828BEB16"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="55899651-9B79-B7F2-4481-10D7AD9C5F79" name="AUTORES">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>7232A0C3-A85B-25D0-F3F4-08951D93A56E</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idAut" id="90AC7838-1BC2-9510-DB86-0AD640B8FDB7">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>DB42917C-1032-46D8-6A42-EB4EC1F493E0</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nomAut" id="C92667FB-5E7B-56C3-DCB4-DFBE050E468B">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>BBF24500-27E1-CF17-BE33-8D32B7CDA30F</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="apeAut" id="67DB9AC6-3133-9805-0895-E5298357C3E9">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>3C9722F8-82B8-8B59-E5E1-2DB5C75BC3D9</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fechaNac" id="6C3B3451-CF2F-B66B-BC22-54A458154781">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>62D4CED1-E97D-46AB-CB68-3097C97D2050</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fechaDef" id="8BCD5EA7-9877-E395-4883-FC00F73C4E9D">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>75C1A812-74FE-7FF6-417C-4C25B1EF49B3</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="alias" id="3908CC2D-0443-8C86-91C5-6DB5EA909CFC">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>12BA6A5B-4366-A0BD-A334-448A4CDACC89</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>11</dataTypeSize>
+<ownDataTypeParameters>11,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BELLAS_ARTES_IdBA" id="0A479F0E-F1CB-7F6B-4F33-7F650EC92467">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>F7E99AFD-9D5B-CA6A-7E96-EB4803D2168D</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7035613E-DC6D-3749-5656-C9B532481070" referredColumn="F79B1062-5D23-816C-4A2D-C11C6905E5D4"/>
+</associations>
+</Column>
+<Column name="BELLAS_ARTES_adquirido" id="C031DCF9-4BFE-0E5F-37BB-986271CA5B66">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>088E41F1-E85D-9DBC-1CEF-7CD331E46286</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7035613E-DC6D-3749-5656-C9B532481070" referredColumn="E83DE0B0-0E84-8A54-17C2-CFB965D62686"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="BE366257-225D-555C-2DAC-D6B94237BEB4" name="AUTORES_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>997C811C-978E-8C39-8015-E9912B15691C</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="90AC7838-1BC2-9510-DB86-0AD640B8FDB7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9FFD08C4-C7C5-1250-1552-5EF94169C7C9" name="AUTORES__IDX">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>1F162EE0-2836-00DD-2A56-70DCBB5B6966</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="0A479F0E-F1CB-7F6B-4F33-7F650EC92467"/>
+<colUsage columnID="C031DCF9-4BFE-0E5F-37BB-986271CA5B66"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A01A7DED-025F-1AA4-9D11-C541E0486667" name="AUTORES_BELLAS_ARTES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>1F162EE0-2836-00DD-2A56-70DCBB5B6966</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0A479F0E-F1CB-7F6B-4F33-7F650EC92467"/>
+<colUsage columnID="C031DCF9-4BFE-0E5F-37BB-986271CA5B66"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A47359D3-B060-203A-33D5-9D032CDDF653" name="BA_soportes">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="BELLAS_ARTES_IdBA" id="5993D268-E9B9-EDCC-7558-070FD4ACE28C">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D7DDC478-CC21-9F63-26D9-D039DAD129C3" referredColumn="F79B1062-5D23-816C-4A2D-C11C6905E5D4"/>
+</associations>
+</Column>
+<Column name="BELLAS_ARTES_adquirido" id="03F5B1B9-0002-79D4-01C6-74AA808F488B">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D7DDC478-CC21-9F63-26D9-D039DAD129C3" referredColumn="E83DE0B0-0E84-8A54-17C2-CFB965D62686"/>
+</associations>
+</Column>
+<Column name="SOPORTES_idSop" id="AE14FC92-F0F0-B7AA-EE26-8BD9ECC1ABDA">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="583E88AF-EBD8-3CD6-8C81-8C9CC3D26534" referredColumn="A637E84B-EF4B-BEEF-6C4A-83AAE122ACD2"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="97B0C622-48B5-E3FE-BAC7-50EB7CB5B8EB" name="BA_soportes_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5993D268-E9B9-EDCC-7558-070FD4ACE28C"/>
+<colUsage columnID="03F5B1B9-0002-79D4-01C6-74AA808F488B"/>
+<colUsage columnID="AE14FC92-F0F0-B7AA-EE26-8BD9ECC1ABDA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="87CC1823-8285-A221-AA85-FC6EE5641B78" name="BA_soportes_BELLAS_ARTES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>34461EEB-F792-B57C-0657-AD8B0B2F949C</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5993D268-E9B9-EDCC-7558-070FD4ACE28C"/>
+<colUsage columnID="03F5B1B9-0002-79D4-01C6-74AA808F488B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="923CF483-8366-97F4-60F0-BA8AFEE44439" name="BA_soportes_SOPORTES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>34461EEB-F792-B57C-0657-AD8B0B2F949C</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AE14FC92-F0F0-B7AA-EE26-8BD9ECC1ABDA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="97CF143B-47F6-CDEE-40FE-759D0D6A8C1A" name="BELLAS_ARTES">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>C0A5F282-B7D0-A0D3-DBEE-C2F4FE40EB6A</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IdBA" id="F79B1062-5D23-816C-4A2D-C11C6905E5D4">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>E01CABAA-7164-B834-C714-9CBC955B439D</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="titulo" id="C3ECBCF6-FA23-671B-F7C8-E7D6BD235C14">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>095ED17F-D169-9C55-BAB3-E4A2CD734527</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="procedencia" id="5623157D-5EC2-CD66-2F72-6496B71D17D3">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>6896DD09-97C0-FEEC-9665-BCB2427309C5</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="adquirido" id="E83DE0B0-0E84-8A54-17C2-CFB965D62686">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>1B222D2B-DA02-0CFA-FA3F-CFE56EABDF54</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="OBJETO_numInv" id="4D58DF15-FE9E-CF2E-02CE-2B36032DAFB6">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<comment>Es como el DNI del objeto, y sirve como identificador único para un objeto de la colección</comment>
+<generatorID>D97D9710-49E0-7369-6BBD-BE497192D6C9</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A71C88E8-1E99-638D-BFCF-896057721B33" referredColumn="7F80BC03-B1BA-56CD-C61F-166FA6EE17B5"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="37962C15-0142-917B-D32E-7E322D2473E2" name="BELLAS_ARTES_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>5B9BEF3B-78EA-08AD-7273-E430ACCDF474</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F79B1062-5D23-816C-4A2D-C11C6905E5D4"/>
+<colUsage columnID="E83DE0B0-0E84-8A54-17C2-CFB965D62686"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6DC2369D-FDB0-453A-55F0-8E0896EB9377" name="BELLAS_ARTES__IDX">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>D78B639D-0A17-2BE7-60E0-14B619EA2D9B</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="4D58DF15-FE9E-CF2E-02CE-2B36032DAFB6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="31C0C39F-F166-2C9F-17D2-0DE0D49B6AF8" name="BELLAS_ARTES_OBJETO_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>D78B639D-0A17-2BE7-60E0-14B619EA2D9B</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4D58DF15-FE9E-CF2E-02CE-2B36032DAFB6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4D36510B-5FA5-4CAC-080B-564DAF6078C0" name="CULTURA">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>1F3505C5-4265-21C7-8162-D3D03CC7EDC6</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idCul" id="316F455B-E717-E5AD-0A47-982D1980E8C9">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>9A20842E-A928-97C7-ADFD-5463B6ECFBC6</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nomCul" id="7C23211D-6899-8AFD-98A6-059E55267169">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>F347615C-D173-276A-A902-D16FAEF3D9A9</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ARQUEOLOGIA_idArque" id="7CD4AC92-FA1E-52F3-F2FC-EE75FB2466F6">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>0E9512DF-4942-30A2-0F9A-1ABF51D153D9</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2F3F5DBB-ED30-95E3-4BCE-17B4A84AF887" referredColumn="ED9CC8D1-2F0C-0275-4ACE-A98354935860"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="93FD649D-3775-8A98-061F-C1E7EDCE5E10" name="CULTURA_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>929D4584-BAF8-3A6B-0D94-54695FAFFFC9</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="316F455B-E717-E5AD-0A47-982D1980E8C9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="41894ED8-B663-53C9-5F74-DF79D31E98B6" name="CULTURA_ARQUEOLOGIA_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>3DF1B75B-B266-3B8C-8A2F-D88EA779BA20</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7CD4AC92-FA1E-52F3-F2FC-EE75FB2466F6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0CCA52E1-439E-5289-733E-BA094F767A8A" name="DONANTES">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>D192611C-CAB7-D5D7-F0E3-8F8746CDF7F7</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idDon" id="2521BD73-86D6-575C-E707-D883F7F08894">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>B4F0BA87-0166-45C4-0AF8-622167F88182</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nomDon" id="3D082722-5D5D-D1C6-5C55-481240DA2C72">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>14673620-CEE0-4FF3-61DE-C60427710EC6</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="apeDon" id="F233A07E-8CDF-3047-5DE1-FB342A017F4C">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>4E4F1A3B-C1DD-04B5-2FA8-F75FD8CB741A</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40</dataTypeSize>
+<ownDataTypeParameters>40,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DNI" id="D3D11E61-D2A6-A4C7-2EC5-A1D215C06BE3">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>DA56C928-9C1C-646C-CB83-1D3CCBBE6E3F</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>13</dataTypeSize>
+<ownDataTypeParameters>13,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BELLAS_ARTES_IdBA" id="3B699056-8171-B63D-DC25-50675B8405B0">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>1ACD46D6-93AA-2AE1-2BC2-D9389F93D489</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="00FFFE78-E76B-38FD-297C-8D068B66B0B2" referredColumn="F79B1062-5D23-816C-4A2D-C11C6905E5D4"/>
+</associations>
+</Column>
+<Column name="BELLAS_ARTES_adquirido" id="FA286146-DB1C-25B7-DB59-D2DFE6481581">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>BD54A01A-8FBE-6836-2D70-94B70AB462C9</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="00FFFE78-E76B-38FD-297C-8D068B66B0B2" referredColumn="E83DE0B0-0E84-8A54-17C2-CFB965D62686"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1120639F-89E7-9688-CBC7-A2A1008C7FFC" name="DONANTES_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>CC43C017-F812-89B3-0992-D5DD764926C1</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2521BD73-86D6-575C-E707-D883F7F08894"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="290FE46F-C528-C22F-1C3F-645A64018D0B" name="DONANTES__IDX">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>6E804721-AB72-00C9-37DA-36A4FDA989ED</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="3B699056-8171-B63D-DC25-50675B8405B0"/>
+<colUsage columnID="FA286146-DB1C-25B7-DB59-D2DFE6481581"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2C567D6D-BFC4-2EC2-D856-DE55D94E426F" name="DONANTES_BELLAS_ARTES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>6E804721-AB72-00C9-37DA-36A4FDA989ED</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3B699056-8171-B63D-DC25-50675B8405B0"/>
+<colUsage columnID="FA286146-DB1C-25B7-DB59-D2DFE6481581"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D7489394-BC63-D495-57F7-F0DB37A13FD3" name="ESTUDIOS">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>604C7B1D-A925-E756-53C8-761ECD78A6D2</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idEst" id="B31BCEDA-06EB-62C0-DFBE-72C53AA1BCDC">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>081FEABA-3B5F-2CC3-0F9E-AA04905F4AA6</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="E9A178A3-1204-893C-BE24-019838D5F701">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>AC7C7264-A080-0D00-C6DC-66CDD50060ED</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="INFORME_ESTADO_idEst" id="0F11D64E-6858-392A-E226-5023001B4166">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>622653C6-E388-FA0C-C104-F6EA8960469F</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FE1E3E8F-4662-048B-781B-E45728090737" referredColumn="4B3B1608-2847-5419-A8D8-EE8EA572F263"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="855244D1-C9D3-2DC6-C244-C453A0709D64" name="ESTUDIOS_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>E0A9C9A2-73C5-CE69-EE41-EC506E168AFC</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B31BCEDA-06EB-62C0-DFBE-72C53AA1BCDC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4D5E3886-2B7C-A5A6-DA08-DC958F893347" name="ESTUDIOS_INFORME_ESTADO_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>0A593CBD-0772-77EF-8929-16D45BD18DCD</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0F11D64E-6858-392A-E226-5023001B4166"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8082B3BA-C9CE-EF41-C97A-512ED13AA126" name="INFORME_ESTADO">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>9B354A55-DC83-DA7B-9AC9-8069446EEF39</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idEst" id="4B3B1608-2847-5419-A8D8-EE8EA572F263">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>2638D16C-B010-5D5C-63F5-0A43050E6CEC</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="objet" id="13EBE653-2429-7886-4F58-84590F38A0EA">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<comment>objetivo del estudio</comment>
+<generatorID>45F5627E-74E9-28BC-DFB5-00A91A6F0AF8</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="foto" id="1AF37E55-BA9A-2B37-E382-07D092BBAE65">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>45E6345E-06B6-B67A-E92E-CADF78E86867</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT010</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="INFORMES_IdInf" id="F23F3864-0674-FD6E-452F-9F7F98D4DFEC">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>55AF6567-89FA-DF32-A335-4703E5484351</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="ED24F7A1-F71C-3E7B-43FA-979371272AA1" referredColumn="44F68621-D8CE-57A7-C3BA-953F23A9FBD0"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="73D937F6-593B-7A0B-7FD8-AF0B33273868" name="INFORME_ESTADO_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>2710AB48-6556-2EED-82FB-AD73D2FED5AA</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4B3B1608-2847-5419-A8D8-EE8EA572F263"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A45F9AAF-6E00-2929-AB9B-E399C93391F5" name="INFORME_ESTADO__IDX">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>F051A497-5BDC-7955-B788-E038906D434F</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="F23F3864-0674-FD6E-452F-9F7F98D4DFEC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B1498CBB-504D-C756-DA4D-439874428ECA" name="INFORME_ESTADO_INFORMES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>F051A497-5BDC-7955-B788-E038906D434F</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F23F3864-0674-FD6E-452F-9F7F98D4DFEC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="26F4E3EF-2541-FC8F-3864-800BA9FA2F6D" name="INFORME_INTER">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>3F1ADB4C-B1AC-33B4-763B-0BEB98B79455</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idInter" id="BADE8187-6674-B54D-A4EF-659EDF115854">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>3F0DD751-9E8F-E3BD-8858-CE689EB5E5B9</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descripcion" id="AABF5380-481C-BF13-C436-801A578F9BF6">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>9A7C166C-1542-0468-68FB-0CEA0C392F38</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="INFORMES_IdInf" id="BBB3F938-D44A-FC29-AFB5-A5E570DCC776">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>73083465-620E-F4EA-7639-E9CF22C24C2C</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A926E009-D960-95DA-E632-93854FA16298" referredColumn="44F68621-D8CE-57A7-C3BA-953F23A9FBD0"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2E93EC91-8A91-98F6-C753-C8EC8BDD9B19" name="INFORME_INTER_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>D4A55650-0AC1-519B-F019-FAD15954AC00</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BADE8187-6674-B54D-A4EF-659EDF115854"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="04E831F1-C27C-3217-E719-F41A5726FC65" name="INFORME_INTER__IDX">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>3F03B25A-792E-C5DD-F4C0-0261AF6F91CD</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="BBB3F938-D44A-FC29-AFB5-A5E570DCC776"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="92CAAB91-4633-DFEA-B1FC-9280364E5330" name="INFORME_INTER_INFORMES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>3F03B25A-792E-C5DD-F4C0-0261AF6F91CD</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BBB3F938-D44A-FC29-AFB5-A5E570DCC776"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4B44528E-323E-6BAF-72E1-11F5A0515B70" name="INFORMES">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>31EA6FDB-C06A-D9F3-8ECA-2C7E98FCBD6D</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IdInf" id="44F68621-D8CE-57A7-C3BA-953F23A9FBD0">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>E3D25FC8-87B4-1953-8ED7-CADE35CBB6E3</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fechaInf" id="AE0E07C4-C444-8CC0-AA12-C17ECA856603">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>526FBE02-267B-EAE8-B752-37955EEF7AEA</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="prioridad" id="5187B84D-83C0-039A-FC79-FFCF56D9AEC6">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>C53B3C1C-2088-D686-6B58-7B9C9930EDEB</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="conclusion" id="2E4E585B-02A6-AC45-FD1A-1E3501F6FCF4">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>0A973E9F-9EAD-4C9B-29D0-9356C3097BDF</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ape_rest" id="414FB048-F98C-6049-63C8-E06C67A599F3">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>073DF87F-97FE-4B52-656F-E1135D906799</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nom_rest" id="FBF000B8-CC41-110D-17A4-07A42F8F2050">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>B31BDD36-74D0-CDF4-1491-6329D98EC347</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="52AAB448-C5F8-5770-14A2-4A1E02761418" name="INFORMES_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>6DC5F9BA-E41B-CDC1-49A6-073F47745C2D</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="44F68621-D8CE-57A7-C3BA-953F23A9FBD0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2C464EDB-1406-588C-1F45-62EC20647B15" name="MATERIALES">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>B406C77C-925C-B0C6-DC88-17777274C47E</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idMat" id="C008A274-0238-4080-C4A0-B36AAB6137AC">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>AA91DCF0-0BE2-EEFF-D429-B1F6F071B010</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nomMat" id="C91E5BC5-47F5-4316-1D41-83628DCA8D39">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>652DE1F0-0568-DFE9-9428-10E93F2DBF58</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8620DE3C-1613-3D76-553E-DE50B32D7914" name="MATERIALES_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>CB6E8B1B-829F-2E14-C018-EE6AC5653A2B</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C008A274-0238-4080-C4A0-B36AAB6137AC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1A6EE035-8064-4BCA-0332-D89A8EBE47E0" name="MOVIMIENTOS">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>8802E51E-0A48-02FC-7DBA-2347EBE87D96</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idMov" id="3D909D4B-7645-699A-D583-B7D3241CD6ED">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<comment>Clave surrogada</comment>
+<generatorID>5C8227B1-9DB7-4E46-26A9-A072CA5B46AC</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Museo" id="78B67132-96C8-4C24-01E9-0458ED544E91">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>C7736005-6C44-1B34-AAC5-B55E4DCB419C</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fechaVuelta" id="2E1EDCE9-1838-6034-D827-2A63D85BBAE4">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<comment>La fecha en la que el objeto es devuelto </comment>
+<generatorID>90AA1071-E5D0-3D6D-1BB3-0310C25C07B9</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fechaIda" id="A65FF3CC-F24C-BE50-BF5E-4F1C95BDFF99">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<comment>Fecha en la que se &apos;presta&apos; el objeto</comment>
+<generatorID>4F66F8C5-4989-23FA-FAB5-737A877D80B5</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nomExpo" id="8B282B40-2AED-A40F-D37A-F4786120B592">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>576F7566-CBE7-FFAA-13BD-61A838B88801</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CEDA6341-F06F-71DA-8411-AABF7F3C28F5" name="MOVIMIENTOS_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>B8DC622F-7C9E-4957-3387-4A4092975163</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3D909D4B-7645-699A-D583-B7D3241CD6ED"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A7C43808-A7F2-E817-0E47-2D6480EA67CB" name="OBJETO">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<generatorID>F79A1745-6318-F88A-B6F8-211B30C662F7</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="numInv" id="7F80BC03-B1BA-56CD-C61F-166FA6EE17B5">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<comment>Es como el DNI del objeto, y sirve como identificador único para un objeto de la colección</comment>
+<generatorID>A43CE961-531A-1D62-5C50-6DC038BB9647</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="dimensiones" id="BB236342-6B4A-A5F9-598F-820AF4D7C880">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<generatorID>0778BC6C-2E67-3928-E323-AA3E8A53E319</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10 CHAR</dataTypeSize>
+<ownDataTypeParameters>10 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="propietario" id="E05CD8F0-061B-6E55-9F39-1D0EF877A7B9">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<generatorID>486BA8FE-8DC2-CC63-8A81-72F296CA8810</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2 CHAR</dataTypeSize>
+<ownDataTypeParameters>2 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="datacion" id="C2E5CB1E-26D1-F37F-4B68-6B3BBF6E58F6">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<generatorID>080BADAE-BBEF-829C-183C-407CBB5E8BE6</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fechaIngreso" id="CA1A2D48-62EC-BCBE-0E7E-B61ABA107A2F">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<comment>Fecha de ingreso en el formato elegido por los trabajadores del museo</comment>
+<generatorID>F4C5C3F8-1F34-2ED0-91F7-C422713B095D</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descripcion" id="C4921C26-599C-A3F3-1261-716F36515B39">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<comment>Descripcion de longitud variable</comment>
+<generatorID>0F7C483C-4B39-0000-ED61-4EB1AD370556</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT040</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8F917075-33E0-C6C5-CC6A-8C8116F01F14" name="OBJETO_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<generatorID>A925D266-075A-2DE6-E866-6BC750598039</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7F80BC03-B1BA-56CD-C61F-166FA6EE17B5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5596FA40-AA27-7C95-43DE-0F6B58AD8458" name="objeto_informes">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="INFORMES_IdInf" id="2FABADC0-40B6-8CBC-F192-CB8E501CB92B">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A1199BE2-C3D6-0911-735E-86FAD988B431" referredColumn="44F68621-D8CE-57A7-C3BA-953F23A9FBD0"/>
+</associations>
+</Column>
+<Column name="OBJETO_numInv" id="39623277-3313-444B-67D6-F4A1856A1AB5">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B0D9E631-1144-2C9C-266D-4512D4B945FC" referredColumn="7F80BC03-B1BA-56CD-C61F-166FA6EE17B5"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AF3A9C13-AB85-960A-F359-ACA02699CB1B" name="objeto_informes_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2FABADC0-40B6-8CBC-F192-CB8E501CB92B"/>
+<colUsage columnID="39623277-3313-444B-67D6-F4A1856A1AB5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="24ED6146-0A76-6087-A88A-D460F31F396C" name="objeto_informes_INFORMES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>EF777B9C-FCEF-927E-C5D0-89A1435422DA</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2FABADC0-40B6-8CBC-F192-CB8E501CB92B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F38924EC-36A3-4617-9983-7D337C443C3D" name="objeto_informes_OBJETO_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>EF777B9C-FCEF-927E-C5D0-89A1435422DA</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="39623277-3313-444B-67D6-F4A1856A1AB5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="85AAAFCA-4CD5-5E55-A9C2-1D2B5BB448FB" name="objeto_movimientos">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="OBJETO_numInv" id="0D722D31-E20F-2F92-5C06-A702FDA7F0FA">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="73EAEF03-5C7C-7649-7B93-D700DA3687BB" referredColumn="7F80BC03-B1BA-56CD-C61F-166FA6EE17B5"/>
+</associations>
+</Column>
+<Column name="MOVIMIENTOS_idMov" id="510E68F7-8B9D-72CB-D1DA-548E81E10857">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BD79D7F3-288A-6AE7-AB55-0BE75D7C7F47" referredColumn="3D909D4B-7645-699A-D583-B7D3241CD6ED"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="44B4C6A9-249E-A6E3-F8A8-97BB989A1FC5" name="objeto_movimientos_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0D722D31-E20F-2F92-5C06-A702FDA7F0FA"/>
+<colUsage columnID="510E68F7-8B9D-72CB-D1DA-548E81E10857"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C6729955-6593-51B9-2577-BAAEA53325D0" name="objeto_movimientos_OBJETO_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>A4D542C1-F628-D3D0-FC01-AE6D3523B1BB</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0D722D31-E20F-2F92-5C06-A702FDA7F0FA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5DE8A350-DA59-B955-A4F7-9D0B5C0B5236" name="objeto_movimientos_MOVIMIENTOS_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>A4D542C1-F628-D3D0-FC01-AE6D3523B1BB</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="510E68F7-8B9D-72CB-D1DA-548E81E10857"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B88A1395-93FE-317E-E44F-CF6C24B44DBF" name="REF_BIBLIOGRAFICA">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<generatorID>C9015676-0D77-9199-4204-B895384F5C11</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idBib" id="965B4098-8E58-C453-E86F-14FA819C7DCA">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<comment>Creado automáticamente, clave surrogada</comment>
+<generatorID>310CFE29-1E1B-8A80-5B5B-CE3041AA180F</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NombreAut" id="253C3ED5-A7D1-26C4-07DB-A13DD7633855">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<generatorID>6051238A-8CA9-9236-1E34-F9FE8B1DC535</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ApeAut" id="CE7B5C0A-E54E-7011-A946-0815DF428CAF">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<generatorID>0879FC90-8365-E750-F1CF-33AAD6397497</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Año" id="A0D73AA1-BA5B-45CF-D316-D6120F165126">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<comment>Año de la edición donde se encontró la referencia</comment>
+<generatorID>A39D1482-54C1-166D-D60C-82986A40FABA</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ISBN" id="1BC45CF6-3C91-6582-291A-8B143B85DA67">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<comment> (en español, Número Estándar Internacional de Libros o Número Internacional Normalizado del Libro), abreviado ISBN, es un identificador único para libros, previsto para uso comercial.</comment>
+<generatorID>6947C565-3E1E-0753-56B7-BC9FC9CC0B7A</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>13 CHAR</dataTypeSize>
+<ownDataTypeParameters>13 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="url" id="57FDB9A2-4181-DA12-D020-7EA0A107D9A2">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<comment>En caso de haber referencia en digital, se utiliza este campo</comment>
+<generatorID>C68E2A82-31A8-C861-F414-FC581D6CC77D</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT052</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="AFCC277D-F394-35C3-7C80-170E0852CF02" name="REF_BIBLIOGRAFICA_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<generatorID>BB19D324-E3A9-6C6D-2AA0-DF25B2BB2A54</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="965B4098-8E58-C453-E86F-14FA819C7DCA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DFA68750-8D76-766D-2A8C-59F9B5845313" name="Relation_2">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<ordsAlias>relation_2</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="numInv_idBib" id="B19E8B9B-293A-9D27-1E7B-5B6E93770B6D">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2BE58C6D-2F49-BE42-E94E-1E5BD67E72A8" referredColumn="7F80BC03-B1BA-56CD-C61F-166FA6EE17B5"/>
+</associations>
+</Column>
+<Column name="idBib" id="8F12196D-0E4B-44F4-0E0B-4F8749FBA6A1">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EB24F079-0A74-468B-9E9B-115AAEBA7407" referredColumn="965B4098-8E58-C453-E86F-14FA819C7DCA"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="234C6B3E-FD24-8320-EDE0-7F2DB3FF075D" name="Objeto_Bibliografia">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B19E8B9B-293A-9D27-1E7B-5B6E93770B6D"/>
+<colUsage columnID="8F12196D-0E4B-44F4-0E0B-4F8749FBA6A1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="42DABFA7-C69C-AECD-3885-199A5FF3CEAA" name="Objeto_fk">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<generatorID>FF5E0A0D-8BCA-4BE8-F1DA-6943C501B970</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B19E8B9B-293A-9D27-1E7B-5B6E93770B6D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DD0447E2-79DB-11BE-D939-A2184E4722D7" name="bibliografia_fk">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<generatorID>FF5E0A0D-8BCA-4BE8-F1DA-6943C501B970</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8F12196D-0E4B-44F4-0E0B-4F8749FBA6A1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="01C32ED9-9269-814B-5133-C0FE579DEBA4" name="SECCIONES">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>718493FE-F67F-BD1F-8956-AB8D8F34956D</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idSec" id="9B743B8B-606E-65D9-509B-F2432894734C">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>B2EE7DA7-285B-5510-976C-D27F76036460</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nomSec" id="F1E47550-704B-7820-D359-F8035917B091">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>57A915EB-8C72-C804-1C0E-10F98D4DDC44</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15</dataTypeSize>
+<ownDataTypeParameters>15,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ARQUEOLOGIA_idArque" id="97E9EDD2-7993-0172-4C9C-47240F8C6CC0">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>0C638434-FA7A-22EA-0E4F-84EA21484042</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="64675A11-E445-4916-C8B4-74935EA42DA2" referredColumn="ED9CC8D1-2F0C-0275-4ACE-A98354935860"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="79B57A3F-5FE6-7595-9E59-5DC3EB6F664E" name="SECCIONES_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>03D16A5E-17D3-36BF-2EC0-EEB046B56CA8</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9B743B8B-606E-65D9-509B-F2432894734C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="85653D3B-31AE-41E7-E13A-D100F10A4103" name="SECCIONES_ARQUEOLOGIA_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>52A5B9DC-C1A7-9BFE-6001-4C30FCC05583</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="97E9EDD2-7993-0172-4C9C-47240F8C6CC0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3EAFD3FF-C342-875E-057E-871AB5840DD9" name="SOPORTES">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>738BDF1E-0357-0E76-CF9C-58D162276C56</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idSop" id="A637E84B-EF4B-BEEF-6C4A-83AAE122ACD2">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>E3DE5EE8-EA1C-402C-2B9C-26FDD859918F</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nomSop" id="E335B568-7628-9A01-AAA0-F07B5458AAEC">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>984A3269-E9A5-CB08-997D-DB47B6654142</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0E90C9F1-D4BF-84C5-2F7C-46B247883D09" name="SOPORTES_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>F9DC4284-DFF1-2A47-EA56-D35741DBB530</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A637E84B-EF4B-BEEF-6C4A-83AAE122ACD2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7CA1EB8C-4A00-B416-2159-804DBE41662A" name="UBICACIÓN">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>9B7C20E1-65E3-971D-D2DF-5CBFA0B26B8F</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="idUbi" id="E20ED332-DD0A-4A5B-44D8-0FD5F3A7B3A1">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>95F52881-D773-2518-3BCF-6E366C80AFA3</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="exposicion" id="27E9C567-68B9-61AB-9287-95EB5E1B6C98">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<comment>False si no está en exposición, True si está en exposición</comment>
+<generatorID>4FF0D98F-623E-84D2-D50F-FFD2F20C6146</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombreUbi" id="1D6032EA-EA0E-51A4-7CC1-E3328596B93E">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<comment>Nombre de la ubicación física</comment>
+<generatorID>8054A813-3BD2-0C2B-6528-694FFD7C62B9</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="OBJETO_numInv" id="F7462A92-C26D-4986-E5FF-A1C5D6FBB4E9">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<comment>Es como el DNI del objeto, y sirve como identificador único para un objeto de la colección</comment>
+<generatorID>BA300B2C-01B6-B9DD-4C3B-E69A34D30AD8</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E5B13CE4-CD66-DECF-5FFE-C80F88FFE162" referredColumn="7F80BC03-B1BA-56CD-C61F-166FA6EE17B5"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="ACFD3C5E-5EB1-DF7F-8E61-AF4180AE6171" name="UBICACIÓN_PK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>E585B658-9B05-CB23-C6BE-D59A7B721447</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E20ED332-DD0A-4A5B-44D8-0FD5F3A7B3A1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="57AF6139-F057-464C-79C2-9E7D65A0CDA3" name="UBICACIÓN__IDX">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>8F2280CD-5ABC-5567-4EF5-495016CE694B</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="F7462A92-C26D-4986-E5FF-A1C5D6FBB4E9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="05FC5746-FCFB-466E-54AC-196555FE5E42" name="UBICACIÓN_OBJETO_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>8F2280CD-5ABC-5567-4EF5-495016CE694B</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F7462A92-C26D-4986-E5FF-A1C5D6FBB4E9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
+</Tables>
+<ForeignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="EFDCEB8A-A7B2-A85A-D3A1-A94DCA002A20" containerWithKeyObject="F93F4AD4-F6E4-FBC1-DB99-5ECBD5E56D3D" localFKIndex="5BF5CA42-7110-FE8C-F729-CD48DB1E14AC" name="arqueo_materiales_ARQUEOLOGIA_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>B0A8EBA7-5D3B-84C1-0A25-9792FF048F23</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>ARQUEOLOGIA</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>08B4C221-9EA4-4B48-0339-9B5FB0849820</referredTableID>
+<keyObject>9B697EE8-42F0-6DE0-1C8E-CD6A2A5DF678</keyObject>
+<referredKeyID>9B697EE8-42F0-6DE0-1C8E-CD6A2A5DF678</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>idArque</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="68BB8A4D-FB94-964D-61C8-53FEFB9B8572" containerWithKeyObject="F93F4AD4-F6E4-FBC1-DB99-5ECBD5E56D3D" localFKIndex="391683AD-64E3-9682-7CA0-B52552F863F7" name="arqueo_materiales_MATERIALES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>B0A8EBA7-5D3B-84C1-0A25-9792FF048F23</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>MATERIALES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>2C464EDB-1406-588C-1F45-62EC20647B15</referredTableID>
+<keyObject>8620DE3C-1613-3D76-553E-DE50B32D7914</keyObject>
+<referredKeyID>8620DE3C-1613-3D76-553E-DE50B32D7914</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>idMat</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="6AD1CC2E-F1DD-06EA-E2F0-8CF3C3CC4481" containerWithKeyObject="08B4C221-9EA4-4B48-0339-9B5FB0849820" localFKIndex="D03A0608-494B-7CDD-B492-60F8AA534109" name="ARQUEOLOGIA_OBJETO_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>14B0FAC7-3298-37B9-C893-BD4F5E082512</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>OBJETO</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>A7C43808-A7F2-E817-0E47-2D6480EA67CB</referredTableID>
+<keyObject>8F917075-33E0-C6C5-CC6A-8C8116F01F14</keyObject>
+<referredKeyID>8F917075-33E0-C6C5-CC6A-8C8116F01F14</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>numInv</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="7035613E-DC6D-3749-5656-C9B532481070" containerWithKeyObject="55899651-9B79-B7F2-4481-10D7AD9C5F79" localFKIndex="A01A7DED-025F-1AA4-9D11-C541E0486667" name="AUTORES_BELLAS_ARTES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>1F162EE0-2836-00DD-2A56-70DCBB5B6966</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>BELLAS_ARTES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>97CF143B-47F6-CDEE-40FE-759D0D6A8C1A</referredTableID>
+<keyObject>37962C15-0142-917B-D32E-7E322D2473E2</keyObject>
+<referredKeyID>37962C15-0142-917B-D32E-7E322D2473E2</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>IdBA,adquirido</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="D7DDC478-CC21-9F63-26D9-D039DAD129C3" containerWithKeyObject="A47359D3-B060-203A-33D5-9D032CDDF653" localFKIndex="87CC1823-8285-A221-AA85-FC6EE5641B78" name="BA_soportes_BELLAS_ARTES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>34461EEB-F792-B57C-0657-AD8B0B2F949C</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>BELLAS_ARTES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>97CF143B-47F6-CDEE-40FE-759D0D6A8C1A</referredTableID>
+<keyObject>37962C15-0142-917B-D32E-7E322D2473E2</keyObject>
+<referredKeyID>37962C15-0142-917B-D32E-7E322D2473E2</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>IdBA,adquirido</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="583E88AF-EBD8-3CD6-8C81-8C9CC3D26534" containerWithKeyObject="A47359D3-B060-203A-33D5-9D032CDDF653" localFKIndex="923CF483-8366-97F4-60F0-BA8AFEE44439" name="BA_soportes_SOPORTES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>34461EEB-F792-B57C-0657-AD8B0B2F949C</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>SOPORTES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>3EAFD3FF-C342-875E-057E-871AB5840DD9</referredTableID>
+<keyObject>0E90C9F1-D4BF-84C5-2F7C-46B247883D09</keyObject>
+<referredKeyID>0E90C9F1-D4BF-84C5-2F7C-46B247883D09</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>idSop</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A71C88E8-1E99-638D-BFCF-896057721B33" containerWithKeyObject="97CF143B-47F6-CDEE-40FE-759D0D6A8C1A" localFKIndex="31C0C39F-F166-2C9F-17D2-0DE0D49B6AF8" name="BELLAS_ARTES_OBJETO_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>D78B639D-0A17-2BE7-60E0-14B619EA2D9B</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>OBJETO</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>A7C43808-A7F2-E817-0E47-2D6480EA67CB</referredTableID>
+<keyObject>8F917075-33E0-C6C5-CC6A-8C8116F01F14</keyObject>
+<referredKeyID>8F917075-33E0-C6C5-CC6A-8C8116F01F14</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>numInv</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="EB24F079-0A74-468B-9E9B-115AAEBA7407" containerWithKeyObject="DFA68750-8D76-766D-2A8C-59F9B5845313" localFKIndex="DD0447E2-79DB-11BE-D939-A2184E4722D7" name="bibliografia_fk">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<generatorID>FF5E0A0D-8BCA-4BE8-F1DA-6943C501B970</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>REF_BIBLIOGRAFICA</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>B88A1395-93FE-317E-E44F-CF6C24B44DBF</referredTableID>
+<keyObject>AFCC277D-F394-35C3-7C80-170E0852CF02</keyObject>
+<referredKeyID>AFCC277D-F394-35C3-7C80-170E0852CF02</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>idBib</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2F3F5DBB-ED30-95E3-4BCE-17B4A84AF887" containerWithKeyObject="4D36510B-5FA5-4CAC-080B-564DAF6078C0" localFKIndex="41894ED8-B663-53C9-5F74-DF79D31E98B6" name="CULTURA_ARQUEOLOGIA_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>3DF1B75B-B266-3B8C-8A2F-D88EA779BA20</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>ARQUEOLOGIA</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>08B4C221-9EA4-4B48-0339-9B5FB0849820</referredTableID>
+<keyObject>9B697EE8-42F0-6DE0-1C8E-CD6A2A5DF678</keyObject>
+<referredKeyID>9B697EE8-42F0-6DE0-1C8E-CD6A2A5DF678</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>idArque</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="00FFFE78-E76B-38FD-297C-8D068B66B0B2" containerWithKeyObject="0CCA52E1-439E-5289-733E-BA094F767A8A" localFKIndex="2C567D6D-BFC4-2EC2-D856-DE55D94E426F" name="DONANTES_BELLAS_ARTES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>6E804721-AB72-00C9-37DA-36A4FDA989ED</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>BELLAS_ARTES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>97CF143B-47F6-CDEE-40FE-759D0D6A8C1A</referredTableID>
+<keyObject>37962C15-0142-917B-D32E-7E322D2473E2</keyObject>
+<referredKeyID>37962C15-0142-917B-D32E-7E322D2473E2</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>IdBA,adquirido</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="FE1E3E8F-4662-048B-781B-E45728090737" containerWithKeyObject="D7489394-BC63-D495-57F7-F0DB37A13FD3" localFKIndex="4D5E3886-2B7C-A5A6-DA08-DC958F893347" name="ESTUDIOS_INFORME_ESTADO_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>0A593CBD-0772-77EF-8929-16D45BD18DCD</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>INFORME_ESTADO</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>8082B3BA-C9CE-EF41-C97A-512ED13AA126</referredTableID>
+<keyObject>73D937F6-593B-7A0B-7FD8-AF0B33273868</keyObject>
+<referredKeyID>73D937F6-593B-7A0B-7FD8-AF0B33273868</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>idEst</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="ED24F7A1-F71C-3E7B-43FA-979371272AA1" containerWithKeyObject="8082B3BA-C9CE-EF41-C97A-512ED13AA126" localFKIndex="B1498CBB-504D-C756-DA4D-439874428ECA" name="INFORME_ESTADO_INFORMES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>F051A497-5BDC-7955-B788-E038906D434F</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>INFORMES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>4B44528E-323E-6BAF-72E1-11F5A0515B70</referredTableID>
+<keyObject>52AAB448-C5F8-5770-14A2-4A1E02761418</keyObject>
+<referredKeyID>52AAB448-C5F8-5770-14A2-4A1E02761418</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>IdInf</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A926E009-D960-95DA-E632-93854FA16298" containerWithKeyObject="26F4E3EF-2541-FC8F-3864-800BA9FA2F6D" localFKIndex="92CAAB91-4633-DFEA-B1FC-9280364E5330" name="INFORME_INTER_INFORMES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>3F03B25A-792E-C5DD-F4C0-0261AF6F91CD</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>INFORMES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>4B44528E-323E-6BAF-72E1-11F5A0515B70</referredTableID>
+<keyObject>52AAB448-C5F8-5770-14A2-4A1E02761418</keyObject>
+<referredKeyID>52AAB448-C5F8-5770-14A2-4A1E02761418</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>IdInf</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2BE58C6D-2F49-BE42-E94E-1E5BD67E72A8" containerWithKeyObject="DFA68750-8D76-766D-2A8C-59F9B5845313" localFKIndex="42DABFA7-C69C-AECD-3885-199A5FF3CEAA" name="Objeto_fk">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<generatorID>FF5E0A0D-8BCA-4BE8-F1DA-6943C501B970</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>OBJETO</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>A7C43808-A7F2-E817-0E47-2D6480EA67CB</referredTableID>
+<keyObject>8F917075-33E0-C6C5-CC6A-8C8116F01F14</keyObject>
+<referredKeyID>8F917075-33E0-C6C5-CC6A-8C8116F01F14</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>numInv</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A1199BE2-C3D6-0911-735E-86FAD988B431" containerWithKeyObject="5596FA40-AA27-7C95-43DE-0F6B58AD8458" localFKIndex="24ED6146-0A76-6087-A88A-D460F31F396C" name="objeto_informes_INFORMES_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>EF777B9C-FCEF-927E-C5D0-89A1435422DA</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>INFORMES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>4B44528E-323E-6BAF-72E1-11F5A0515B70</referredTableID>
+<keyObject>52AAB448-C5F8-5770-14A2-4A1E02761418</keyObject>
+<referredKeyID>52AAB448-C5F8-5770-14A2-4A1E02761418</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>IdInf</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="B0D9E631-1144-2C9C-266D-4512D4B945FC" containerWithKeyObject="5596FA40-AA27-7C95-43DE-0F6B58AD8458" localFKIndex="F38924EC-36A3-4617-9983-7D337C443C3D" name="objeto_informes_OBJETO_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>EF777B9C-FCEF-927E-C5D0-89A1435422DA</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>OBJETO</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>A7C43808-A7F2-E817-0E47-2D6480EA67CB</referredTableID>
+<keyObject>8F917075-33E0-C6C5-CC6A-8C8116F01F14</keyObject>
+<referredKeyID>8F917075-33E0-C6C5-CC6A-8C8116F01F14</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>numInv</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="BD79D7F3-288A-6AE7-AB55-0BE75D7C7F47" containerWithKeyObject="85AAAFCA-4CD5-5E55-A9C2-1D2B5BB448FB" localFKIndex="5DE8A350-DA59-B955-A4F7-9D0B5C0B5236" name="objeto_movimientos_MOVIMIENTOS_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>A4D542C1-F628-D3D0-FC01-AE6D3523B1BB</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>MOVIMIENTOS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>1A6EE035-8064-4BCA-0332-D89A8EBE47E0</referredTableID>
+<keyObject>CEDA6341-F06F-71DA-8411-AABF7F3C28F5</keyObject>
+<referredKeyID>CEDA6341-F06F-71DA-8411-AABF7F3C28F5</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>idMov</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="73EAEF03-5C7C-7649-7B93-D700DA3687BB" containerWithKeyObject="85AAAFCA-4CD5-5E55-A9C2-1D2B5BB448FB" localFKIndex="C6729955-6593-51B9-2577-BAAEA53325D0" name="objeto_movimientos_OBJETO_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>A4D542C1-F628-D3D0-FC01-AE6D3523B1BB</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>OBJETO</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>A7C43808-A7F2-E817-0E47-2D6480EA67CB</referredTableID>
+<keyObject>8F917075-33E0-C6C5-CC6A-8C8116F01F14</keyObject>
+<referredKeyID>8F917075-33E0-C6C5-CC6A-8C8116F01F14</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>numInv</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="64675A11-E445-4916-C8B4-74935EA42DA2" containerWithKeyObject="01C32ED9-9269-814B-5133-C0FE579DEBA4" localFKIndex="85653D3B-31AE-41E7-E13A-D100F10A4103" name="SECCIONES_ARQUEOLOGIA_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:20:25 UTC</createdTime>
+<generatorID>52A5B9DC-C1A7-9BFE-6001-4C30FCC05583</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>ARQUEOLOGIA</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>08B4C221-9EA4-4B48-0339-9B5FB0849820</referredTableID>
+<keyObject>9B697EE8-42F0-6DE0-1C8E-CD6A2A5DF678</keyObject>
+<referredKeyID>9B697EE8-42F0-6DE0-1C8E-CD6A2A5DF678</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>idArque</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="E5B13CE4-CD66-DECF-5FFE-C80F88FFE162" containerWithKeyObject="7CA1EB8C-4A00-B416-2159-804DBE41662A" localFKIndex="05FC5746-FCFB-466E-54AC-196555FE5E42" name="UBICACIÓN_OBJETO_FK">
+<createdBy>krmen</createdBy>
+<createdTime>2017-05-09 18:08:39 UTC</createdTime>
+<generatorID>8F2280CD-5ABC-5567-4EF5-495016CE694B</generatorID>
+<ownerDesignName>fondos</ownerDesignName>
+<referredTableLongName>OBJETO</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>A7C43808-A7F2-E817-0E47-2D6480EA67CB</referredTableID>
+<keyObject>8F917075-33E0-C6C5-CC6A-8C8116F01F14</keyObject>
+<referredKeyID>8F917075-33E0-C6C5-CC6A-8C8116F01F14</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>numInv</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</ForeignKey>
+</ForeignKeys>
+<mainView class="oracle.dbtools.crest.swingui.relational.DPVRelational" name="Relational_1" id="B0EC5ACD-8FE3-1750-2E38-EC77156BC2FF">
+<createdBy>krmen</createdBy>
+<modifiedBy>krmen</modifiedBy>
+<createdTime>2017-05-09 16:45:44 UTC</createdTime>
+<autoRoute>false</autoRoute>
+<boxInbox>true</boxInbox>
+<showLegend>false</showLegend>
+<showLabels>false</showLabels>
+<showRelAttributes>false</showRelAttributes>
+<gridEnabled>false</gridEnabled>
+<showGrid>false</showGrid>
+<diagramColor>-1</diagramColor>
+<display>false</display>
+<notation>1</notation>
+<hideDetailsOnZoomOut>false</hideDetailsOnZoomOut>
+<objectViews>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="01C32ED9-9269-814B-5133-C0FE579DEBA4" otype="Table" vid="BA582F8C-B8DE-6A28-5BBB-8CC551249957">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="1319" y="73" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="08B4C221-9EA4-4B48-0339-9B5FB0849820" otype="Table" vid="9B514087-8777-2AB9-D7E5-785ED722DD10">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="1067" y="99" width="149" height="99"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="0CCA52E1-439E-5289-733E-BA094F767A8A" otype="Table" vid="A10B6366-F376-3659-20FE-00029B8E0DDF">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="701" y="328" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="1A6EE035-8064-4BCA-0332-D89A8EBE47E0" otype="Table" vid="14CDCC69-6B06-55CA-447C-3461A970A40E">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="880" y="25" width="145" height="94"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="26F4E3EF-2541-FC8F-3864-800BA9FA2F6D" otype="Table" vid="46309DEC-7F8F-B1BA-0F1A-9F3913D1C104">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="11" y="119" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="2C464EDB-1406-588C-1F45-62EC20647B15" otype="Table" vid="7F764796-B513-0C93-1308-A59CB554BBE1">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="1043" y="503" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="3EAFD3FF-C342-875E-057E-871AB5840DD9" otype="Table" vid="9D0ECE51-A1D3-D258-633E-8246E12E7516">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="517" y="329" width="147" height="75"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="4B44528E-323E-6BAF-72E1-11F5A0515B70" otype="Table" vid="88595EE3-5418-61CE-10CD-C4589F547166">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="196" y="7" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="4D36510B-5FA5-4CAC-080B-564DAF6078C0" otype="Table" vid="05B57660-9EEA-90A5-D3F7-F0AB60FFF9A4">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="1175" y="260" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="55899651-9B79-B7F2-4481-10D7AD9C5F79" otype="Table" vid="3FE4E3E8-3FB3-E39C-51FA-1F127B65996A">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="399" y="421" width="232" height="153"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="5596FA40-AA27-7C95-43DE-0F6B58AD8458" otype="Table" vid="EFC746DE-68D4-6940-280A-3862DAA62A59">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="49" y="431" width="304" height="147"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="7CA1EB8C-4A00-B416-2159-804DBE41662A" otype="Table" vid="77653505-F218-F4FC-A9B4-040EF3BDE38C">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="669" y="234" width="139" height="74"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="8082B3BA-C9CE-EF41-C97A-512ED13AA126" otype="Table" vid="6BF1E03F-43D5-8136-7A7C-11B0F34187B5">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="203" y="136" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="85AAAFCA-4CD5-5E55-A9C2-1D2B5BB448FB" otype="Table" vid="53CF1DCF-33C7-0786-AF7B-FAD430EA095B">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="694" y="92" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="97CF143B-47F6-CDEE-40FE-759D0D6A8C1A" otype="Table" vid="3FEC567C-B802-0AFE-0C94-EE8CD2E4FCF7">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="433" y="201" width="173" height="90"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="A47359D3-B060-203A-33D5-9D032CDDF653" otype="Table" vid="FBF96ED5-B9CD-9D29-8077-AECF24BEEBE6">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="440" y="68" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="A7C43808-A7F2-E817-0E47-2D6480EA67CB" otype="Table" vid="49BE3139-EDE3-C9E8-9B35-DF6DAA719EB8">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="431" y="30" width="120" height="111"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="B88A1395-93FE-317E-E44F-CF6C24B44DBF" otype="Table" vid="05B855F7-9157-CA7E-11D1-ACD854CD53CD">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="624" y="1" width="125" height="89"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="D7489394-BC63-D495-57F7-F0DB37A13FD3" otype="Table" vid="D5DAA86A-2134-C579-0A6B-D20611A6A6EA">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="90" y="282" width="170" height="110"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="DFA68750-8D76-766D-2A8C-59F9B5845313" otype="Table" vid="0476F8DB-1A49-C75E-7A5D-5061AA66B433">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="813" y="277" width="170" height="113"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="F93F4AD4-F6E4-FBC1-DB99-5ECBD5E56D3D" otype="Table" vid="E52D28FA-9EF1-0DC7-9FDA-AA29301368FB">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="976" y="366" width="170" height="110"/>
+</OView>
+</objectViews>
+<connectors>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="00FFFE78-E76B-38FD-297C-8D068B66B0B2" otype="FKIndexAssociation" vid_source="3FEC567C-B802-0AFE-0C94-EE8CD2E4FCF7" vid_target="A10B6366-F376-3659-20FE-00029B8E0DDF">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="606" y="290"/>
+<point x="701" y="339"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="2BE58C6D-2F49-BE42-E94E-1E5BD67E72A8" otype="FKIndexAssociation" vid_source="49BE3139-EDE3-C9E8-9B35-DF6DAA719EB8" vid_target="0476F8DB-1A49-C75E-7A5D-5061AA66B433">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="670" y="302"/>
+<point x="813" y="302"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="2F3F5DBB-ED30-95E3-4BCE-17B4A84AF887" otype="FKIndexAssociation" vid_source="9B514087-8777-2AB9-D7E5-785ED722DD10" vid_target="05B57660-9EEA-90A5-D3F7-F0AB60FFF9A4">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="1195" y="198"/>
+<point x="1195" y="260"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="583E88AF-EBD8-3CD6-8C81-8C9CC3D26534" otype="FKIndexAssociation" vid_source="9D0ECE51-A1D3-D258-633E-8246E12E7516" vid_target="FBF96ED5-B9CD-9D29-8077-AECF24BEEBE6">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="563" y="329"/>
+<point x="563" y="178"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="64675A11-E445-4916-C8B4-74935EA42DA2" otype="FKIndexAssociation" vid_source="9B514087-8777-2AB9-D7E5-785ED722DD10" vid_target="BA582F8C-B8DE-6A28-5BBB-8CC551249957">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="1216" y="141"/>
+<point x="1319" y="141"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="68BB8A4D-FB94-964D-61C8-53FEFB9B8572" otype="FKIndexAssociation" vid_source="7F764796-B513-0C93-1308-A59CB554BBE1" vid_target="E52D28FA-9EF1-0DC7-9FDA-AA29301368FB">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="1094" y="503"/>
+<point x="1094" y="476"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="6AD1CC2E-F1DD-06EA-E2F0-8CF3C3CC4481" otype="FKIndexAssociation" vid_source="49BE3139-EDE3-C9E8-9B35-DF6DAA719EB8" vid_target="9B514087-8777-2AB9-D7E5-785ED722DD10">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="551" y="120"/>
+<point x="1067" y="120"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="7035613E-DC6D-3749-5656-C9B532481070" otype="FKIndexAssociation" vid_source="3FEC567C-B802-0AFE-0C94-EE8CD2E4FCF7" vid_target="3FE4E3E8-3FB3-E39C-51FA-1F127B65996A">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="519" y="291"/>
+<point x="519" y="421"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="73EAEF03-5C7C-7649-7B93-D700DA3687BB" otype="FKIndexAssociation" vid_source="49BE3139-EDE3-C9E8-9B35-DF6DAA719EB8" vid_target="53CF1DCF-33C7-0786-AF7B-FAD430EA095B">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="551" y="96"/>
+<point x="694" y="96"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="A1199BE2-C3D6-0911-735E-86FAD988B431" otype="FKIndexAssociation" vid_source="88595EE3-5418-61CE-10CD-C4589F547166" vid_target="EFC746DE-68D4-6940-280A-3862DAA62A59">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="274" y="117"/>
+<point x="274" y="431"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="A71C88E8-1E99-638D-BFCF-896057721B33" otype="FKIndexAssociation" vid_source="49BE3139-EDE3-C9E8-9B35-DF6DAA719EB8" vid_target="3FEC567C-B802-0AFE-0C94-EE8CD2E4FCF7">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="492" y="141"/>
+<point x="492" y="201"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="A926E009-D960-95DA-E632-93854FA16298" otype="FKIndexAssociation" vid_source="88595EE3-5418-61CE-10CD-C4589F547166" vid_target="46309DEC-7F8F-B1BA-0F1A-9F3913D1C104">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="196" y="113"/>
+<point x="181" y="122"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="B0D9E631-1144-2C9C-266D-4512D4B945FC" otype="FKIndexAssociation" vid_source="49BE3139-EDE3-C9E8-9B35-DF6DAA719EB8" vid_target="EFC746DE-68D4-6940-280A-3862DAA62A59">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="452" y="141"/>
+<point x="251" y="431"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="BD79D7F3-288A-6AE7-AB55-0BE75D7C7F47" otype="FKIndexAssociation" vid_source="14CDCC69-6B06-55CA-447C-3461A970A40E" vid_target="53CF1DCF-33C7-0786-AF7B-FAD430EA095B">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="880" y="105"/>
+<point x="864" y="105"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="D7DDC478-CC21-9F63-26D9-D039DAD129C3" otype="FKIndexAssociation" vid_source="3FEC567C-B802-0AFE-0C94-EE8CD2E4FCF7" vid_target="FBF96ED5-B9CD-9D29-8077-AECF24BEEBE6">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="523" y="201"/>
+<point x="523" y="178"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="E5B13CE4-CD66-DECF-5FFE-C80F88FFE162" otype="FKIndexAssociation" vid_source="49BE3139-EDE3-C9E8-9B35-DF6DAA719EB8" vid_target="77653505-F218-F4FC-A9B4-040EF3BDE38C">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="551" y="130"/>
+<point x="689" y="234"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="EB24F079-0A74-468B-9E9B-115AAEBA7407" otype="FKIndexAssociation" vid_source="05B855F7-9157-CA7E-11D1-ACD854CD53CD" vid_target="0476F8DB-1A49-C75E-7A5D-5061AA66B433">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="719" y="90"/>
+<point x="856" y="277"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="ED24F7A1-F71C-3E7B-43FA-979371272AA1" otype="FKIndexAssociation" vid_source="88595EE3-5418-61CE-10CD-C4589F547166" vid_target="6BF1E03F-43D5-8136-7A7C-11B0F34187B5">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="284" y="117"/>
+<point x="284" y="136"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="EFDCEB8A-A7B2-A85A-D3A1-A94DCA002A20" otype="FKIndexAssociation" vid_source="9B514087-8777-2AB9-D7E5-785ED722DD10" vid_target="E52D28FA-9EF1-0DC7-9FDA-AA29301368FB">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="1106" y="198"/>
+<point x="1106" y="366"/>
+</points>
+</Connector>
+<Connector class="oracle.dbtools.crest.swingui.relational.TVFKRelation" oid="FE1E3E8F-4662-048B-781B-E45728090737" otype="FKIndexAssociation" vid_source="6BF1E03F-43D5-8136-7A7C-11B0F34187B5" vid_target="D5DAA86A-2134-C579-0A6B-D20611A6A6EA">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<lineWidth>1</lineWidth>
+<points>
+<point x="231" y="246"/>
+<point x="231" y="282"/>
+</points>
+</Connector>
+</connectors>
+</mainView>
+</relationalModel>

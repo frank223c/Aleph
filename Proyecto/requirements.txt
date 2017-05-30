@@ -1,0 +1,11 @@
+django==1.10
+django-extensions
+ipython
+django-bootstrap3
+psycopg2
+pillow
+django-filter
+django-widget-tweaks
+django-crispy-forms
+python-ldap
+django-auth-ldap

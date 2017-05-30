@@ -104,7 +104,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'museo',
-        'USER': 'museo',
+        'USER': 'postgres',
         'PASSWORD': 'admin',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -189,7 +189,7 @@ AUTH_LDAP_GROUP_TYPE = NestedActiveDirectoryGroupType()
 AUTH_LDAP_USER_FLAGS_BY_GROUP = {
     "is_active": "cn=Activos,ou=Unidades,dc=Museo,dc=es",
     "is_staff": "cn=Administradores,ou=Unidades,dc=Museo,dc=es",
-    "is_superuser": "cn=Administradores,ou=Unidades,ou=grupos,dc=Museo,dc=es"
+    "is_superuser": "cn=Administradores,ou=Unidades,dc=Museo,dc=es"
 }
 
 AUTH_LDAP_FIND_GROUP_PERMS = True

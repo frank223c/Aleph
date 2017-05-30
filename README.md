@@ -26,6 +26,6 @@ python manage.py migrate
 dicha tarea. La documentación es una tarea que conlleva varias funciones, desde registrar un objeto de inventario hasta crear un informe sobre
 la conservación del mismo.
 
-Está configurado para utilizar como DB Postgre y como backend de autenticación Active Directory.*
+Está configurado para utilizar como DB Postgre y como backend de autenticación Active Directory*
 
 

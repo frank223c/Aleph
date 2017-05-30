@@ -16,17 +16,16 @@ python manage.py makemigrations
 python manage.py migrate
 ````
 
-2.Dirigirse a 127.0.0.1:8000
+2.Dirigirse a 127.0.0.1:8000 e iniciar sesión con un usuario válido.
 
-**Versión 2.0 **
 
-"Prototipo inicial del proyecto Aleph, el proyecto consiste en digitalizar toda la información de documentación de museos
-de los objetos residentes en el mismo y a la conservación de las piezas, respetando la normativa ya vigente sobre
-dicha tarea. 
 
-El hecho de que la documentación museográfica sea tan extensa
-necesitaba una solución informatizada, por ello para mi proyecto final de ASIR se creó este prototipo.
+**Aleph**
 
-Está configurado para utilizar como DB Postgre y como backend de autenticación Active Directory."1.
+Aleph es una aplicación web creada con el framework Django para digitalizar la tarea de documentación museográfica ,respetando la normativa ya vigente sobre
+dicha tarea. La documentación es una tarea que conlleva varias funciones, desde registrar un objeto de inventario hasta crear un informe sobre
+la conservación del mismo.
+
+Está configurado para utilizar como DB Postgre y como backend de autenticación Active Directory.*
 
 

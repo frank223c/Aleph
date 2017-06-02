@@ -6,13 +6,13 @@
 <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
 <script src="{% static '/js/jquery.min.js' %}"></script>
 <div class="container">
-{% for datos in datos %}
-    <h1>Seguimiento de {{ datos.propietario }}{{ datos.numinv }}</h1>
 <table class="table">
+    </table>
+    {% for datos in datos %}
       <b><h3>Revisión colección expuesta</h3></b>
 <p><b>Nombre restaurador:</b>{{ instance.nombre_res }}</p>
 <p><b>Apellido restaurador:</b>{{ instance.ape_res }}</p>
-<p><b>Ubicación:</b>{{ datos.ubicacion }}</p>
+<p><b>Ubicación:</b>{{ datos.ubicacionmus }}</p>
 <div class="container">
 <table class="table">
   <b><h3>Descripción de la obra</h3></b>
@@ -43,8 +43,8 @@
 </div>
 <h1>Fotos generales</h1>
 <p align="center"><img src="{{ datos.anverso.url }}" width="240px"><img src="{{ datos.reverso.url }}" width="240px"></p>
-{% endfor %}
 <div class="container">
+    {% endfor %}
 <table class="table">
   <b><h3>Características del examen</h3></b>
 <tr>

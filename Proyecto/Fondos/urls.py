@@ -6,6 +6,7 @@ from django.contrib.auth import views
 from .forms import LoginForm
 from .forms import *
 
+
 urlpatterns = [
     url(r'^$',index, name='index'),
     url(r'^accounts/login/$', views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}, name='login'),
@@ -24,8 +25,7 @@ urlpatterns = [
     url(r'^bellasartes/(?P<pk>\d+)/borrar/$', bellasartes_borrar, name='borrarbellasartes'),
     #VISTAS PARA AGREGAR ELEMENTOS EXTERNOS DE LA TABLA OBJETO
     url(r'^agregar/bibliografia/',newBibliografia, name='nuevabibliografia'),
-    url(r'^agregar/ubicacion/',newUbicacion, name='nuevaubicacion'),
-    url(r'agregar/movimientos/', newMovimiento, name='nuevo-movimiento'),
+    url(r'^agregar/movimientos/', newMovimiento, name='nuevo-movimiento'),
     url(r'^agregar/estudio/' ,newEstudio, name='nuevoestudio'),
     #VISTAS PARA AGREGAR ELEMENTOS DE TABLAS EXTERNAS DE ARQUEOLOGIA
     url(r'^agregar/material/',newMaterial, name='nuevomaterial'),
@@ -37,20 +37,21 @@ urlpatterns = [
     url(r'^agregar/donante/',newDonante, name='nuevodonante'),
     url(r'^agregar/tecnica/',newTecnica, name='nuevotecnica2'),
     url(r'^agregar/soporte/',newSoporte, name='nuevosoporte'),
-    url(r'^agregar/Soporte/',newSoporte, name='nuevosoporte2'),
     url(r'^agregar/autor/',newAutor, name='nuevoautor2'),
     url(r'^agregar/iconografia/',newIconografia, name='nuevoiconografia'),
     #BUSQUEDAS
     url(r'^search-arqueologia/$',searcharqueologia, name='search-arqueologia'),
     url(r'^search-bellasartes/$',searchbellasartes, name='search-bellasartes'),
-    #LISTADO
+    #LISTADO DE INFORMES DE ESTADO
     url(r'^registrarestado/(?P<pk>\d+)/$', estado_crear , name='registrarestado'),
     url(r'^registrarintervencion/(?P<pk>\d+)/$', intervencion_crear , name='registrarintervencion'),
-    #url(r'^registrarintervencion', intervencion_crear , name='registrarintervencion'),
     url(r'^estado/(?P<pk>\d+)/$', estado_detalle, name='detalleestado'),
     url(r'^estadoactualizar/(?P<pk>\d+)/$', estado_actualizar, name='actuestado'),
     url(r'^autor_clasificacion/(?P<pk>\d+)/$', autores_clasi, name='autores-clasificacion'),
     url(r'^verautores', autores_lista, name='autores-listado'),
+    url(r'^informearqueo_crear/(?P<pk>\d+)/$', informearqueo_crear,name='informe-arqueo-crear'),
+    url(r'^informearqueo_ver/(?P<pk>\d+)/$', informearqueo_detalle,name='informe-arqueo-ver'),
+    url(r'^informearqueo_actu/(?P<pk>\d+)/$', informearqueo_actualizar,name='informe-arqueo-actu'),
     #url(r'^generainforme', get_reporte, name='informe'),
 
 ]

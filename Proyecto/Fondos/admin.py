@@ -4,11 +4,11 @@ from django.contrib import admin
 from .models import *
 
 class AdminArqueologia(admin.ModelAdmin):
- list_display = ["numinv","nombre","seccion","edad","yacimiento","conservacion","depositado","ubicacion"]
+ list_display = ["numinv","nombre","seccion","edad","yacimiento","conservacion","depositado","ubicacionmus"]
  list_display_links =["numinv"]
  list_filter = ["seccion"]
- list_editable = ["nombre","ubicacion","conservacion","edad"]
- search_fields = ["numinv","nombre","seccion","edad","material","fechaingreso","ubicacion"]
+ list_editable = ["nombre","ubicacionmus","conservacion","edad"]
+ search_fields = ["numinv","nombre","seccion","edad","material","fechaingreso","ubicacionmus"]
  
         
  class Meta:
@@ -16,11 +16,11 @@ class AdminArqueologia(admin.ModelAdmin):
      
      
 class AdminArte(admin.ModelAdmin):
- list_display = ["numinv","titulo","autor","ubicacion","formaingreso"]
+ list_display = ["numinv","titulo","autor","ubicacionmus","formaingreso"]
  list_display_links =["numinv"]
  list_filter = ["autor"]
- list_editable = ["titulo","ubicacion"]
- search_fields = ["numinv","titulo","autor","fechaingreso","ubicacion"]
+ list_editable = ["titulo","ubicacionmus"]
+ search_fields = ["numinv","titulo","autor","fechaingreso","ubicacionmus"]
  
         
  class Meta:
@@ -57,7 +57,6 @@ class AdminBibliografia(admin.ModelAdmin):
      #~ model = Autor  
 
 
-admin.site.register(Ubicacion)
 admin.site.register(Movimiento)
 admin.site.register(Bibliografia,AdminBibliografia)
 admin.site.register(Serie)
@@ -74,5 +73,6 @@ admin.site.register(Objeto)
 admin.site.register(Estudio)
 admin.site.register(InformeEstado)
 admin.site.register(InformeIntervencion)
+admin.site.register(InformeArqueo)
 admin.site.register(Iconografia)
 admin.site.register(Autor,AdminAutor)

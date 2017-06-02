@@ -22,8 +22,8 @@
         <td>{{ obj.titulo }}</td>
         <td>{{ obj.autor }}</td>
         <td><a href="{{ obj.get_absolute_url }}"  role="button"><img src="/static/img/lupa.png" width="30" height="30" alt="Agregar otro"/></td> </a>
-       <td><a href="/inicio/bellasartes/{{ obj.numinv }}/editar/" role="button"><img src="/static/img/edit.png" width="30" height="30" alt="Agregar otro"/></td></a>
-       <td><a href="/inicio/bellasartes/{{ obj.numinv }}/borrar/" onclick="return confirm('Se borrará toda la información relacionada con {{ obj.titulo }},¿estás seguro?')" role="button"><img src="/static/img/delete.png" width="30" height="30" alt="Agregar otro"/></td>
+       <td><a href="/bellasartes/{{ obj.id }}/editar/" role="button"><img src="/static/img/edit.png" width="30" height="30" alt="Agregar otro"/></td></a>
+       <td><a href="/bellasartes/{{ obj.id }}/borrar/" onclick="return confirm('Se borrará toda la información relacionada con {{ obj.titulo }},¿estás seguro?')" role="button"><img src="/static/img/delete.png" width="30" height="30" alt="Agregar otro"/></td>
        </tr>
        {% endfor %}
 </table>

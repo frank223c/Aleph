@@ -60,7 +60,7 @@
     </tr>
       {% for objeto in filter.qs %}
   <tr> 
-     <td> {{ objeto.propietario}}{{ objeto.numinv }}<a href="/inicio/bellasartes/{{ objeto.numinv }}"><img src="/static/img/see.png" width="30" height="30" alt="Detalles"/></a></td>
+     <td> {{ objeto.propietario}}{{ objeto.numinv }}<a href="/bellasartes/{{ objeto.pk }}"><img src="/static/img/see.png" width="30" height="30" alt="Detalles"/></a></td>
     <td>{{ objeto.titulo }}</td>
       {% endfor %}
 </tr>

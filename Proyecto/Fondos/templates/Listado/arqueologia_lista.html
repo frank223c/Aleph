@@ -23,9 +23,9 @@
         <td>{{ obj.nombre }}</td>
         <td>{{ obj.seccion }}</td>
         <td>{{ obj.edad }}</td>
-        <td><a href="{{ obj.get_absolute_url }}"  role="button"><img src="/static/img/lupa.png" width="30" height="30" alt="Agregar otro"/></a></td>
-       <td><a href="/inicio/arqueologia/{{ obj.numinv }}/editar/" role="button"><img src="/static/img/edit.png" width="30" height="30" alt="Agregar otro"/></a></td>
-       <td><a href="/inicio/arqueologia/{{ obj.numinv }}/borrar/" onclick="return confirm('Se borrará toda la información relacionada con {{ obj.nombre }},¿estás seguro?')" role="button"><img src="/static/img/delete.png" width="30" height="30" alt="Agregar otro"/></a></td>
+        <td><a href="{{ obj.get_absolute_url }}"  role="button"><img src="/static/img/lupa.png" width="30" height="30" alt="vER"/></a></td>
+       <td><a href="/arqueologia/{{ obj.id }}/editar/" role="button"><img src="/static/img/edit.png" width="30" height="30" alt="Editar"/></a></td>
+       <td><a href="/arqueologia/{{ obj.id }}/borrar/" onclick="return confirm('Se borrará toda la información relacionada con {{ obj.nombre }},¿estás seguro?')" role="button"><img src="/static/img/delete.png" width="30" height="30" alt=Borrar"/></a></td>
        </tr>
        {% endfor %}
 </table>

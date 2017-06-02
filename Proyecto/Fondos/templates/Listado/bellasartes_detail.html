@@ -16,23 +16,22 @@
    </tr>
    </table>
    </div>
-<b><p>Título:</b>{{ instance.titulo }}</p>
-<b>Autor:</b><p>{{ instance.autor }}</p>
-<b>Añadir estado</b> <a href="/inicio/registrarestado/{{ instance.numinv }}"><img src="/static/img/status.png" width="30" height="30" alt="Detalles"/></a>
+{{ instance.titulo }}
 </div> 
 </div> 
 <div class ="container">
 <div class="right">
-<b>Descripción:</b><p>{{ instance.descripcion }}</p>
-<b>Iconografía</b><p>{{ instance.iconografia }}</p>
-<b>Adquirido por:</b> <p>{{ instance.adquirido }}</p>
-<b>Tamaño:</b> <p>{{ instance.altura }} cm x {{ instance.ancho }} cm</p>
-<b>Ubicación</b><p> {{ instance.ubicacion }}</p>
-<b>Soporte</b><p>{% for soporte in instance.soporte.all %}<li>{{ soporte.nombre }}</li></p>
+<p><b>Autor:</b>{{ instance.autor }}</p>
+<p><b>Descripción:</b>{{ instance.descripcion }}</p>
+<p><b>Iconografía</b>{{ instance.iconografia }}</p>
+<p><b>Adquirido por:</b>{{ instance.adquirido }}</p>
+<p><b>Tamaño:</b>{{ instance.altura }} cm x {{ instance.ancho }} cm</p>
+<p><b>Ubicación</b>{{ instance.ubicacion }}</p>
+<p><b>Soporte</b>{% for soporte in instance.soporte.all %}<ul>{{ soporte.nombre }}</ul></p>
 {% endfor %}
-<b>Técnica</b><p>{% for tecnica in instance.tecnica.all %} <li>{{ tecnica.nombre }}</li></p>
+<p><b>Técnica</b>{% for tecnica in instance.tecnica.all %}<ul>{{ tecnica.nombre }}</ul></p>
 {% endfor %}
-<b>Bibliografía y referencias</b><p>{% if bibliografia == None %}
+<p><b>Bibliografía y referencias</b>{% if bibliografia == None %}
 No hay referencias.
 {% else %}
 {% endif %}
@@ -58,14 +57,16 @@ No hay referencias.
 {% for estado in estado %} 
 <td>{{ estado.fecha }} </td>    
 <td>{{ estado.prioridad }} </td>
-<td>Ver informe<a href="/inicio/estado/{{ estado.pk }}"><img src="/static/img/status.png" width="30" height="30" alt="Detalles"/></td></a>
-<td>Añadir intervención al informe<a href="/inicio/registrarintervencion/{{ estado.id }}"><img src="/static/img/add.png" width="30" height="30" alt="Añadir intervención"/></td></a>
-<td>Editar informe de estado<a href="/inicio/estadoactualizar/{{ estado.id }}"><img src="/static/img/edit.png" width="30" height="30" alt="Añadir intervención"/></td></a>
+<td>Ver informe<a href="/estado/{{ estado.id }}/"><img src="/static/img/status.png" width="30" height="30" alt="Detalles"/></td></a>
+<td>Añadir intervención al informe<a href="/registrarintervencion/{{ estado.id }}"><img src="/static/img/add.png" width="30" height="30" alt="Añadir intervención"/></td></a>
+<td>Editar informe de estado<a href="/estadoactualizar/{{ estado.id }}"><img src="/static/img/edit.png" width="30" height="30" alt="Añadir intervención"/></td></a>
 </tr>
 {% endfor %}
 </table>
 </div>
 </div>
+<p>Crear un nuevo informe<a href="/registrarestado/{{ instance.pk }}"><img src="/static/img/status.png" width="30" height="30" alt="Detalles"/></a></p> 
+
 <!-- For this to work, the files need to be labeled with numbers (slideNumber1.png, slideNumber2.png, etc); I have successfully used numbers and letters (tn_1a.jpg, tn_2b.jpg, etc);  however, you can't use the same numbers (NOT tn_1a.jpg, tn_1b.jpg) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>

@@ -1,0 +1,49 @@
+[
+  {
+    "model": "Fondos.material",
+    "pk": 1,
+    "fields": {
+      "nombre": "Oro",
+    }
+  },
+  {
+    "model": "Fondos.material",
+    "pk": 2,
+    "fields": {
+      "nombre": "Cobre",
+    }
+  },
+    {
+    "model": "Fondos.material",
+    "pk": 3,
+    "fields": {
+      "nombre": "Plata",
+    }
+  },  {
+    "model": "Fondos.material",
+    "pk": 4,
+    "fields": {
+      "nombre": "Hueso",
+    }
+  },
+   {
+    "model": "Fondos.material",
+    "pk": 5,
+    "fields": {
+      "nombre": "Caliza",
+    }
+  }, {
+    "model": "Fondos.material",
+    "pk": 6,
+    "fields": {
+      "nombre": "Ámbar",
+    }
+  },
+  {
+    "model": "Fondos.material",
+    "pk": 7,
+    "fields": {
+      "nombre": "Textil",
+    }
+  },
+]

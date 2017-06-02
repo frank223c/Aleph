@@ -11,15 +11,7 @@ DEBUG = True
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-
-
-#AUTHENTICATION_BACKENDS = (
-#    'django_auth_ldap.backend.LDAPBackend',
-#)
-
+GRAPPELLI_ADMIN_TITLE = 'Administración de Aleph'
 
 MEDIA_URL = '/media/'
 
@@ -40,7 +32,10 @@ TEMPLATES = [
 ]
 
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -91,13 +86,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Proyecto.wsgi.application'
-LOGIN_REDIRECT_URL = '/' # It means home view
-
+LOGIN_REDIRECT_URL = '/' 
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#   'django.contrib.staticfiles.finders.DefaultStorageFinder',
+   'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 DATABASES = {
@@ -149,66 +143,79 @@ USE_TZ = True
 
 SHELL_PLUS = "ipython"
 
-
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'static'),
-)
+ )
 
-#AUTENTICACION LDAP CON SERVIDOR DE PRUEBA EN WINDOWS 2008 R2 SERVER CON ACTIVE DIRECTORY
 
-# LDAP ACTIVE DIRECTORY
+
+#~ #AUTENTICACION LDAP CON SERVIDOR DE PRUEBA EN WINDOWS 2008 R2 SERVER CON ACTIVE DIRECTORY
+
 AUTHENTICATION_BACKENDS = (
     'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
-# ldap authentication
-AUTHENTICATION_BACKENDS = (
-    'django_auth_ldap.backend.LDAPBackend',
-)
 
-# ldap authentication
+#
+##La documentacion sobre este apartado se encuentra en
+###http://pythonhosted.org/django-auth-ldap/; he seguido este ejemplo de
+##configuracion
+#
+
 import ldap
-from django_auth_ldap.config import LDAPSearch, NestedActiveDirectoryGroupType
 
-#IP de la intranet en mi máquina virtual
-AUTH_LDAP_SERVER_URI = "ldap://10.17.11.3:389"
-#root dn necesario para ver el arbol
-AUTH_LDAP_BIND_DN = "cn=Administrador,dc=Museo,dc=es"
+# Server URI
+AUTH_LDAP_SERVER_URI = "ldap://ad.example.com"
+
+# Necesario para bindear el AD
+AUTH_LDAP_CONNECTION_OPTIONS = {
+    ldap.OPT_REFERRALS: 0
+}
+
+# Necesitamos el root dn y su contraseña
+AUTH_LDAP_BIND_DN = "CN=Administrador,dc=junta-andalucia,dc=es"
 AUTH_LDAP_BIND_PASSWORD = "Contraseña1"
 
-AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=Unidades,dc=Museo,dc=es",
-    ldap.SCOPE_SUBTREE, "(sAMAccountName=%(user)s)")
-AUTH_LDAP_GROUP_SEARCH = LDAPSearch("dc=Museo,dc=es",
-    ldap.SCOPE_SUBTREE, "(objectClass=group)"
-)
+# CERTIFICADOS
+LDAP_IGNORE_CERT_ERRORS = False
 
-AUTH_LDAP_GROUP_TYPE = NestedActiveDirectoryGroupType()
+from django_auth_ldap.config import LDAPSearch
 
-AUTH_LDAP_USER_FLAGS_BY_GROUP = {
-    "is_active": "cn=Activos,ou=Unidades,dc=Museo,dc=es",
-    "is_staff": "cn=Administradores,ou=Unidades,dc=Museo,dc=es",
-    "is_superuser": "cn=Administradores,ou=Unidades,dc=Museo,dc=es"
-}
+# This search matches users with the sAMAccountName equal to the provided username. This is required if the user's
+# username is not in their DN (Active Directory).
+AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=Unidades,ou=Museo,dc=junta-andalucia,dc=es",
+                                    ldap.SCOPE_SUBTREE,
+                                    "(sAMAccountName=%(user)s)")
 
-AUTH_LDAP_FIND_GROUP_PERMS = True
-# Cache 
-AUTH_LDAP_CACHE_GROUPS = True
-AUTH_LDAP_GROUP_CACHE_TIMEOUT = 300
+#si el dn de un usuario es su cn no hay que buscarlo
+AUTH_LDAP_USER_DN_TEMPLATE = "uid=%(user)s,ou=users,dc=junta-andalucia,dc=es"
 
+# You can map user attributes to Django attributes as so.
 AUTH_LDAP_USER_ATTR_MAP = {
     "first_name": "givenName",
-    "last_name": "sn",
-    "email": "mail"
+    "last_name": "sn"
 }
 
-#nombre del servidor controlador de dominio
-LDAP_SERVER_NAME = "Adriano"
-LDAP_DOMAIN_BASE = "dc=Museo,dc=es"
-LDAP_USERS_BASE = "ou=Unidades," + LDAP_DOMAIN_BASE
-#aqui van los que pueden insertar datos
-LDAP_INVENTARIO_BASE = "ou=InventarioRegistro," + LDAP_USERS_BASE
-#aquí van los que pueden añadir informes y consultar
-LDAP_RESTAURACION_BASE = "ou=Restauracion," + LDAP_USERS_BASE
-LDAP_GROUPS_BASE = "ou=Grupos," + LDAP_DOMAIN_BASE
+from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
+# Devuelve una serie de grupos a los que pertenece el usuario
+AUTH_LDAP_GROUP_SEARCH = LDAPSearch("dc=junta-andalucia,dc=es", ldap.SCOPE_SUBTREE,
+                                    "(objectClass=group)")
+AUTH_LDAP_GROUP_TYPE = GroupOfNamesType()
+
+
+# Definimos el tipo de usuario superusuario,activo y staff
+AUTH_LDAP_USER_FLAGS_BY_GROUP = {
+    "is_active": "cn=active,ou=groups,dc=junta-andalucia,dc=es",
+    "is_staff": "cn=staff,ou=groups,dc=junta-andalucia,dc=es",
+    "is_superuser": "cn=superuser,ou=groups,dc=junta-andalucia,dc=es"
+}
+
+# Para permisos mas granulares,podemos mapear los grupos de LDAP a grupos de django
+AUTH_LDAP_FIND_GROUP_PERMS = True
+# Creamos una caché de una hora
+AUTH_LDAP_CACHE_GROUPS = True
+AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600
+

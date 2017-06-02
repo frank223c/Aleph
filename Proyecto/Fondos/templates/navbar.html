@@ -21,9 +21,7 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
-    <link href='//fonts.googleapis.com/css?family=Satisfy' rel='stylesheet'>
-    <link href='//fonts.googleapis.com/css?family=Muli' rel='stylesheet'>
-    <link href='//fonts.googleapis.com/css?family=Cabin+Condensed' rel='stylesheet'>
+    <link href='//fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet'>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -65,7 +63,8 @@
               </li>
         <div class="pull-right">
        <ul class="nav navbar-nav">
-            <li class="active" align="right"><a href="/inicio/logout/">Cerrar sesión</a></li>
+            <li align="right"><a href="/inicio/logout/">Cerrar sesión</a></li>
+            <li align="right"><a>Bienvenido, {{user}}</li></a>
             </div>
             </ul>
                  <!--/.tercer dropdown -->

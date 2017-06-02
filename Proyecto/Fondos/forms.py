@@ -48,8 +48,6 @@ class ArqueologiaForm(forms.ModelForm):
         super(ArqueologiaForm, self).__init__(*args, **kwargs)
         self.fields["material"].widget = Textarea()
         self.fields["bibliografia"].widget = Textarea()
-        self.fields['numinv'].widget.attrs['style'] = 'width:30px;'
-        self.fields['codigo'].widget.attrs['style']  = 'width:20px;;'
         
       def clean_material(self):
           data = self.cleaned_data.get('material')
@@ -71,33 +69,28 @@ class BibliografiaForm(forms.ModelForm):
        model = Bibliografia
        fields = "__all__"
 
-class UbicacionForm(forms.ModelForm):
-    class Meta:
-       model = Ubicacion
-       fields = "__all__"
-       
 class MovimientoForm(forms.ModelForm):
     class Meta:
        model = Movimiento
        fields = "__all__"
        
-class InformeEstadoForm(forms.ModelForm):
-    fecha = forms.DateField(widget = SelectDateWidget)
-    Estudio = forms.ModelMultipleChoiceField(Estudio.objects, widget=MultipleSelectWithPop)
+#~ class InformeEstadoForm(forms.ModelForm):
+    #~ fecha = forms.DateField(widget = SelectDateWidget)
+    #~ Estudio = forms.ModelMultipleChoiceField(Estudio.objects, widget=MultipleSelectWithPop)
 
-    #funciones de validación
+    #~ #funciones de validación
     
-    def cleannuminv(self):
-      diccionario_limpio = self.cleaned_data
-      numinv = diccionario_limpio.get('numinv')
+    #~ def cleannuminv(self):
+      #~ diccionario_limpio = self.cleaned_data
+      #~ numinv = diccionario_limpio.get('numinv')
 
-      if idestado < 0 or idestado is null:
-         # select max(idestado) from informesestado where objeto=objeto
-         queryset=InformeEstado.objects.filter(objeto=Objeto_numinv)
+      #~ if idestado < 0 or idestado is null:
+         #~ # select max(idestado) from informesestado where objeto=objeto
+         #~ queryset=InformeEstado.objects.filter(objeto=Objeto_numinv)
          
-    class Meta:
-       model = InformeEstado
-       fields = "__all__" 
+    #~ class Meta:
+       #~ model = InformeEstado
+       #~ fields = "__all__" 
 
 class InformeIntervencionForm(forms.ModelForm):
     class Meta:
@@ -219,32 +212,40 @@ class DonanteForm(forms.ModelForm):
 # INTERVENCIONES
 #
 
-class EstadoForm(forms.ModelForm):
-  class Meta:
+class InformeEstadoForm(forms.ModelForm):
+   objeto = forms.ModelChoiceField(queryset=Objeto.objects.all(),widget=forms.TextInput(attrs={'readonly':'readonly'}))
+   fecha = forms.DateField(widget = SelectDateWidget)
+
+   class Meta:
        model = InformeEstado
-       exclude = ["numinv"]
-       fields = "__all__"
        widgets = {
-             'estudio': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20}),
-         }
+            'estudio': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20})
+            }
+       fields = "__all__"
         
        def __init__(self, *args, **kwargs):
          self.request = kwargs.pop('request')
          super(EstadoForm, self).__init__(*args, **kwargs)
-         self.fields["estudios"].widget = Textarea()
+         self.fields["estudio"].widget = Textarea()
         
        def clean_estudios(self):
-           data = self.cleaned_data.get('estudios')
-           return data.split(',') # just an exa
-          
+           data = self.cleaned_data.get('estudio')
+           return data.split(',')
+
+class InformeArqueoForm(forms.ModelForm):
+  objeto = forms.ModelChoiceField(queryset=Objeto.objects.all(),widget=forms.TextInput(attrs={'readonly':'readonly'}))
+  class Meta:
+      model = InformeArqueo 
+      fields = "__all__"
+
+
 class IntervencionForm(forms.ModelForm):
+    estado_rel = forms.ModelChoiceField(queryset=InformeEstado.objects.all(),widget=forms.TextInput(attrs={'readonly':'readonly'}))
     class Meta:
        model = InformeIntervencion
        fields = "__all__"
-       exclude = ["estado_rel"]
 
 class IconografiaForm(forms.ModelForm):
     class Meta:
        model = Iconografia
        fields = "__all__"
-       exclude = ["estado_rel"]

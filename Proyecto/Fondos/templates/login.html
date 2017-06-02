@@ -23,21 +23,34 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-<div class="card card-container">
+  <div class="wrap">
+		<div class="avatar">
+      <img src="https://velveteenrabbi.files.wordpress.com/2015/02/logo-square.png?w=240">
+      </div>
+<div class="card">
 <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
 {% block login %}
                                     <td>Nombre </td>
                                     <td>{{ form.username }}</td>
+                                    		<div class="bar">
+<i></i>
+		</div>
                                     <td>Contraseña  </td>
                                     <td>{{ form.password }}</td>
 <p>
                             <center>
-                                <input class="btn btn-success btn-sm" type="submit" value="Iniciar sesión" />
+<!--
+                              <button>Sign in</button> <input class="btn btn-success btn-sm" type="submit" value="Iniciar sesión" />
+-->
+<button>Iniciar sesión</button>
+
                             </center>
                 </label>
                         <input type="hidden" name="next" value="{{ next }}" /></p>
                     </form>
+</div>
+</div>
 </div>
 <script>
 {% if not user.is_authenticated %}

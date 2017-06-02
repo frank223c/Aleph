@@ -18,14 +18,11 @@ smart_unicode(str)
 
 
 def path_and_rename(instance, filename):
-    upload_to = 'photos'
+    upload_to = 'Miniaturas'
     ext = filename.split('.')[-1]
     # get filename
     if instance.pk:
-        filename = '{}.{}'.format(instance.pk, ext)
-    else:
-        # set filename as random string
-        filename = '{}.{}'.format(uuid4().hex, ext)
+        filename = '{}_{}.{}'.format(instance.codigo,instance.numinv, ext)
     # return the whole path to the file
     return os.path.join(upload_to, filename)
     
@@ -224,7 +221,7 @@ class Iconografia(models.Model):
         verbose_name_plural = "Iconografias"
 
 class Autor(models.Model):
-    foto = models.ImageField(upload_to=path_and_rename,blank=True)
+    foto = models.ImageField(upload_to='autores',default='nofoto.png')
     alias = models.CharField(max_length=30)
     nombre = models.CharField(max_length=30)
     apellidos = models.CharField(max_length=40,default='Desconocida')

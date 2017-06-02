@@ -80,7 +80,6 @@ def arqueologia_crear(request):
         instance = form.save(commit=False)
         instance.user = request.user 
         instance.save()
-        form.save_m2m()
         return HttpResponseRedirect(instance.get_absolute_url())
     context = {
         "form": form
@@ -94,7 +93,6 @@ def arqueologia_actualizar(request, pk=None):
     if form.is_valid():
       instance = form.save(commit=False)
       instance.save()
-      form.save_m2m()
       return HttpResponseRedirect(instance.get_absolute_url())
     context = {
          "instance": instance,
@@ -205,10 +203,9 @@ def newMovimiento(request):
 def bellasartes_crear(request):
     form = BellasArtesForm(request.POST or None, request.FILES or None)
     if form.is_valid():
-        instance = form.save(commit=True)
+        instance = form.save(commit=False)
         instance.user = request.user 
         instance.save()
-        form.save_m2m()
         return HttpResponseRedirect(instance.get_absolute_url())
     context = {
         "form": form
@@ -253,9 +250,8 @@ def bellasartes_actualizar(request, pk=None):
     instance = get_object_or_404(Bellasartes, pk=pk)
     form = BellasArtesForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
-      instance = form.save()
+      instance = form.save(commit=False)
       instance.save()
-      form.save_m2m()
       return HttpResponseRedirect(instance.get_absolute_url())
     context = {
          "nombre": instance.titulo,

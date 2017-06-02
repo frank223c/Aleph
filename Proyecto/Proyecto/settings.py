@@ -11,7 +11,6 @@ DEBUG = True
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-GRAPPELLI_ADMIN_TITLE = 'Administración de Aleph'
 
 MEDIA_URL = '/media/'
 
@@ -35,21 +34,55 @@ TEMPLATES = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 INSTALLED_APPS = [
-    'grappelli',
+#Extra para el admin
+    'suitlocale',
+    'suit',
+    #'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+#Extra para debug
     'django_extensions',
+#Aplicaciones de terceros
+    'security',
     'crispy_forms',
     'bootstrap3',
     'Fondos',
     'django_filters',
     'widget_tweaks',
 ]
+# Django Suit configuration example
+SUIT_CONFIG = {
+    # header
+     'ADMIN_NAME': 'Administración de Aleph',
+    # 'HEADER_DATE_FORMAT': 'l, j. F Y',
+    # 'HEADER_TIME_FORMAT': 'H:i',
 
+    # forms
+     'SHOW_REQUIRED_ASTERISK': True,  # Default True
+     'CONFIRM_UNSAVED_CHANGES': True, # Default True
+
+    # menu
+     'SEARCH_URL': '/admin/auth/user/',
+     'MENU_ICONS': {
+        'sites': 'icon-leaf',
+        'auth': 'icon-lock',
+     },
+     'MENU_OPEN_FIRST_CHILD': True, # Default True
+    # 'MENU_EXCLUDE': ('auth.group',),
+     'MENU': (
+    #     'sites',
+         {'app': 'auth', 'icon':'icon-lock', 'models': ('user', 'group')},
+         {'label': 'Settings', 'icon':'icon-cog', 'models': ('auth.user', 'auth.group')},
+         {'label': 'Support', 'icon':'icon-question-sign', 'url': '/support/'},
+     ),
+
+    # misc
+    # 'LIST_PER_PAGE': 15
+}
 #LOGIN_REDIRECT_URL = '/inicio/' # It means home view
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
@@ -63,6 +96,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     #'django.middleware.csrf.CsrfResponseMiddleware',
 ]
+
+MIDDLEWARE_CLASSES = (
+'security.middleware.DoNotTrackMiddleware',
+'security.middleware.ContentNoSniff',
+'security.middleware.XssProtectMiddleware',
+'security.middleware.XFrameOptionsMiddleware',
+)
 
 #LOGIN_URL = '/login/'
 

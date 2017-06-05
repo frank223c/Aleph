@@ -62,7 +62,6 @@ class ArqueologiaForm(forms.ModelForm):
 
    
       
-     
 #Datos alojados en tablas externas que se crean mediante un pop-up 
 class BibliografiaForm(forms.ModelForm):
     class Meta:
@@ -73,39 +72,12 @@ class MovimientoForm(forms.ModelForm):
     class Meta:
        model = Movimiento
        fields = "__all__"
-       
-#~ class InformeEstadoForm(forms.ModelForm):
-    #~ fecha = forms.DateField(widget = SelectDateWidget)
-    #~ Estudio = forms.ModelMultipleChoiceField(Estudio.objects, widget=MultipleSelectWithPop)
-
-    #~ #funciones de validación
-    
-    #~ def cleannuminv(self):
-      #~ diccionario_limpio = self.cleaned_data
-      #~ numinv = diccionario_limpio.get('numinv')
-
-      #~ if idestado < 0 or idestado is null:
-         #~ # select max(idestado) from informesestado where objeto=objeto
-         #~ queryset=InformeEstado.objects.filter(objeto=Objeto_numinv)
-         
-    #~ class Meta:
-       #~ model = InformeEstado
-       #~ fields = "__all__" 
-
-class InformeIntervencionForm(forms.ModelForm):
-    class Meta:
-       model = InformeIntervencion
-       fields = "__all__"
 
 class EstudioForm(forms.ModelForm):
     class Meta:
        model = Estudio
        fields = "__all__"
        
-class MovimientoForm(forms.ModelForm):
-    class Meta:
-       model = Movimiento
-       fields = "__all__"
        
 #Formulario de datos especificos de cada categoria
       
@@ -222,7 +194,6 @@ class InformeEstadoForm(forms.ModelForm):
             'estudio': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20})
             }
        fields = "__all__"
-        
        def __init__(self, *args, **kwargs):
          self.request = kwargs.pop('request')
          super(EstadoForm, self).__init__(*args, **kwargs)

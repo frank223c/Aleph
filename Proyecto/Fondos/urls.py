@@ -23,6 +23,16 @@ urlpatterns = [
     url(r'^bellasartes/(?P<pk>\d+)/editar/$', bellasartes_actualizar, name='actualizarbellasartes'),
     url(r'^arqueologia/(?P<pk>\d+)/borrar/$', arqueologia_borrar, name='borrararqueologia'),
     url(r'^bellasartes/(?P<pk>\d+)/borrar/$', bellasartes_borrar, name='borrarbellasartes'),
+    url(r'^autor/(?P<pk>\d+)/actualizar/$', autor_actualizar, name='actualizarautor'),
+    #EDICIÓN DE CAMPOS DE BA
+    url(r'^iconografia/(?P<pk>\d+)/actualizar/$', iconografia_actualizar, name='actualizaricon'),
+    url(r'^soporte/(?P<pk>\d+)/actualizar/$', soporte_actualizar, name='actualizarsoporte'),
+    url(r'^tecnica/(?P<pk>\d+)/actualizar/$', tecnica_actualizar, name='actualizartecnica'),
+    url(r'^bibliografia/(?P<pk>\d+)/actualizar/$', bibliografia_actualizar, name='actualizarbibliografia'),
+    #EDICIÓN DE CAMPOS DE ARQUEO
+    url(r'^edad/(?P<pk>\d+)/actualizar/$', edad_actualizar, name='actualizaredad'),
+    url(r'^cultura/(?P<pk>\d+)/actualizar/$', cultura_actualizar, name='actualizarcultura'),
+    url(r'^yacimiento/(?P<pk>\d+)/actualizar/$', yacimiento_actualizar, name='actualizaryacimiento'),
     #VISTAS PARA AGREGAR ELEMENTOS EXTERNOS DE LA TABLA OBJETO
     url(r'^agregar/bibliografia/',newBibliografia, name='nuevabibliografia'),
     url(r'^agregar/movimientos/', newMovimiento, name='nuevo-movimiento'),
@@ -52,8 +62,6 @@ urlpatterns = [
     url(r'^informearqueo_crear/(?P<pk>\d+)/$', informearqueo_crear,name='informe-arqueo-crear'),
     url(r'^informearqueo_ver/(?P<pk>\d+)/$', informearqueo_detalle,name='informe-arqueo-ver'),
     url(r'^informearqueo_actu/(?P<pk>\d+)/$', informearqueo_actualizar,name='informe-arqueo-actu'),
-    #url(r'^generainforme', get_reporte, name='informe'),
-
 ]
 
 

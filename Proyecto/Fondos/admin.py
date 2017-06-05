@@ -4,13 +4,11 @@ from django.contrib import admin
 from .models import *
 
 class AdminArqueologia(admin.ModelAdmin):
- list_display = ["numinv","nombre","seccion","edad","yacimiento","conservacion","depositado","ubicacionmus"]
- list_display_links =["numinv"]
+ list_display = ["nombre","seccion","edad"]
  list_filter = ["seccion"]
- list_editable = ["nombre","ubicacionmus","conservacion","edad"]
- search_fields = ["numinv","nombre","seccion","edad","material","fechaingreso","ubicacionmus"]
+ #list_editable = ["numinv","nombre","edad"]
+ search_fields = ["numinv","nombre","seccion","edad","material"]
  
-        
  class Meta:
      model = Arqueologia
      
@@ -28,9 +26,9 @@ class AdminArte(admin.ModelAdmin):
      
      
 class AdminAutor(admin.ModelAdmin):
- list_display = ["nombre","apellidos","alias","fnac","fdef","procedencia","refbiografia"]
+ list_display = ["nombre","apellidos","alias","fnac","fdef","procedencia"]
  list_filter = ["nombre"]
- list_editable = ["apellidos","alias","refbiografia"]
+ list_editable = ["apellidos","alias"]
  search_fields = ["nombre","alias","apellido"]
       
  class Meta:

@@ -21,18 +21,18 @@
 </div> 
 <div class ="container">
 <div class="right">
-<p><b>Autor:</b>{{ instance.autor }}</p>
+<p><b>Autor:</b>{{ instance.autor }}<a href="/autor/{{ instance.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p> 
 <p><b>Descripción:</b>{{ instance.descripcion }}</p>
-<p><b>Iconografía</b>{{ instance.iconografia }}</p>
+<p><b>Iconografía</b>{{ instance.iconografia }}<a href="/iconografia/{{ instance.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p> 
 <p><b>Adquirido por:</b>{{ instance.adquirido }}</p>
 <p><b>Tamaño:</b>{{ instance.altura }} cm x {{ instance.ancho }} cm</p>
 <p><b>Ubicación</b>{{ instance.ubicacion }}</p>
-<p><b>Soporte</b>{% for soporte in instance.soporte.all %}<ul>{{ soporte.nombre }}</ul></p>
+<p><b>Soporte</b>{% for soporte in instance.soporte.all %}<ul>{{ soporte.nombre }}<a href="/soporte/{{ instance.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p></ul>
 {% endfor %}
-<p><b>Técnica</b>{% for tecnica in instance.tecnica.all %}<ul>{{ tecnica.nombre }}</ul></p>
+<p><b>Técnica</b>{% for tecnica in instance.tecnica.all %}<ul>{{ tecnica.nombre }}<a href="/tecnica/{{ instance.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p></ul>
 {% endfor %}
 <p><b>Bibliografía y referencias</b>{% if bibliografia == None %}
-No hay referencias.
+No hay referencias.<a href="/bibliografia/{{ instance.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p>
 {% else %}
 {% endif %}
 {% for bibliografia in instance.bibliografia.all %}

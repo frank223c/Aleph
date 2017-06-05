@@ -53,15 +53,17 @@ INSTALLED_APPS = [
     'Fondos',
     'django_filters',
     'widget_tweaks',
+    'datetimewidget',
 ]
-# Django Suit configuration example
+
+# Django Suit 
 SUIT_CONFIG = {
     # header
      'ADMIN_NAME': 'Administración de Aleph',
-    # 'HEADER_DATE_FORMAT': 'l, j. F Y',
-    # 'HEADER_TIME_FORMAT': 'H:i',
+     'HEADER_DATE_FORMAT': 'l, j. F Y',
+     'HEADER_TIME_FORMAT': 'H:i',
 
-    # forms
+    # formulario
      'SHOW_REQUIRED_ASTERISK': True,  # Default True
      'CONFIRM_UNSAVED_CHANGES': True, # Default True
 
@@ -72,18 +74,17 @@ SUIT_CONFIG = {
         'auth': 'icon-lock',
      },
      'MENU_OPEN_FIRST_CHILD': True, # Default True
-    # 'MENU_EXCLUDE': ('auth.group',),
+     'MENU_EXCLUDE': ('auth.group',),
      'MENU': (
-    #     'sites',
+    #     'sitios',
          {'app': 'auth', 'icon':'icon-lock', 'models': ('user', 'group')},
-         {'label': 'Settings', 'icon':'icon-cog', 'models': ('auth.user', 'auth.group')},
-         {'label': 'Support', 'icon':'icon-question-sign', 'url': '/support/'},
+         {'label': 'Configuración', 'icon':'icon-cog', 'models': ('auth.user', 'auth.group')},
+         {'label': 'Ayuda', 'icon':'icon-question-sign', 'url': '/support/'},
      ),
 
-    # misc
-    # 'LIST_PER_PAGE': 15
+     'LIST_PER_PAGE': 20
 }
-#LOGIN_REDIRECT_URL = '/inicio/' # It means home view
+
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 MIDDLEWARE = [
@@ -104,7 +105,6 @@ MIDDLEWARE_CLASSES = (
 'security.middleware.XFrameOptionsMiddleware',
 )
 
-#LOGIN_URL = '/login/'
 
 ROOT_URLCONF = 'Proyecto.urls'
 

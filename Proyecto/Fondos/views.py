@@ -4,8 +4,6 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import render
 from .models import *
 from .forms import *
-from django.core.urlresolvers import reverse_lazy
-from django.views import generic
 from django.utils.html import escape
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
@@ -193,8 +191,7 @@ def newUbicacion(request):
 def newMovimiento(request):
 	return  handlePopAdd(request, MovimientoForm, 'Movimiento')
 
-#~ def newInformeEstado(request):
-	#~ return  handlePopAdd(request, InformeEstadoForm, 'InformeEstado')
+
 
 #
 #   VISTAS DE BELLAS ARTES
@@ -405,7 +402,8 @@ def estado_actualizar(request, pk=None):
          "form": form,
      }
     return render(request, "Informes/formulario_estado.html", context)
-    
+ 
+
  
 def intervencion_crear(request, pk=None):
     if not request.user.is_authenticated():
@@ -430,7 +428,6 @@ def intervencion_crear(request, pk=None):
     return render(request, "Informes/formulario_intervencion.html", context)
     
 
-# PARTE DE LUIS CARLOS
 # Informes de arqueologia
 def informearqueo_crear(request,pk):
     instance = get_object_or_404(Objeto, pk=pk)
@@ -530,3 +527,109 @@ def autores_clasi(request,pk):
     return render(request, "Listado/autores_clasi.html", context)
 
 
+####Actualizar elemento lokup
+# editar objeto de arqueologia existente
+def autor_actualizar(request, pk=None):
+    instance = get_object_or_404(Autor, pk=pk)
+    form = AutorForm(request.POST or None, request.FILES or None, instance=instance)
+    if form.is_valid():
+      instance = form.save(commit=False)
+      instance.save()
+      return HttpResponseRedirect('/inicio/')
+    context = {
+         "instance": instance,
+         "form": form,
+     }
+    return render(request, "formularios/formulario_autor.html", context)
+
+def iconografia_actualizar(request, pk=None):
+    instance = get_object_or_404(Iconografia, pk=pk)
+    form =IconografiaForm(request.POST or None, request.FILES or None, instance=instance)
+    if form.is_valid():
+      instance = form.save(commit=False)
+      instance.save()
+      return HttpResponseRedirect('/inicio/')
+    context = {
+         "instance": instance,
+         "form": form,
+     }
+    return render(request, "formularios/formulario_icon.html", context)
+    
+def soporte_actualizar(request, pk=None):
+    instance = get_object_or_404(Soporte, pk=pk)
+    form =SoporteForm(request.POST or None, request.FILES or None, instance=instance)
+    if form.is_valid():
+      instance = form.save(commit=False)
+      instance.save()
+      return HttpResponseRedirect('/inicio/')
+    context = {
+         "instance": instance,
+         "form": form,
+     }
+    return render(request, "formularios/formulario_sopo.html", context)
+    
+def edad_actualizar(request, pk=None):
+    instance = get_object_or_404(Edad, pk=pk)
+    form =EdadForm(request.POST or None, request.FILES or None, instance=instance)
+    if form.is_valid():
+      instance = form.save(commit=False)
+      instance.save()
+      return HttpResponseRedirect('/inicio/')
+    context = {
+         "instance": instance,
+         "form": form,
+     }
+    return render(request, "formularios/formulario_edad.html", context)
+
+def tecnica_actualizar(request, pk=None):
+    instance = get_object_or_404(Tecnica, pk=pk)
+    form =TecnicaForm(request.POST or None, request.FILES or None, instance=instance)
+    if form.is_valid():
+      instance = form.save(commit=False)
+      instance.save()
+      return HttpResponseRedirect('/inicio/')
+    context = {
+         "instance": instance,
+         "form": form,
+     }
+    return render(request, "formularios/formulario_tecnica.html", context)
+    
+def bibliografia_actualizar(request, pk=None):
+    instance = get_object_or_404(Bibliografia, pk=pk)
+    form =BibliografiaForm(request.POST or None, request.FILES or None, instance=instance)
+    if form.is_valid():
+      instance = form.save(commit=False)
+      instance.save()
+      return HttpResponseRedirect('/inicio/')
+    context = {
+         "instance": instance,
+         "form": form,
+     }
+    return render(request, "formularios/formulario_biblio.html", context)
+
+
+def cultura_actualizar(request, pk=None):
+    instance = get_object_or_404(Cultura, pk=pk)
+    form =CulturaForm(request.POST or None, request.FILES or None, instance=instance)
+    if form.is_valid():
+      instance = form.save(commit=False)
+      instance.save()
+      return HttpResponseRedirect('/inicio/')
+    context = {
+         "instance": instance,
+         "form": form,
+     }
+    return render(request, "formularios/formulario_cultura.html", context)
+
+def yacimiento_actualizar(request, pk=None):
+    instance = get_object_or_404(Yacimiento, pk=pk)
+    form =YacimientoForm(request.POST or None, request.FILES or None, instance=instance)
+    if form.is_valid():
+      instance = form.save(commit=False)
+      instance.save()
+      return HttpResponseRedirect('/inicio/')
+    context = {
+         "instance": instance,
+         "form": form,
+     }
+    return render(request, "formularios/formulario_yacimiento.html", context)

@@ -189,73 +189,97 @@ STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'static'),
  )
 
-
-
-#~ #AUTENTICACION LDAP CON SERVIDOR DE PRUEBA EN WINDOWS 2008 R2 SERVER CON ACTIVE DIRECTORY
-
-AUTHENTICATION_BACKENDS = (
-    'django_auth_ldap.backend.LDAPBackend',
-    'django.contrib.auth.backends.ModelBackend',
-)
-
-
 #
 ##La documentacion sobre este apartado se encuentra en
 ###http://pythonhosted.org/django-auth-ldap/; he seguido este ejemplo de
 ##configuracion
 #
 
+#le decimos que use unicamente de backend en AD de nuestro servidor
+AUTHENTICATION_BACKENDS = (
+ 'django_auth_ldap.backend.LDAPBackend',
+)
+
+
+#AUTENTICACION LDAP CON SERVIDOR DE PRUEBA EN WINDOWS 2008 R2 SERVER CON ACTIVE DIRECTORY
 import ldap
+# For this, you want to be using the -H flag setting you used above.
+AUTH_LDAP_SERVER_URI = "ldap://10.17.11.3:389"
 
-# Server URI
-AUTH_LDAP_SERVER_URI = "ldap://ad.example.com"
+#bindeo simple de root dn
+AUTH_LDAP_BIND_DN = 'Administrador@junta-andalucia.es'
+AUTH_LDAP_BIND_PASSWORD = 'Contraseña1'
 
-# Necesario para bindear el AD
-AUTH_LDAP_CONNECTION_OPTIONS = {
-    ldap.OPT_REFERRALS: 0
-}
-
-# Necesitamos el root dn y su contraseña
-AUTH_LDAP_BIND_DN = "CN=Administrador,dc=junta-andalucia,dc=es"
-AUTH_LDAP_BIND_PASSWORD = "Contraseña1"
-
-# CERTIFICADOS
 LDAP_IGNORE_CERT_ERRORS = False
 
-from django_auth_ldap.config import LDAPSearch
 
-# This search matches users with the sAMAccountName equal to the provided username. This is required if the user's
-# username is not in their DN (Active Directory).
-AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=Unidades,ou=Museo,dc=junta-andalucia,dc=es",
-                                    ldap.SCOPE_SUBTREE,
-                                    "(sAMAccountName=%(user)s)")
+from django_auth_ldap.config import LDAPSearch,NestedActiveDirectoryGroupType
 
-#si el dn de un usuario es su cn no hay que buscarlo
-AUTH_LDAP_USER_DN_TEMPLATE = "uid=%(user)s,ou=users,dc=junta-andalucia,dc=es"
+AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=MCA_usuarios,ou=Museo,ou=Unidades,DC=junta-andalucia,dc=es",
+        ldap.SCOPE_SUBTREE, "(sAMAccountName=%(user)s)")
 
-# You can map user attributes to Django attributes as so.
+#AUTH_LDAP_USER_DN_TEMPLATE = "cn=%(user)s,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es"
+
 AUTH_LDAP_USER_ATTR_MAP = {
-    "first_name": "givenName",
-    "last_name": "sn"
-}
+ "first_name":"givenName", }
 
-from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
-# Devuelve una serie de grupos a los que pertenece el usuario
-AUTH_LDAP_GROUP_SEARCH = LDAPSearch("dc=junta-andalucia,dc=es", ldap.SCOPE_SUBTREE,
-                                    "(objectClass=group)")
-AUTH_LDAP_GROUP_TYPE = GroupOfNamesType()
+AUTH_LDAP_GROUP_SEARCH = LDAPSearch("ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",
+ldap.SCOPE_SUBTREE,"(objectClass=group)")
+AUTH_LDAP_GROUP_TYPE = NestedActiveDirectoryGroupType()#GroupOfNamesType()
 
-
-# Definimos el tipo de usuario superusuario,activo y staff
+#flags por grupo
 AUTH_LDAP_USER_FLAGS_BY_GROUP = {
-    "is_active": "cn=active,ou=groups,dc=junta-andalucia,dc=es",
-    "is_staff": "cn=staff,ou=groups,dc=junta-andalucia,dc=es",
-    "is_superuser": "cn=superuser,ou=groups,dc=junta-andalucia,dc=es"
-}
-
-# Para permisos mas granulares,podemos mapear los grupos de LDAP a grupos de django
+  "is_active":"cn=Activos,ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",
+  "is_staff": "cn=Administradordca,ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",
+  "is_superuser": "cn=Administradordca,ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",
+  "is_documentador": "cn=Documentador,ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",
+  "is_restaurBA": "cn=Restauración,ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",
+  "is_restaurARQ": "cn=Arqueologia,ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",}
+  
 AUTH_LDAP_FIND_GROUP_PERMS = True
-# Creamos una caché de una hora
 AUTH_LDAP_CACHE_GROUPS = True
 AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600
+#cache de una hora
+
+
+#busqueda de usuarios
+LDAP_DOMAIN_BASE = "dc=junta-andalucia,dc=es"
+LDAP_USERS_BASE = "ou=MCA_usuarios," + LDAP_DOMAIN_BASE
+LDAP_INVENTARIO_BASE = "ou=InventarioRegistro," + LDAP_USERS_BASE
+LDAP_RESTAURADORBA_BASE = "ou=Restauracion," + LDAP_USERS_BASE
+LDAP_RESTAURADORARQ_BASE = "ou=Arqueologia," + LDAP_USERS_BASE
+
+#opcion necesaria
+AUTH_LDAP_CONNECTION_OPTIONS = {
+ldap.OPT_DEBUG_LEVEL: 1,
+ldap.OPT_REFERRALS: 0,}
+
+#debug para testeo
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'stream_to_console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler'
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django_auth_ldap': {
+            'handlers': ['stream_to_console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    }
+}
+
 

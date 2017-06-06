@@ -1,3 +1,4 @@
 *.pyc
 *.sh
 /Proyecto/static/photos/*
+/Proyecto/Fondos/migrations/*

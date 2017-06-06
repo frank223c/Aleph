@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import render
 from .models import *
 from .forms import *
 from django.utils.html import escape
@@ -18,7 +17,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
-from django.shortcuts import render
 from django.template import RequestContext
 from django.conf import settings
 from django.views.generic import View
@@ -29,7 +27,6 @@ from django.template import Context
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.forms import formset_factory
-
 
 
 def login(request):
@@ -57,11 +54,11 @@ def index(request):
         context = { "ultimosarqueo":ultimosarqueo,
                     "ultimosba":ultimosba }
         return render(request, "homedocu.html",context)
-      if group_name == "RestauradorBA":
+      if group_name == "Restauracion":
           ultimosinfo = InformeEstado.objects.all().order_by('-fecha')[:3]
           context = { "ultimosinfo":ultimosinfo }
           return render(request, "homerestauba.html",context)
-      if group_name == "RestauradorARQ":
+      if group_name == "Arqueologia":
           ultimosinfo = InformeArqueo.objects.all().order_by('-fecha')[:3]
           context = { "ultimosinfo":ultimosinfo }
           return render(request, "homerestauar.html",context)
@@ -70,10 +67,11 @@ def index(request):
   
 #PARTE DE LOLA Y JOSE CARLOS
 def arqueologia_crear(request): 
-    #~ group_name = request.user.groups.all()[0].name
-    #~ if group_name != "Documentador":
-       #~ return PermissionDenied
-    form = ArqueologiaForm(request.POST or None, request.FILES or None)
+    group_name = request.user.groups.all()[0].name
+    if group_name != "Documentador":
+        return PermissionDenied
+    else:    
+        form = ArqueologiaForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         instance = form.save(commit=False)
         instance.user = request.user 
@@ -86,8 +84,12 @@ def arqueologia_crear(request):
 
 # editar objeto de arqueologia existente
 def arqueologia_actualizar(request, pk=None):
-    instance = get_object_or_404(Arqueologia, pk=pk)
-    form = ArqueologiaForm(request.POST or None, request.FILES or None, instance=instance)
+    group_name = request.user.groups.all()[0].name
+    if group_name != "Documentador":
+        return PermissionDenied
+    else:    
+        instance = get_object_or_404(Arqueologia, pk=pk)
+        form = ArqueologiaForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
       instance = form.save(commit=False)
       instance.save()
@@ -110,9 +112,13 @@ def arqueologia_detalle(request, pk=None):
       return render(request, "Listado/arqueologia_detail.html", context)
       
 def arqueologia_borrar(request, pk=None):
-    instance = get_object_or_404(Arqueologia, pk=pk)
-    instance.delete()
-    return redirect("/inicio/verarqueologia")
+    group_name = request.user.groups.all()[0].name
+    if group_name != "Documentador":
+        return PermissionDenied
+    else:
+        instance = get_object_or_404(Arqueologia, pk=pk)
+        instance.delete()
+    return redirect("/verarqueologia")
 
 # Vista listado y busqueda simple
 
@@ -203,6 +209,7 @@ def bellasartes_crear(request):
         instance = form.save(commit=False)
         instance.user = request.user 
         instance.save()
+        form.save_m2m()
         return HttpResponseRedirect(instance.get_absolute_url())
     context = {
         "form": form
@@ -249,9 +256,9 @@ def bellasartes_actualizar(request, pk=None):
     if form.is_valid():
       instance = form.save(commit=False)
       instance.save()
+      form.save_m2m()
       return HttpResponseRedirect(instance.get_absolute_url())
     context = {
-         "nombre": instance.titulo,
          "instance": instance,
          "form": form,
      }
@@ -275,7 +282,7 @@ def bellasartes_borrar(request, pk=None):
     instance = get_object_or_404(Bellasartes, pk=pk)
     instance.delete()
     messages.success(request, "Se ha eliminado el objeto.")
-    return redirect("/inicio/verbellasartes/")
+    return redirect("/verbellasartes/")
 
 def newEstudio(request):
     return handlePopAdd(request, EstudioForm, 'Estudio')
@@ -403,8 +410,6 @@ def estado_actualizar(request, pk=None):
      }
     return render(request, "Informes/formulario_estado.html", context)
  
-
- 
 def intervencion_crear(request, pk=None):
     if not request.user.is_authenticated():
        raise Http404
@@ -454,7 +459,7 @@ def informearqueo_crear(request,pk):
     
     return render(request, "formularios/formulario_informearqueo.html", context)
 
-def informearqueo_detalle(request, pk=None):
+def informearqueo_detalle(request, pk):
       instance = get_object_or_404(InformeArqueo, pk=pk)
       datos = Arqueologia.objects.filter(pk=instance.objeto)
       datosobj = Objeto.objects.filter(pk=pk)
@@ -527,41 +532,41 @@ def autores_clasi(request,pk):
     return render(request, "Listado/autores_clasi.html", context)
 
 
-####Actualizar elemento lokup
+####Actualizar elemento lookup
 # editar objeto de arqueologia existente
-def autor_actualizar(request, pk=None):
+def autor_actualizar(request, pk):
     instance = get_object_or_404(Autor, pk=pk)
     form = AutorForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
       instance = form.save(commit=False)
       instance.save()
-      return HttpResponseRedirect('/inicio/')
+      return HttpResponseRedirect('/')
     context = {
          "instance": instance,
          "form": form,
      }
     return render(request, "formularios/formulario_autor.html", context)
 
-def iconografia_actualizar(request, pk=None):
+def iconografia_actualizar(request, pk):
     instance = get_object_or_404(Iconografia, pk=pk)
     form =IconografiaForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
       instance = form.save(commit=False)
       instance.save()
-      return HttpResponseRedirect('/inicio/')
+      return HttpResponseRedirect('/')
     context = {
          "instance": instance,
          "form": form,
      }
     return render(request, "formularios/formulario_icon.html", context)
     
-def soporte_actualizar(request, pk=None):
+def soporte_actualizar(request, pk):
     instance = get_object_or_404(Soporte, pk=pk)
     form =SoporteForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
       instance = form.save(commit=False)
       instance.save()
-      return HttpResponseRedirect('/inicio/')
+      return HttpResponseRedirect('/')
     context = {
          "instance": instance,
          "form": form,
@@ -574,33 +579,33 @@ def edad_actualizar(request, pk=None):
     if form.is_valid():
       instance = form.save(commit=False)
       instance.save()
-      return HttpResponseRedirect('/inicio/')
+      return HttpResponseRedirect('/')
     context = {
          "instance": instance,
          "form": form,
      }
     return render(request, "formularios/formulario_edad.html", context)
 
-def tecnica_actualizar(request, pk=None):
+def tecnica_actualizar(request, pk):
     instance = get_object_or_404(Tecnica, pk=pk)
     form =TecnicaForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
       instance = form.save(commit=False)
       instance.save()
-      return HttpResponseRedirect('/inicio/')
+      return HttpResponseRedirect('/')
     context = {
          "instance": instance,
          "form": form,
      }
     return render(request, "formularios/formulario_tecnica.html", context)
     
-def bibliografia_actualizar(request, pk=None):
+def bibliografia_actualizar(request, pk):
     instance = get_object_or_404(Bibliografia, pk=pk)
-    form =BibliografiaForm(request.POST or None, request.FILES or None, instance=instance)
+    form = BibliografiaForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
       instance = form.save(commit=False)
       instance.save()
-      return HttpResponseRedirect('/inicio/')
+      return HttpResponseRedirect('/')
     context = {
          "instance": instance,
          "form": form,
@@ -608,26 +613,26 @@ def bibliografia_actualizar(request, pk=None):
     return render(request, "formularios/formulario_biblio.html", context)
 
 
-def cultura_actualizar(request, pk=None):
+def cultura_actualizar(request, pk):
     instance = get_object_or_404(Cultura, pk=pk)
-    form =CulturaForm(request.POST or None, request.FILES or None, instance=instance)
+    form = CulturaForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
       instance = form.save(commit=False)
       instance.save()
-      return HttpResponseRedirect('/inicio/')
+      return HttpResponseRedirect('/')
     context = {
          "instance": instance,
          "form": form,
      }
     return render(request, "formularios/formulario_cultura.html", context)
 
-def yacimiento_actualizar(request, pk=None):
+def yacimiento_actualizar(request, pk):
     instance = get_object_or_404(Yacimiento, pk=pk)
-    form =YacimientoForm(request.POST or None, request.FILES or None, instance=instance)
+    form = YacimientoForm(request.POST or None, request.FILES or None, instance=instance)
     if form.is_valid():
       instance = form.save(commit=False)
       instance.save()
-      return HttpResponseRedirect('/inicio/')
+      return HttpResponseRedirect('/')
     context = {
          "instance": instance,
          "form": form,

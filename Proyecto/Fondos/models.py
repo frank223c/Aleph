@@ -76,7 +76,7 @@ class Objeto(models.Model):
     altura = models.DecimalField(max_digits=10, decimal_places=2,verbose_name="Altura en cm") 
     ancho = models.DecimalField(max_digits=10, decimal_places=2,verbose_name="Ancho en cm") 
     datacion = models.CharField(max_length=30,default='Desconocida',verbose_name="Fecha de la que data el objeto")
-    bibliografia = models.ManyToManyField(Bibliografia,blank=True)
+    bibliografia = models.ManyToManyField(Bibliografia)
     fechaingreso = models.CharField(max_length=30,verbose_name="Fecha de ingreso")
     ubicacionmus = models.CharField(max_length=30,verbose_name="Ubicacion en el museo")
     movimientos = models.ManyToManyField(Movimiento,blank=True,null=True) #histórico de prestamos a otros museos para exposiciones
@@ -144,17 +144,23 @@ class Yacimiento(models.Model):
 
 class Arqueologia(Objeto):
     nombre = models.CharField(max_length=30)
-    seccion = models.ForeignKey(Seccion,null=True)
+    seccion = models.ForeignKey(Seccion,models.SET_NULL,
+    blank=True,
+    null=True,)
     hallazgos = models.TextField(blank=True, null=True)
     depositado =  models.CharField(max_length=20,null=False)
-    cultura = models.ForeignKey(Cultura)
-    serie = models.ForeignKey(Serie)
+    cultura = models.ForeignKey(Cultura,models.SET_NULL,
+    blank=True,
+    null=True,)
+    serie = models.ForeignKey(Serie,blank=True)
     conservacion_selec = (('1', 'Bueno'),
                ('2', 'Regular'),
                ('3', 'Malo'),
                )
     conservacion = models.CharField(choices = conservacion_selec,max_length=1,default='1') 
-    yacimiento = models.ForeignKey(Yacimiento)
+    yacimiento = models.ForeignKey(Yacimiento,models.SET_NULL,
+    blank=True,
+    null=True,)
     edad_selec = (('Edad de piedra', 'Edad de piedra'),
                ('Edad de bronce', 'Edad de bronce'),
                ('Edad de metal', 'Edad de metal'),
@@ -239,17 +245,23 @@ class Autor(models.Model):
      
 class Bellasartes(Objeto):
     titulo = models.CharField(max_length=40)
-    iconografia = models.ForeignKey(Iconografia,blank=True)
+    iconografia = models.ForeignKey(Iconografia,models.SET_NULL,
+    blank=True,
+    null=True,)
     procedencia = models.CharField(max_length=20)
     soporte = models.ManyToManyField(Soporte)
-    tecnica = models.ManyToManyField(Tecnica,blank=True)
+    tecnica = models.ManyToManyField(Tecnica)
     adquirido_selec = (('Compra', 'Compra'),
                ('Donacion', 'Donacion'),
                ('Legado', 'Legado'),
                )
-    autor = models.ForeignKey(Autor,blank=True)
+    autor = models.ForeignKey(Autor,models.SET_NULL,
+    blank=True,
+    null=True,)
     formaingreso = models.CharField(choices = adquirido_selec,max_length=8,default='1',verbose_name="Forma de ingreso") 
-    donante = models.ForeignKey(Donante,blank=True,null=True)
+    donante = models.ForeignKey(Donante,models.SET_NULL,
+    blank=True,
+    null=True,)
     def __str__(self):
 	       return str(self.titulo) +  " " + str(self.autor)
     class Meta:
@@ -284,7 +296,7 @@ class InformeEstado(models.Model):
         verbose_name_plural = "Estados" 
    
     def get_absolute_url(self):
-        return "/verbellasartes/"
+        return "/estado/%i/" % self.pk
 
       
 class InformeIntervencion(models.Model):
@@ -319,4 +331,5 @@ class InformeArqueo(models.Model):
     class Meta:
         ordering = ["fecha"]
         verbose_name_plural = "Intervenciones de arqueología"
-        
+    def get_absolute_url(self):
+        return "/informearqueo_ver/%i/" % self.pk    

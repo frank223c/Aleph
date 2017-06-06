@@ -10,7 +10,5 @@ from django.contrib.staticfiles.urls import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('Fondos.urls')),
-    url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
-   # url(r'^',  RedirectView.as_view(url='inicio/login/')),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

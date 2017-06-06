@@ -7,7 +7,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script><!-- This is where to put the location of the jquery library you intend to use-->
 <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
 <script src="{% static '/js/jquery.min.js' %}"></script>
-<h1>{{ instance.propietario }}{{ instance.numinv }}</h1>
+<h1><a href="#" onclick="history.go(-1)"><img src="/static/img/back.jpg" width="30" height="30" alt="Detalles"/></td></a></a>
+{{ instance.propietario }}{{ instance.numinv }}</h1>
 <div class="left">
 <div class="table-responsive">
     <tr>
@@ -21,21 +22,21 @@
 </div> 
 <div class ="container">
 <div class="right">
-<p><b>Autor:</b>{{ instance.autor }}<a href="/autor/{{ instance.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p> 
+<p><b>Autor:</b>{{ instance.autor }}<a href="/autor/{{ instance.autor.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p> 
 <p><b>Descripción:</b>{{ instance.descripcion }}</p>
-<p><b>Iconografía</b>{{ instance.iconografia }}<a href="/iconografia/{{ instance.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p> 
+<p><b>Iconografía</b>{{ instance.iconografia }}<a href="/iconografia/{{ instance.iconografia.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p> 
 <p><b>Adquirido por:</b>{{ instance.adquirido }}</p>
 <p><b>Tamaño:</b>{{ instance.altura }} cm x {{ instance.ancho }} cm</p>
 <p><b>Ubicación</b>{{ instance.ubicacion }}</p>
-<p><b>Soporte</b>{% for soporte in instance.soporte.all %}<ul>{{ soporte.nombre }}<a href="/soporte/{{ instance.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p></ul>
+<p><b>Soporte</b>{% for soporte in instance.soporte.all %}<ul>{{ soporte.nombre }}<a href="/soporte/{{ soporte.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p></ul>
 {% endfor %}
-<p><b>Técnica</b>{% for tecnica in instance.tecnica.all %}<ul>{{ tecnica.nombre }}<a href="/tecnica/{{ instance.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p></ul>
+<p><b>Técnica</b>{% for tecnica in instance.tecnica.all %}<ul>{{ tecnica.nombre }}<a href="/tecnica/{{ tecnica.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p></ul>
 {% endfor %}
 <p><b>Bibliografía y referencias</b>{% if bibliografia == None %}
-No hay referencias.<a href="/bibliografia/{{ instance.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p>
+No hay referencias.
 {% else %}
 {% endif %}
-{% for bibliografia in instance.bibliografia.all %}
+{% for bibliografia in instance.bibliografia.all %}<a href="/bibliografia/{{ instance.bibliografia.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p>
 <p>Autor: {{ bibliografia.autor }}</p>
 <p>Edición: {{ bibliografia.edicion }}</p>
 <p>Referencias: <a>{{ bibliografia.url }} </a></p>

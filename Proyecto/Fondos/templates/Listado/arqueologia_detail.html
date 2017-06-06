@@ -1,6 +1,7 @@
 {% include "navbar.html" %}
 {% load static %}
-<h1>{{ instance.codigo }}{{ instance.numinv }}</h1>
+<h1><a href="#" onclick="history.go(-1)"><img src="/static/img/back.jpg" width="30" height="30" alt="Detalles"/></td></a></a>
+{{ instance.codigo }}{{ instance.numinv }}</h1>
 <div class="left">
 <div class="table-responsive">
     <tr>
@@ -13,13 +14,13 @@
    </div>
    <div class="container">
 <div class="right">
-<p><b>Edad: </b>{{ instance.edad }} <a href="/edad/{{ instance.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p>
+<p><b>Edad: </b>{{ instance.edad }}
 <p><b>Descripción:</b>{{ instance.descripcion }}</p>
-<p><b>Cultura:</b>{{ instance.cultura }}<a href="/edad/{{ instance.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p>
+<p><b>Cultura:</b>{{ instance.cultura }}<a href="/cultura/{{ instance.cultura.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p>
 <p><b>Tamaño:</b>{{ instance.altura }} cm x {{ instance.ancho }} cm</p>
 <p><b>Ubicación</b>{{ instance.ubicacionmus }}</p>
 <p><b>Hallazgos:</b><p>{{ instance.hallazgos }}</p>
-<p><b>Encontrado en:</b>{{ instance.yacimiento }}<a href="/edad/{{ instance.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p>
+<p><b>Encontrado en:</b>{{ instance.yacimiento }}<a href="/yacimiento/{{ instance.yacimiento.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p>
 <p><b>Materiales:</b>{% for material in instance.material.all %}<td>{{ material.nombre }}</td></p>
 {% endfor %}
 <p><b>Bibliografía y referencias</b>{% if instance.bibliografia == None %}
@@ -27,7 +28,7 @@ No hay referencias.
 {% else %}
 {% endif %}
 {% for bibliografia in instance.bibliografia.all %}
-<p>Autor: {{ bibliografia.autor }}<a href="/bibliografia/{{ instance.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p></p>
+<p>Autor: {{ bibliografia.autor }}<a href="/bibliografia/{{ bibliografia.id }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p></p>
 <p>Edición: {{ bibliografia.edicion }}</p>
 <p><i>"{{ bibliografia.extracto }}"</i>, Página {{ bibliografia.pagina }}</p>{% endfor %}
 </div>

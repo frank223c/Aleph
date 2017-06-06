@@ -6,7 +6,6 @@ from django.contrib.auth import views
 from .forms import LoginForm
 from .forms import *
 
-
 urlpatterns = [
     url(r'^$',index, name='index'),
     url(r'^accounts/login/$', views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}, name='login'),
@@ -45,9 +44,9 @@ urlpatterns = [
     url(r'^agregar/yacimiento/',newYacimiento, name='nuevoyacimiento'),
     #VISTAS PARA AGREGAR ELEMENTOS EXTERNOS DE BA
     url(r'^agregar/donante/',newDonante, name='nuevodonante'),
-    url(r'^agregar/tecnica/',newTecnica, name='nuevotecnica2'),
+    url(r'^agregar/tecnica/',newTecnica, name='nuevotecnica'),
     url(r'^agregar/soporte/',newSoporte, name='nuevosoporte'),
-    url(r'^agregar/autor/',newAutor, name='nuevoautor2'),
+    url(r'^agregar/autor/',newAutor, name='nuevoautor'),
     url(r'^agregar/iconografia/',newIconografia, name='nuevoiconografia'),
     #BUSQUEDAS
     url(r'^search-arqueologia/$',searcharqueologia, name='search-arqueologia'),

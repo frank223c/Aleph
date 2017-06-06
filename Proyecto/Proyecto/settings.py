@@ -37,7 +37,6 @@ INSTALLED_APPS = [
 #Extra para el admin
     'suitlocale',
     'suit',
-    #'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,14 +46,14 @@ INSTALLED_APPS = [
 #Extra para debug
     'django_extensions',
 #Aplicaciones de terceros
-    'security',
     'crispy_forms',
     'bootstrap3',
     'Fondos',
     'django_filters',
     'widget_tweaks',
-    'datetimewidget',
 ]
+
+HEALTH_CHECK = ['POSTGRES']
 
 # Django Suit 
 SUIT_CONFIG = {
@@ -95,15 +94,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'django.middleware.csrf.CsrfResponseMiddleware',
 ]
 
-MIDDLEWARE_CLASSES = (
-'security.middleware.DoNotTrackMiddleware',
-'security.middleware.ContentNoSniff',
-'security.middleware.XssProtectMiddleware',
-'security.middleware.XFrameOptionsMiddleware',
-)
 
 
 ROOT_URLCONF = 'Proyecto.urls'
@@ -198,6 +190,7 @@ STATICFILES_DIRS = (
 #le decimos que use unicamente de backend en AD de nuestro servidor
 AUTHENTICATION_BACKENDS = (
  'django_auth_ldap.backend.LDAPBackend',
+ 'django.contrib.auth.backends.ModelBackend',
 )
 
 
@@ -221,7 +214,10 @@ AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=MCA_usuarios,ou=Museo,ou=Unidades,DC=junt
 #AUTH_LDAP_USER_DN_TEMPLATE = "cn=%(user)s,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es"
 
 AUTH_LDAP_USER_ATTR_MAP = {
- "first_name":"givenName", }
+ "first_name":"givenName", 
+ "last_name":"sn", 
+ "email":"mail", 
+ }
 
 AUTH_LDAP_GROUP_SEARCH = LDAPSearch("ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",
 ldap.SCOPE_SUBTREE,"(objectClass=group)")
@@ -231,16 +227,12 @@ AUTH_LDAP_GROUP_TYPE = NestedActiveDirectoryGroupType()#GroupOfNamesType()
 AUTH_LDAP_USER_FLAGS_BY_GROUP = {
   "is_active":"cn=Activos,ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",
   "is_staff": "cn=Administradordca,ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",
-  "is_superuser": "cn=Administradordca,ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",
-  "is_documentador": "cn=Documentador,ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",
-  "is_restaurBA": "cn=Restauración,ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",
-  "is_restaurARQ": "cn=Arqueologia,ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",}
+  "is_superuser": "cn=Administradordca,ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",}
   
 AUTH_LDAP_FIND_GROUP_PERMS = True
 AUTH_LDAP_CACHE_GROUPS = True
 AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600
 #cache de una hora
-
 
 #busqueda de usuarios
 LDAP_DOMAIN_BASE = "dc=junta-andalucia,dc=es"

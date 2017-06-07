@@ -36,7 +36,6 @@ class Bibliografia(models.Model):
     extracto = models.TextField(blank=True)  
     isbn = models.CharField(max_length=13, blank=True,verbose_name="ISBN")
     url = models.URLField(max_length=500, blank=True,default='') #referencias externas
-
     def __str__(self):
       return str(self.titulo) + str(self.anio)
 

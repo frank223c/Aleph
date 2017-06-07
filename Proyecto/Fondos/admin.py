@@ -2,6 +2,7 @@
 from django.contrib import admin
 # Register your models here.
 from .models import *
+from bug.models import *
 
 class AdminArqueologia(admin.ModelAdmin):
  list_display = ["nombre","seccion","edad"]
@@ -42,17 +43,6 @@ class AdminBibliografia(admin.ModelAdmin):
       
  class Meta:
      model = Bibliografia 
-
-
-     
-#~ class InformeIntervencion(admin.ModelAdmin):
- #~ list_display = ["numinv","nombre_restaurador","ape_restaurador","fecha","estudios","prioridad"]
- #~ list_filter = ["numinv","fecha"]
- #~ list_editable = ["","",""]
- #~ search_fields = ["","",""]
-      
- #~ class Meta:
-     #~ model = Autor  
 
 
 admin.site.register(Movimiento)

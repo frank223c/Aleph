@@ -171,5 +171,5 @@
             }
         });
     });
-
-})(django.jQuery);
+})(
+django.jQuery);

@@ -150,4 +150,5 @@
             $actionsEls.actions();
         }
     });
+  var django = {jQuery: jQuery};
 })(django.jQuery);

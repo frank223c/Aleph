@@ -51,7 +51,10 @@ INSTALLED_APPS = [
     'Fondos',
     'django_filters',
     'widget_tweaks',
+    'bug',
 ]
+
+HELPDESK_TRANSLATE_TICKET_COMMENTS_LANG = ["es"]
 
 HEALTH_CHECK = ['POSTGRES']
 

@@ -110,7 +110,7 @@ def arqueologia_detalle(request, pk=None):
       "estado": estado
 }
       return render(request, "Listado/arqueologia_detail.html", context)
-      
+
 def arqueologia_borrar(request, pk=None):
     group_name = request.user.groups.all()[0].name
     if group_name != "Documentador":
@@ -238,10 +238,8 @@ def bellasartes_lista(request):
     except PageNotAnInteger:
     
       queryset = paginator.page(1)
-    except EmptyPage:
-     
-      queryset = paginator.page(paginator.num_pages)
-      
+    except EmptyPage:     
+      queryset = paginator.page(paginator.num_pages)   
     context = {
      "object_list": queryset,
      "page_request_var": page_request_var,
@@ -249,7 +247,6 @@ def bellasartes_lista(request):
    }
     return render(request, "Listado/bellasartes_lista.html", context)
     
-
 def bellasartes_actualizar(request, pk=None):
     instance = get_object_or_404(Bellasartes, pk=pk)
     form = BellasArtesForm(request.POST or None, request.FILES or None, instance=instance)

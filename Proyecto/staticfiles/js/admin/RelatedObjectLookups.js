@@ -172,4 +172,6 @@
         });
     });
 
-})(django.jQuery);
+})(
+var django = {jQuery: jQuery};
+django.jQuery);

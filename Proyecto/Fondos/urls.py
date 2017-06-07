@@ -9,7 +9,7 @@ from .forms import *
 urlpatterns = [
     url(r'^$',index, name='index'),
     url(r'^accounts/login/$', views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}, name='login'),
-    url(r'^inicio/logout/$', views.logout, {'next_page': 'login'}), 
+    url(r'^inicio/logout/$', views.logout, {'next_page': 'login'}),
     #VISTA DEL SUPER FORMULARIO DE ARQUEOLOGIA
     url(r'^registrararqueologia', arqueologia_crear , name='registrararqueologia'),
     url(r'^registrarbellasartes', bellasartes_crear , name='registrarbellasartes'),

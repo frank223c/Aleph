@@ -5,24 +5,22 @@ from .models import *
 from .forms import *
 from django.utils.html import escape
 from django.core.urlresolvers import reverse
-from django.shortcuts import render
 from .filters import ArqueologiaFilter,BellasArtesFilter
 from django.contrib.admin import widgets   
 from django.conf import settings
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
-from django.views.generic import View
 from django import http
 from django.template.loader import get_template
-from django.template import Template, RequestContext
+from django.template import RequestContext
 from django.template import Context
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -63,7 +61,7 @@ def index(request):
           context = { "ultimosinfo":ultimosinfo }
           return render(request, "homerestauar.html",context)
    else:
-        return HttpResponseRedirect('/admin/')
+          return HttpResponseRedirect('/')
   
 #PARTE DE LOLA Y JOSE CARLOS
 def arqueologia_crear(request): 
@@ -211,9 +209,6 @@ def bellasartes_crear(request):
         instance.save()
         form.save_m2m()
         return HttpResponseRedirect(instance.get_absolute_url())
-    context = {
-        "form": form
-    }
     return render(request,'formularios/formulario_bellasartes.html', {'form': form})
 
 
@@ -230,7 +225,7 @@ def bellasartes_lista(request):
             Q(autor__alias__icontains=(query))|
             Q(autor__apellidos__icontains=(query))
             ).distinct()
-    paginator = Paginator(queryset_list, 3) 
+    paginator = Paginator(queryset_list, 3)
     page_request_var = "list"
     page = request.GET.get(page_request_var)
     try:
@@ -317,12 +312,7 @@ def newSoporte(request):
 def newDonante(request):
     return handlePopAdd(request, DonanteForm, 'Donante')
     
-def newEstudio(request):
-    return handlePopAdd(request, EstudioForm, 'Estudio')
-    
-def newMovimiento(request):
-    return handlePopAdd(request, MovimientoForm, 'Movimiento')
-    
+
 def newEstilo(request):
     return handlePopAdd(request, EstiloForm, 'Estilo')
 
@@ -353,18 +343,17 @@ def estado_crear(request, pk=None):
     instance = get_object_or_404(Objeto, pk=pk)
     datos =  Objeto.objects.filter().get(pk=instance.id)
     datadict = {'objeto': datos.pk }
-    form = InformeEstadoForm(request.POST or None, initial=datadict)    
+    form = InformeEstadoForm(request.POST or None, initial=datadict)  
     #le pasamos el id del objeto mediante un diccionario inicial al formulario
     #de estado, de manera que el dato con el cual se relaciona la clase
     #informes estado no haya que rellenarlo    
     if form.is_valid():
        instance = form.save(commit=False)
-       instance.user = request.user 
+       instance.user = request.user
        instance.save()
        form.save_m2m()
-       messages.success(request, "Se ha registrado el objeto") #esto se ve en el admin
-       return HttpResponseRedirect('/') 
-       #si el formulario es valido se registra el objeto, que sera visible tanto desde el admin como desde
+       messages.success(request, "Se ha registrado el objeto")#esto se ve en el admin
+       return HttpResponseRedirect('/')#si el formulario es valido se registra el objeto, que sera visible tanto desde el admin como desde
        #la interfaz en la vista de detalle
     context = {
          "form": form,
@@ -635,3 +624,5 @@ def yacimiento_actualizar(request, pk):
          "form": form,
      }
     return render(request, "formularios/formulario_yacimiento.html", context)
+
+#######FIN###

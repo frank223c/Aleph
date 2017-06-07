@@ -2,28 +2,23 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from .models import *
-from django.forms.extras.widgets import SelectDateWidget
 from datetime import datetime, timedelta, date
 from django.utils.translation import ugettext, ugettext_lazy as _
-from django.conf import settings
 from django.contrib.admin import widgets   
 from django.forms import ValidationError
 from .widgets import *
-from django.utils import timezone
 from django import forms
 from django.forms import ModelForm, Textarea
 from django.contrib.auth.forms import AuthenticationForm 
 from django import forms
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout
 from crispy_forms.bootstrap import TabHolder, Tab
-from django.forms.fields import DateField 
+from django.forms.fields import DateField
 from django.contrib.admin.widgets import AdminDateWidget 
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(label="Username", max_length=30, 
+    username = forms.CharField(label = "Username", max_length=30, 
                                widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
-    password = forms.CharField(label="Password", max_length=30, 
+    password = forms.CharField(label = "Password", max_length=30, 
                                widget=forms.PasswordInput(attrs={'class': 'form-control', 'name': 'password'}))
 
 #Formulario de arqueologia utilizando los widgets personalizados
@@ -62,7 +57,7 @@ class ArqueologiaForm(forms.ModelForm):
 
    
       
-#Datos alojados en tablas externas que se crean mediante un pop-up 
+# Datos alojados en tablas externas que se crean mediante un pop-up 
 class BibliografiaForm(forms.ModelForm):
     class Meta:
        model = Bibliografia
@@ -110,7 +105,7 @@ class YacimientoForm(forms.ModelForm):
        
 #Creacion del formulario especifico de bellas artes
 
-class BellasArtesForm(forms.ModelForm):   
+class BellasArtesForm(forms.ModelForm):
    class Meta:
        model = Bellasartes
        widgets = {
@@ -119,7 +114,6 @@ class BellasArtesForm(forms.ModelForm):
             'tecnica': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'autor': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'soporte': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20}),
-            'tecnica': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'movimientos': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'donante': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'contexto': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
@@ -130,7 +124,7 @@ class BellasArtesForm(forms.ModelForm):
        
        def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
-        super(ArqueologiaForm, self).__init__(*args, **kwargs)
+        super(BellasArtesForm, self).__init__(*args, **kwargs)
         self.fields["soporte"].widget = Textarea()
         self.fields["tecnica"].widget = Textarea()
         self.fields["bibliografia"].widget = Textarea()

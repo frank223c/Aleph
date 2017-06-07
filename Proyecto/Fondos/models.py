@@ -33,7 +33,7 @@ class Bibliografia(models.Model):
     anio = models.CharField(max_length=30,verbose_name="Año la publicacion")
     pagina = models.CharField(max_length=30,verbose_name="Página")
     edicion = models.CharField(max_length=10,verbose_name="Edicion")
-    extracto = models.TextField(blank=True)  
+    extracto = models.TextField(blank=True)
     isbn = models.CharField(max_length=13, blank=True,verbose_name="ISBN")
     url = models.URLField(max_length=500, blank=True,default='') #referencias externas
     def __str__(self):
@@ -61,7 +61,6 @@ class Estudio(models.Model):
     def __str__(self):
         return str(self.nombre)
 
-        
 class Objeto(models.Model):
     anverso = models.ImageField(upload_to=path_and_rename)
     reverso  = models.ImageField(upload_to=path_and_rename)
@@ -72,15 +71,15 @@ class Objeto(models.Model):
                )
     codigo = models.CharField(choices = codigo_selec, max_length=2,default='DJ',verbose_name="Código") 
     numinv = models.IntegerField(unique=True,default=1,verbose_name="Número de inventario")  # Field name made lowercase.
-    altura = models.DecimalField(max_digits=10, decimal_places=2,verbose_name="Altura en cm") 
-    ancho = models.DecimalField(max_digits=10, decimal_places=2,verbose_name="Ancho en cm") 
+    altura = models.DecimalField(max_digits=10, decimal_places=2,verbose_name="Altura en cm")
+    ancho = models.DecimalField(max_digits=10, decimal_places=2,verbose_name="Ancho en cm")
     datacion = models.CharField(max_length=30,default='Desconocida',verbose_name="Fecha de la que data el objeto")
     bibliografia = models.ManyToManyField(Bibliografia)
     fechaingreso = models.CharField(max_length=30,verbose_name="Fecha de ingreso")
     ubicacionmus = models.CharField(max_length=30,verbose_name="Ubicacion en el museo")
-    movimientos = models.ManyToManyField(Movimiento,blank=True,null=True) #histórico de prestamos a otros museos para exposiciones
-    descripcion = models.TextField() 
-    observaciones = models.TextField() 
+    movimientos = models.ManyToManyField(Movimiento,blank=True) #histórico de prestamos a otros museos para exposiciones
+    descripcion = models.TextField()
+    observaciones = models.TextField()
 
     def __str__(self):
       return str(self.id)
@@ -131,7 +130,7 @@ class Cultura(models.Model):
 #        HINT: ForeignKey(unique=True) is usually better served by a OneToOneField.
 
 class Yacimiento(models.Model):
-    yacimiento = models.CharField(max_length=30)  
+    yacimiento = models.CharField(max_length=30) 
     municipio =  models.CharField(max_length=30)
     localidad =  models.CharField(max_length=30)
    
@@ -168,7 +167,7 @@ class Arqueologia(Objeto):
                ('Edad de piedra', 'Edad desconocida'),
                )
     edad = models.CharField(choices = edad_selec,
-                            default='Edad desconocida',max_length=17) 
+                            default='Edad desconocida',max_length=17)
     material = models.ManyToManyField(Material)
    
     def __str__(self):
@@ -210,7 +209,7 @@ class Donante(models.Model):
     dni = models.CharField(max_length=9,blank=True)
     
     def __str__(self):
-	    return str(self.nombre) +  " " + str(self.apellidos) 
+	    return str(self.nombre) +  " " + str(self.apellidos)
     class Meta:
         ordering = ["nombre"]
         verbose_name_plural = "Donantes"
@@ -271,16 +270,16 @@ class Bellasartes(Objeto):
 
 
 class InformeEstado(models.Model):
-    objeto = models.ForeignKey(Objeto, verbose_name="Objeto sobre el que se realiza el informe") #id del objeto 
+    objeto = models.ForeignKey(Objeto, verbose_name="Objeto sobre el que se realiza el informe")#id del objeto 
     nombre_res = models.CharField(max_length=30,verbose_name=("Nombre restaurador"))
     ape_res = models.CharField(max_length=50,verbose_name=("Apellidos del restaurador"))
-    objeto = models.ForeignKey(Objeto, verbose_name="Objeto sobre el que se realiza el informe") #id del objeto 
-    fecha = models.DateField(auto_now=True,verbose_name=("Fecha del informe de estado")) #fecha cuando se realiza el informe
-    cartela = models.TextField() 
+    objeto = models.ForeignKey(Objeto, verbose_name="Objeto sobre el que se realiza el informe")#id del objeto 
+    fecha = models.DateField(auto_now=True,verbose_name=("Fecha del informe de estado"))#fecha cuando se realiza el informe
+    cartela = models.TextField()
     marco = models.TextField(blank=True)
     montaje = models.TextField(blank=True)
     estudio = models.ManyToManyField(Estudio, verbose_name="Estudios realizados")
-    muestras = models.BooleanField(default=False) #se han tomado muestras o no
+    muestras = models.BooleanField(default=False)#se han tomado muestras o no
     obra = models.TextField(blank=True)
     conclusion = models.TextField()
     prioridad = models.IntegerField(verbose_name="Prioridad",validators=[MinValueValidator(1),MaxValueValidator(6)]) #de menos a más

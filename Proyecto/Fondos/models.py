@@ -7,7 +7,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.db.models import Max,Avg
-from django.conf import settings 
+from django.conf import settings
 import os.path
 from uuid import uuid4
 from django.utils.encoding import smart_text, smart_unicode,smart_str
@@ -69,7 +69,7 @@ class Objeto(models.Model):
                ('DO', 'DO'),
                ('DE', 'DE'),
                )
-    codigo = models.CharField(choices = codigo_selec, max_length=2,default='DJ',verbose_name="Código") 
+    codigo = models.CharField(choices = codigo_selec, max_length=2,default='DJ',verbose_name="Código")
     numinv = models.IntegerField(unique=True,default=1,verbose_name="Número de inventario")  # Field name made lowercase.
     altura = models.DecimalField(max_digits=10, decimal_places=2,verbose_name="Altura en cm")
     ancho = models.DecimalField(max_digits=10, decimal_places=2,verbose_name="Ancho en cm")
@@ -130,7 +130,7 @@ class Cultura(models.Model):
 #        HINT: ForeignKey(unique=True) is usually better served by a OneToOneField.
 
 class Yacimiento(models.Model):
-    yacimiento = models.CharField(max_length=30) 
+    yacimiento = models.CharField(max_length=30)
     municipio =  models.CharField(max_length=30)
     localidad =  models.CharField(max_length=30)
    
@@ -256,7 +256,7 @@ class Bellasartes(Objeto):
     autor = models.ForeignKey(Autor,models.SET_NULL,
     blank=True,
     null=True,)
-    formaingreso = models.CharField(choices = adquirido_selec,max_length=8,default='1',verbose_name="Forma de ingreso") 
+    formaingreso = models.CharField(choices = adquirido_selec,max_length=8,default='1',verbose_name="Forma de ingreso")
     donante = models.ForeignKey(Donante,models.SET_NULL,
     blank=True,
     null=True,)
@@ -330,4 +330,4 @@ class InformeArqueo(models.Model):
         ordering = ["fecha"]
         verbose_name_plural = "Intervenciones de arqueología"
     def get_absolute_url(self):
-        return "/informearqueo_ver/%i/" % self.pk    
+        return "/informearqueo_ver/%i/" % self.pk 

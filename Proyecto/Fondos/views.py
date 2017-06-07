@@ -334,7 +334,7 @@ def searcharqueologia(request):
 def searchbellasartes(request):
     bellasartes_list = Bellasartes.objects.all()
     bellasartes_filter = BellasArtesFilter(request.GET, queryset=bellasartes_list)
-    return render(request, 'Busqueda/bellasartes_search.html', {'filter': bellasartes_filter})    
+    return render(request, 'Busqueda/bellasartes_search.html', {'filter': bellasartes_filter})
 
 #VISTAS DE ESTADOS E INTERVENCIONES 
 

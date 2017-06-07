@@ -4,9 +4,6 @@ from django.contrib.auth.models import User
 
 
 class Ticket(models.Model):
-    """
-    Define un ticket 
-    """
     ESTADO_POR_APROBAR = "Por aprobar"
     ESTADO_APROBADO = "Aprobado"
     ESTADO_CERRADO = "Cerrado"

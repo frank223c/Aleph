@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-import sys 
 
 SECRET_KEY = 'j_tk&q=p8nu_w*l)-(qi6)p7@72b(0%s=q5=pk8ofodllvp6ri'
 
@@ -120,7 +119,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Proyecto.wsgi.application'
-LOGIN_REDIRECT_URL = '/' 
+LOGIN_REDIRECT_URL = '/'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -217,7 +216,7 @@ AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=MCA_usuarios,ou=Museo,ou=Unidades,DC=junt
 
 AUTH_LDAP_USER_ATTR_MAP = {
  "first_name":"givenName", 
- "last_name":"sn", 
+ "last_name":"sn",
  "email":"mail", 
  }
 

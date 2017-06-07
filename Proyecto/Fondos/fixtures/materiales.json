@@ -4,7 +4,6 @@
     "pk": 1,
     "fields": {
       "nombre": "Oro",
-    }
   },
   {
     "model": "Fondos.material",

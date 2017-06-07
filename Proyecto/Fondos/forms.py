@@ -4,21 +4,20 @@ from django import forms
 from .models import *
 from datetime import datetime, timedelta, date
 from django.utils.translation import ugettext, ugettext_lazy as _
-from django.contrib.admin import widgets   
+from django.contrib.admin import widgets
 from django.forms import ValidationError
 from .widgets import *
 from django import forms
 from django.forms import ModelForm, Textarea
-from django.contrib.auth.forms import AuthenticationForm 
+from django.contrib.auth.forms import AuthenticationForm
 from django import forms
-from crispy_forms.bootstrap import TabHolder, Tab
 from django.forms.fields import DateField
-from django.contrib.admin.widgets import AdminDateWidget 
+from django.contrib.admin.widgets import AdminDateWidget
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(label = "Username", max_length=30, 
+    username = forms.CharField(label = "Username", max_length=30,
                                widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
-    password = forms.CharField(label = "Password", max_length=30, 
+    password = forms.CharField(label = "Password", max_length=30,
                                widget=forms.PasswordInput(attrs={'class': 'form-control', 'name': 'password'}))
 
 #Formulario de arqueologia utilizando los widgets personalizados
@@ -46,8 +45,7 @@ class ArqueologiaForm(forms.ModelForm):
         
       def clean_material(self):
           data = self.cleaned_data.get('material')
-          return data.split(',') # 
-          
+          return data.split(',')
       def clean_bibliografia(self):
           data = self.cleaned_data.get('bibliografia')
           # validamos los datos y lso convertimos en una cadena
@@ -57,7 +55,6 @@ class ArqueologiaForm(forms.ModelForm):
 
    
       
-# Datos alojados en tablas externas que se crean mediante un pop-up 
 class BibliografiaForm(forms.ModelForm):
     class Meta:
        model = Bibliografia
@@ -73,11 +70,6 @@ class EstudioForm(forms.ModelForm):
        model = Estudio
        fields = "__all__"
        
-       
-#Formulario de datos especificos de cada categoria
-      
-#Adición de datos mediante pop-ups mediante el widget creado para arqueologia
-
 class MaterialForm(forms.ModelForm):
     class Meta:
        model = Material
@@ -200,7 +192,7 @@ class InformeEstadoForm(forms.ModelForm):
 class InformeArqueoForm(forms.ModelForm):
   objeto = forms.ModelChoiceField(queryset=Objeto.objects.all(),widget=forms.TextInput(attrs={'readonly':'readonly'}))
   class Meta:
-      model = InformeArqueo 
+      model = InformeArqueo
       fields = "__all__"
 
 

@@ -10,7 +10,6 @@ class ArqueologiaFilter(django_filters.FilterSet):
     material = django_filters.ModelMultipleChoiceFilter(queryset=Material.objects.all(),
         widget=forms.CheckboxSelectMultiple)
     nombre = django_filters.CharFilter(lookup_expr='icontains')
-    
     class Meta:
         model = Arqueologia
         fields = ['material', 'serie', 'seccion','cultura','edad','yacimiento','depositado']
@@ -24,8 +23,6 @@ class BellasArtesFilter(django_filters.FilterSet):
     tecnica = django_filters.ModelMultipleChoiceFilter(queryset= Tecnica.objects.all(),
         widget=forms.CheckboxSelectMultiple)
     procedencia = django_filters.CharFilter(lookup_expr='icontains')
-    
-    
     class Meta:
         model = Bellasartes
         fields = ['numinv','tecnica', 'iconografia', 'titulo','autor','procedencia']

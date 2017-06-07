@@ -11,8 +11,7 @@ from django import forms
 from django.forms import ModelForm, Textarea
 from django.contrib.auth.forms import AuthenticationForm
 from django import forms
-from django.forms.fields import DateField
-from django.contrib.admin.widgets import AdminDateWidget
+from django.forms import extras
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label = "Username", max_length=30,
@@ -172,7 +171,7 @@ class DonanteForm(forms.ModelForm):
 
 class InformeEstadoForm(forms.ModelForm):
    objeto = forms.ModelChoiceField(queryset=Objeto.objects.all(),widget=forms.TextInput(attrs={'readonly':'readonly'}))
-   fecha = forms.DateField(widget = SelectDateWidget)
+   fecha = forms.DateField(widget=extras.SelectDateWidget)
 
    class Meta:
        model = InformeEstado

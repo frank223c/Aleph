@@ -2,5 +2,5 @@
 *.sh
 /Proyecto/static/photos/*
 /Proyecto/Fondos/migrations/*
-/Proyecto/Fondos/static/*
-/Proyecto/Fondos/staticfiles/*
+/Proyecto/static/*
+/Proyecto/staticfiles/*

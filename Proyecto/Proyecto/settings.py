@@ -99,7 +99,6 @@ MIDDLEWARE = [
 ]
 
 
-
 ROOT_URLCONF = 'Proyecto.urls'
 
 TEMPLATES = [

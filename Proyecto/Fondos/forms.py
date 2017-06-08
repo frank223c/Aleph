@@ -24,36 +24,18 @@ class ArqueologiaForm(forms.ModelForm):
     class Meta:
       model = Arqueologia
       widgets = {
-            'seccion': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
+            'seccion': SelectWithPop(attrs={'cols': 80, 'rows': 30}),
             'ubicacion': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'bibliografia': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'serie': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'yacimiento': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'cultura': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'material': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20}),
-                        
-           # 'movimiento': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20}),
         }
       fields = "__all__"
       
-      def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request')
-        super(ArqueologiaForm, self).__init__(*args, **kwargs)
-        self.fields["material"].widget = Textarea()
-        self.fields["bibliografia"].widget = Textarea()
-        
-      def clean_material(self):
-          data = self.cleaned_data.get('material')
-          return data.split(',')
-      def clean_bibliografia(self):
-          data = self.cleaned_data.get('bibliografia')
-          # validamos los datos y lso convertimos en una cadena
-          # ya que se espera una lista
-          # si no es valido recibiremos un error
-          return data.split(',') # funcion para trocear los datos y pasarlo como una lista de valores separados por una coma
 
-   
-      
+
 class BibliografiaForm(forms.ModelForm):
     class Meta:
        model = Bibliografia
@@ -112,28 +94,6 @@ class BellasArtesForm(forms.ModelForm):
             'iconografia': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
         }
        fields = "__all__"
-       
-       def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request')
-        super(BellasArtesForm, self).__init__(*args, **kwargs)
-        self.fields["soporte"].widget = Textarea()
-        self.fields["tecnica"].widget = Textarea()
-        self.fields["bibliografia"].widget = Textarea()
-        
-       def clean_tecnica(self):
-          data = self.cleaned_data.get('tecnica')
-          return data.split(',') # just an exa
-          
-       def clean_soporte(self):
-          data = self.cleaned_data.get('soporte')
-          return data.split(',') # just an exa
-          
-       def clean_bibliografia(self):
-          data = self.cleaned_data.get('bibliografia')
-          # validamos los datos y lso convertimos en una cadena
-          # ya que se espera una lista
-          # si no es valido recibiremos un error
-          return data.split(',') # funcion para trocear los datos y pasarlo como una lista de valores separados por una coma
 
 
 class AutorForm(forms.ModelForm):
@@ -179,14 +139,6 @@ class InformeEstadoForm(forms.ModelForm):
             'estudio': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20})
             }
        fields = "__all__"
-       def __init__(self, *args, **kwargs):
-         self.request = kwargs.pop('request')
-         super(EstadoForm, self).__init__(*args, **kwargs)
-         self.fields["estudio"].widget = Textarea()
-        
-       def clean_estudios(self):
-           data = self.cleaned_data.get('estudio')
-           return data.split(',')
 
 class InformeArqueoForm(forms.ModelForm):
   objeto = forms.ModelChoiceField(queryset=Objeto.objects.all(),widget=forms.TextInput(attrs={'readonly':'readonly'}))

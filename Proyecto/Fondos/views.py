@@ -63,53 +63,260 @@ def index(request):
    else:
           return HttpResponseRedirect('/')
   
-#PARTE DE LOLA Y JOSE CARLOS
+#CREACION DE OBJETOS
+@login_required
 def arqueologia_crear(request): 
     group_name = request.user.groups.all()[0].name
     if group_name != "Documentador":
         return PermissionDenied
-    else:    
-        form = ArqueologiaForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        instance = form.save(commit=False)
-        instance.user = request.user 
-        instance.save()
-        return HttpResponseRedirect(instance.get_absolute_url())
-    context = {
-        "form": form
-    }
-    return render(request, "formularios/formulario_arqueologia.html", context)
+    else:
+         if request.method == "POST":
+            form = ArqueologiaForm(request.POST,request.FILES)    
+            if form.is_valid():
+              instance = form.save(commit=False)
+              instance.user = request.user 
+              instance.save()
+              return HttpResponseRedirect(instance.get_absolute_url())
+         else:
+             form = ArqueologiaForm()
+         return render(request, "formularios/formulario_arqueologia.html", {"form": form})
 
-# editar objeto de arqueologia existente
-def arqueologia_actualizar(request, pk=None):
+@login_required
+def bellasartes_crear(request):
     group_name = request.user.groups.all()[0].name
     if group_name != "Documentador":
         return PermissionDenied
-    else:    
-        instance = get_object_or_404(Arqueologia, pk=pk)
-        form = ArqueologiaForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-      instance = form.save(commit=False)
-      instance.save()
-      return HttpResponseRedirect(instance.get_absolute_url())
-    context = {
-         "instance": instance,
-         "form": form,
-     }
-    return render(request, "formularios/formulario_arqueologia.html", context)
+    else:
+         if request.method == "POST":
+            form = BellasArtesForm(request.POST,request.FILES)    
+            if form.is_valid():
+              instance = form.save(commit=False)
+              instance.user = request.user 
+              instance.save()
+              form.save_m2m()
+              return redirect('/')
+         else:
+              form = BellasArtesForm()
+         return render(request,'formularios/formulario_bellasartes.html', {'form': form})
+ 
+def estado_crear(request, pk):
+    instance = get_object_or_404(Objeto, pk=pk)
+    datos =  Objeto.objects.filter().get(pk=instance.id)
+    datadict = {'objeto': datos.pk }
+    if request.method == "POST":
+      form = InformeEstadoForm(request.POST, initial=datadict)  
+    #le pasamos el id del objeto mediante un diccionario inicial al formulario
+    #de estado, de manera que el dato con el cual se relaciona la clase
+    #informes estado no haya que rellenarlo    
+      if form.is_valid():
+          instance = form.save(commit=False)
+          instance.user = request.user
+          instance.save()
+          form.save_m2m()
+          return redirect('/')#si el formulario es valido se registra el objeto, que sera visible tanto desde el admin como desde
+    else:
+         form = InformeEstadoForm(initial=datadict) 
+    return render(request, "Informes/formulario_estado.html", {"form": form, "instance": instance, "datos": datos})
 
-#detalle de arqueologia
-def arqueologia_detalle(request, pk=None):
-      instance = get_object_or_404(Arqueologia, pk=pk)
-      estado = InformeArqueo.objects.filter(objeto=instance.pk)
-      context = {
-      "titulo": instance.nombre,
-      "instance": instance,
-      "estado": estado
-}
-      return render(request, "Listado/arqueologia_detail.html", context)
+def intervencion_crear(request, pk):
+    datospre = get_object_or_404(InformeEstado, pk=pk)
+    datadict = {'estado_rel': datospre.pk }
+    if request.method == "POST":
+      form = IntervencionForm(request.POST or None, initial=datadict)  
+      if form.is_valid():
+         instance = form.save(commit=False)
+         instance.user = request.user 
+         instance.save()
+         messages.success(request, "Se ha registrado el objeto") #esto se ve en el admin
+         return HttpResponseRedirect('/')
+       #si el formulario es valido se registra el objeto, que sera visible tanto desde el admin como desde
+       #la interfaz en la vista de detalle
+    else:
+      form = IntervencionForm(initial=datadict)  
+      return render(request, "Informes/formulario_intervencion.html",{"form": form,"datospre": datospre,})
+    
+def informearqueo_crear(request,pk):
+    instance = get_object_or_404(Objeto, pk=pk)
+    datos =  Objeto.objects.filter().get(pk=instance.id)
+    datadict = {'objeto': datos.id }
+    if request.method == 'POST':
+       form = InformeArqueoForm(request.POST, initial=datadict)
+    #le pasamos el id del objeto mediante un diccionario inicial al formulario
+    #de estado, de manera que el dato con el cual se relaciona la clase
+    #informes estado no haya que rellenarlo    
+       if form.is_valid():
+         instance = form.save()
+         instance.user = request.user 
+         instance.save()
+         return HttpResponseRedirect('/')
+    else:
+        form = InformeArqueoForm(initial=datadict)
+       #si el formulario es valido se registra el objeto, que sera visible tanto desde el admin como desde
+       #la interfaz en la vista de detalle
+       #la interfaz en la vista de detalle
+    return render(request, "formularios/formulario_informearqueo.html", {"form": form,"instance": instance,"datos": datos,})
+    
+# ACTUALIZACION DE OBJETOS
+def arqueologia_actualizar(request, pk):
+    instance = get_object_or_404(Arqueologia, pk=pk)  
+    group_name = request.user.groups.all()[0].name
+    if group_name != "Documentador":
+        return PermissionDenied
+    else:  
+        if request.method == "POST":
+          form = ArqueologiaForm(request.POST,request.FILES,instance=instance)
+   
+          if form.is_valid():
+           instance = form.save(commit=False)
+           instance.save()
+           return redirect('/') 
+        else:
+             form = ArqueologiaForm(instance=instance)    
+        return render(request, "formularios/formulario_arqueologia.html", {'form':form,'instance':instance})
+        
+def bellasartes_actualizar(request, pk):
+    instance = get_object_or_404(Bellasartes, pk=pk)
+    group_name = request.user.groups.all()[0].name
+    if group_name != "Documentador":
+        return PermissionDenied
+    else:
+        if request.method == "POST":
+           form = BellasArtesForm(request.POST,request.FILES, instance=instance)
+           if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            form.save_m2m()
+            return HttpResponseRedirect(instance.get_absolute_url())
+        else:
+          form  = BellasArtesForm(instance=instance)   
+        return render(request, "formularios/formulario_bellasartes.html", {"instance": instance, "form": form,})
 
-def arqueologia_borrar(request, pk=None):
+def estado_actualizar(request, pk):
+    instance = get_object_or_404(InformeEstado, pk=pk)
+    if request.method == 'POST':
+       form = InformeEstadoForm(request.POST, instance=instance)
+       if form.is_valid():
+         instance = form.save(commit=False)
+         instance.save()
+         return HttpResponseRedirect(instance.get_absolute_url())
+    else:
+        form = InformeEstadoForm(instance=instance)
+    return render(request, "Informes/formulario_estado.html", {"instance": instance,"form": form,})
+ 
+#Actualizar un informe de estado   
+def informearqueo_actualizar(request, pk):
+    instance = get_object_or_404(InformeArqueo, pk=pk)
+    if request.method == 'POST':
+      form = InformeArqueoForm(request.POST , instance=instance)
+      if form.is_valid():
+        instance = form.save()
+        instance.save()
+        return HttpResponseRedirect('/')
+    else:
+        form = InformeArqueoForm(instance=instance)  
+    return render(request, "Informes/formulario_informearqueo.html", {"instance": instance,"form": form,})
+
+####Actualizar elemento lookup
+# editar objeto de arqueologia existente
+def autor_actualizar(request, pk):
+    instance = get_object_or_404(Autor, pk=pk)
+    if request.method == 'POST':
+       form = AutorForm(request.POST, instance=instance)
+       if form.is_valid():
+          instance = form.save(commit=False)
+          instance.save()
+          return HttpResponseRedirect('/')
+    else:
+         form = AutorForm(instance=instance)     
+    return render(request, "formularios/formulario_autor.html", {"instance": instance,"form": form,})
+
+def iconografia_actualizar(request, pk):
+    instance = get_object_or_404(Iconografia, pk=pk)
+    if request.method == 'POST':
+       form =IconografiaForm(request.POST, instance=instance)
+       if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return HttpResponseRedirect('/')
+    else:
+        form = IconografiaForm(instance=instance)
+    return render(request, "formularios/formulario_icon.html",{"instance": instance,"form": form,})
+    
+def soporte_actualizar(request, pk):
+    instance = get_object_or_404(Soporte, pk=pk)
+    if method.request == 'POST':
+        form = SoporteForm(request.POST, instance=instance)
+        if form.is_valid():
+           instance = form.save(commit=False)
+           instance.save()
+           return HttpResponseRedirect('/')
+    else:
+        form = SoporteForm(instance=instance)
+    return render(request, "formularios/formulario_sopo.html", {"instance": instance,"form": form,})
+    
+def edad_actualizar(request, pk):
+    instance = get_object_or_404(Edad, pk)
+    if request.method == 'POST':
+        form =EdadForm(request.POST, instance=instance)
+        if form.is_valid():
+          instance = form.save(commit=False)
+          instance.save()
+          return HttpResponseRedirect('/')
+    else:
+        form = EdadForm(instance=instance)
+    return render(request, "formularios/formulario_edad.html",{"instance": instance,"form": form,})
+
+def tecnica_actualizar(request, pk):
+    instance = get_object_or_404(Tecnica, pk=pk)
+    if request.method == 'POST':
+       form =TecnicaForm(request.POST,instance=instance)
+       if form.is_valid():
+         instance = form.save(commit=False)
+         instance.save()
+         return HttpResponseRedirect('/')
+    else:
+        form = TecnicaForm(instance=instance)
+    return render(request, "formularios/formulario_tecnica.html", {"instance": instance,"form": form,})
+    
+def bibliografia_actualizar(request, pk):
+    instance = get_object_or_404(Bibliografia, pk=pk)
+    if request.method == 'POST':
+        form = BibliografiaForm(request.POST,instance=instance)
+        if form.is_valid():
+          instance = form.save(commit=False)
+          instance.save()
+          return HttpResponseRedirect('/')
+    else:
+        form = BibliografiaForm(instance=instance)
+    return render(request, "formularios/formulario_biblio.html", {"instance": instance,"form": form,})
+
+def cultura_actualizar(request, pk):
+    instance = get_object_or_404(Cultura, pk=pk)
+    if request.method == 'POST':
+        form = CulturaForm(request.POST, instance=instance)
+        if form.is_valid():
+          instance = form.save(commit=False)
+          instance.save()
+          return HttpResponseRedirect('/')
+    else:
+        form = CulturaForm(instance=instance)  
+    return render(request, "formularios/formulario_cultura.html",{"instance": instance,"form": form,})
+
+def yacimiento_actualizar(request, pk):
+    instance = get_object_or_404(Yacimiento, pk=pk)
+    if request.method == 'POST':
+       form = YacimientoForm(request.POST,instance=instance)
+       if form.is_valid():
+         instance = form.save(commit=False)
+         instance.save()
+         return HttpResponseRedirect('/')
+    else:
+        form = YacimientoForm(instance=instance)
+    return render(request, "formularios/formulario_yacimiento.html", {"instance": instance,"form": form,})
+
+
+# BORRADO
+def arqueologia_borrar(request, pk):
     group_name = request.user.groups.all()[0].name
     if group_name != "Documentador":
         return PermissionDenied
@@ -117,9 +324,51 @@ def arqueologia_borrar(request, pk=None):
         instance = get_object_or_404(Arqueologia, pk=pk)
         instance.delete()
     return redirect("/verarqueologia")
+    
+def bellasartes_borrar(request, pk):
+    if not request.user.is_authenticated() and not request.user.is_documentador():
+      raise Http404
+    instance = get_object_or_404(Bellasartes, pk=pk)
+    instance.delete()
+    messages.success(request, "Se ha eliminado el objeto.")
+    return redirect("/verbellasartes/")
 
-# Vista listado y busqueda simple
+# CONSULTAS DE DETALLE
+def arqueologia_detalle(request, pk):
+      instance = get_object_or_404(Arqueologia, pk=pk)
+      estado = InformeArqueo.objects.filter(objeto=instance.pk)
+      return render(request, "Listado/arqueologia_detail.html",{"titulo": instance.nombre, "instance":instance,"estado": estado})
 
+def bellasartes_detalle(request, pk):
+      instance = get_object_or_404(Bellasartes, pk=pk)
+      estado = InformeEstado.objects.filter(objeto=instance.id)
+      if not request.user.is_authenticated():
+         raise Http404
+      return render(request, "Listado/bellasartes_detail.html", {"instance": instance, "estado": estado,})
+
+def estado_detalle(request, pk):
+      instance = get_object_or_404(InformeEstado, pk=pk)
+      datos = Bellasartes.objects.filter(pk=instance.objeto)
+      datosobj = Objeto.objects.filter(pk=pk)
+      # Guardar los datos de las consultas sobre el numero de inventario
+      # que tiene el objeto que ha sido estudiado y/o intervenido
+      #para no tener que volverlos a guardar en el formulario de estado
+      intervencion = InformeIntervencion.objects.filter(estado_rel_id=instance.pk)
+      #subconsulta arreglada, devolvía mas de un valor y por tanto no funcionaba
+      # uso de context para guardar la informacion obtenida mediante las consultas anteriores para poder
+      #rellenarlos
+      return render(request, "Informes/estado_detail.html", {"instance": instance, "datos": datos,"datosobj": datosobj,"intervencion": intervencion,})
+
+def informearqueo_detalle(request, pk):
+      instance = get_object_or_404(InformeArqueo, pk=pk)
+      datos = Arqueologia.objects.filter(pk=instance.objeto)
+      datosobj = Objeto.objects.filter(pk=pk)
+    # Guardar los datos de las consultas sobre el numero de inventario
+    # uso de context para guardar la informacion obtenida mediante las consultas anteriores para poder
+    # utilizarlos en la plantilla
+      return render(request, "Informes/informearqueo_detail.html",{"instance": instance, "datos" : datos,"datosobj": datosobj,})
+      
+# BUSQUEDAS CON Q OBJECTS Y OR      
 @login_required
 def arqueologia_lista(request):
     hoy = timezone.now().date()
@@ -143,74 +392,7 @@ def arqueologia_lista(request):
     except EmptyPage:
       # If page is out of range (e.g. 9999), deliver last page of results.
       queryset = paginator.page(paginator.num_pages)
-    context = {
-     "nombre": "List",
-     "object_list": queryset,
-     "page_request_var": page_request_var,
-     "hoy": hoy,
-   }
-    return render(request, "Listado/arqueologia_lista.html", context)
-
-#funcion del pop up para los objetos con foreign key en otros modelos
-#recibe una peticion,un formulario y un campo que sera
-#el que vayamos a agregar
-
-def handlePopAdd(request, addForm, field):
-   form = addForm()
-   if request.method == "POST" or request.method == "GET":
-       form = addForm(request.POST)            
-       if form.is_valid():
-            newObject = form.save()
-       else:
-            newObject = None
-       if newObject:
-           return HttpResponse('<script type="text/javascript">opener.dismissAddAnotherPopup(window, "%s", "%s");</script>' % \
-            (escape(newObject._get_pk_val()), escape(newObject)))
-       else:
-            form = addForm()
-            pageContext = {'form': form, 'field': field}
-       return render(request,"widget/popadd.html", pageContext)
-
-
-# Errores con plantilla personalizada
-
-def handler404(request):
-    response = render_to_response('404.html', {},
-                                  context_instance=RequestContext(request))
-    response.status_code = 404
-    return response
-
-def handler500(request):
-    response = render_to_response('500.html', {},
-                                  context_instance=RequestContext(request))
-    response.status_code = 500
-    return response
-    
-def newBibliografia(request):
-    return handlePopAdd(request, BibliografiaForm, 'Bibliografia')
-    
-def newUbicacion(request):
-	return  handlePopAdd(request, UbicacionForm, 'Ubicacion')
-
-def newMovimiento(request):
-	return  handlePopAdd(request, MovimientoForm, 'Movimiento')
-
-
-
-#
-#   VISTAS DE BELLAS ARTES
-#
-
-def bellasartes_crear(request):
-    form = BellasArtesForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        instance = form.save(commit=False)
-        instance.user = request.user 
-        instance.save()
-        form.save_m2m()
-        return HttpResponseRedirect(instance.get_absolute_url())
-    return render(request,'formularios/formulario_bellasartes.html', {'form': form})
-
+    return render(request, "Listado/arqueologia_lista.html", {"nombre": "List","object_list": queryset,"page_request_var": page_request_var,"hoy": hoy,})
 
 def bellasartes_lista(request):
     hoy = timezone.now().date()
@@ -241,239 +423,111 @@ def bellasartes_lista(request):
      "hoy": hoy,
    }
     return render(request, "Listado/bellasartes_lista.html", context)
-    
-def bellasartes_actualizar(request, pk=None):
-    instance = get_object_or_404(Bellasartes, pk=pk)
-    form = BellasArtesForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-      instance = form.save(commit=False)
-      instance.save()
-      form.save_m2m()
-      return HttpResponseRedirect(instance.get_absolute_url())
-    context = {
-         "instance": instance,
-         "form": form,
-     }
-    return render(request, "formularios/formulario_bellasartes.html", context)
-
-def bellasartes_detalle(request, pk=None):
-      instance = get_object_or_404(Bellasartes, pk=pk)
-      estado = InformeEstado.objects.filter(objeto=instance.id)
-      
-      if not request.user.is_authenticated():
-         raise Http404
-      context = {
-      "instance": instance,
-      "estado": estado,
-}
-      return render(request, "Listado/bellasartes_detail.html", context)
-
-def bellasartes_borrar(request, pk=None):
-    if not request.user.is_authenticated() and not request.user.is_documentador():
-      raise Http404
-    instance = get_object_or_404(Bellasartes, pk=pk)
-    instance.delete()
-    messages.success(request, "Se ha eliminado el objeto.")
-    return redirect("/verbellasartes/")
-
-def newEstudio(request):
-    return handlePopAdd(request, EstudioForm, 'Estudio')
-
-#vistas de los formularios de adicion de objetos de arqueologia
 
 
-def newMaterial(request):
-     return handlePopAdd(request, MaterialForm, 'Material')
-
-def newSeccion(request):
-    return handlePopAdd(request, SeccionForm, 'Seccion')
-
-
-def newYacimiento(request):
-    return handlePopAdd(request, YacimientoForm, 'Yacimiento')
-
-def newSerie(request):
-    return handlePopAdd(request, SerieForm, 'Serie')
-
-def newCultura(request):
-    return handlePopAdd(request, CulturaForm, 'Cultura')
-
-#vistas de los formularios de adicion de informacion de objetos de bellas artes
-
-def newAutor(request):
-     return handlePopAdd(request, AutorForm, 'Autor')
-
-def newTecnica(request):
-    return handlePopAdd(request, TecnicaForm, 'Tecnica')
-
-def newSoporte(request):
-    return handlePopAdd(request, SoporteForm, 'Soporte')
-
-def newDonante(request):
-    return handlePopAdd(request, DonanteForm, 'Donante')
-    
-
-def newEstilo(request):
-    return handlePopAdd(request, EstiloForm, 'Estilo')
-
-def newIconografia(request):
-    return handlePopAdd(request, IconografiaForm, 'Iconografia')
 #BUSQUEDAS DE ARQUEOLOGIA A PARTIR DE UNA VISTA DE LISTADO
-
-#busqueda avanzada mediante la aplicación django-filter
-
 @login_required
 def searcharqueologia(request):
     arqueologia_list = Arqueologia.objects.all()
     arqueologia_filter = ArqueologiaFilter(request.GET, queryset=arqueologia_list)
     return render(request, 'Busqueda/arqueologia_search.html', {'filter': arqueologia_filter})
     
-    
 #BUSQUEDA DE BELLAS ARTES A PARTIR DE UNA VISTA DE LISTADO
-
+@login_required
 def searchbellasartes(request):
     bellasartes_list = Bellasartes.objects.all()
     bellasartes_filter = BellasArtesFilter(request.GET, queryset=bellasartes_list)
     return render(request, 'Busqueda/bellasartes_search.html', {'filter': bellasartes_filter})
 
-#VISTAS DE ESTADOS E INTERVENCIONES 
 
-#PARTE DE MARISA
-def estado_crear(request, pk=None):
-    instance = get_object_or_404(Objeto, pk=pk)
-    datos =  Objeto.objects.filter().get(pk=instance.id)
-    datadict = {'objeto': datos.pk }
-    form = InformeEstadoForm(request.POST or None, initial=datadict)  
-    #le pasamos el id del objeto mediante un diccionario inicial al formulario
-    #de estado, de manera que el dato con el cual se relaciona la clase
-    #informes estado no haya que rellenarlo    
-    if form.is_valid():
-       instance = form.save(commit=False)
-       instance.user = request.user
-       instance.save()
-       form.save_m2m()
-       messages.success(request, "Se ha registrado el objeto")#esto se ve en el admin
-       return HttpResponseRedirect('/')#si el formulario es valido se registra el objeto, que sera visible tanto desde el admin como desde
-       #la interfaz en la vista de detalle
-    context = {
-         "form": form,
-         "instance": instance,
-         "datos": datos
-    }
-    return render(request, "Informes/formulario_estado.html", context)
+#funcion del pop up para los objetos con foreign key en otros modelos
+#recibe una peticion,un formulario y un campo que sera
+#el que vayamos a agregar
+@login_required
+def handlePopAdd(request, addForm, field):
+   form = addForm()
+   if request.method == "POST" or request.method == "GET":
+       form = addForm(request.POST)            
+       if form.is_valid():
+            newObject = form.save()
+       else:
+            newObject = None
+       if newObject:
+           return HttpResponse('<script type="text/javascript">opener.dismissAddAnotherPopup(window, "%s", "%s");</script>' % \
+            (escape(newObject._get_pk_val()), escape(newObject)))
+       else:
+            form = addForm()
+            pageContext = {'form': form, 'field': field}
+       return render(request,"widget/popadd.html", pageContext)
 
+# Errores con plantilla personalizada para utilizar en producción
 
-def estado_detalle(request, pk=None):
-      instance = get_object_or_404(InformeEstado, pk=pk)
-      datos = Bellasartes.objects.filter(pk=instance.objeto)
-      datosobj = Objeto.objects.filter(pk=pk)
-      # Guardar los datos de las consultas sobre el numero de inventario
-      # que tiene el objeto que ha sido estudiado y/o intervenido
-      #para no tener que volverlos a guardar en el formulario de estado
-      intervencion = InformeIntervencion.objects.filter(estado_rel_id=instance.pk)
-      #subconsulta arreglada, devolvía mas de un valor y por tanto no funcionaba
-    # uso de context para guardar la informacion obtenida mediante las consultas anteriores para poder
-    # utilizarlos en la plantilla
-      context = {
-      "instance": instance,
-      "datos": datos,
-      "datosobj": datosobj,
-      "intervencion": intervencion,
-}
-      return render(request, "Informes/estado_detail.html", context)
-      
-#Actualizar un informe de estado   
-def estado_actualizar(request, pk=None):
-    instance = get_object_or_404(InformeEstado, pk=pk)
-    form = InformeEstadoForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-      instance = form.save(commit=False)
-      instance.save()
-      return HttpResponseRedirect(instance.get_absolute_url())
-    context = {
-         "instance": instance,
-         "form": form,
-     }
-    return render(request, "Informes/formulario_estado.html", context)
- 
-def intervencion_crear(request, pk=None):
-    if not request.user.is_authenticated():
-       raise Http404
-    datospre = get_object_or_404(InformeEstado, pk=pk)
-    datadict = {'estado_rel': datospre.pk }
-    form = IntervencionForm(request.POST or None, initial=datadict)
+def handler404(request):
+    response = render_to_response('404.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
+
+def handler500(request):
+    response = render_to_response('500.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 500
+    return response
     
-    if form.is_valid():
-       instance = form.save(commit=False)
-       instance.user = request.user 
-       instance.save()
-       messages.success(request, "Se ha registrado el objeto") #esto se ve en el admin
-       return HttpResponseRedirect('/')
-       
-       #si el formulario es valido se registra el objeto, que sera visible tanto desde el admin como desde
-       #la interfaz en la vista de detalle
-    context = {
-         "form": form,
-         "datospre": datospre,
-    }
-    return render(request, "Informes/formulario_intervencion.html", context)
+#CREACION DE DATOS LOOK-UP
+@login_required
+def newBibliografia(request):
+    return handlePopAdd(request, BibliografiaForm, 'Bibliografia')
     
-
-# Informes de arqueologia
-def informearqueo_crear(request,pk):
-    instance = get_object_or_404(Objeto, pk=pk)
-    datos =  Objeto.objects.filter().get(pk=instance.id)
-    datadict = {'objeto': datos.id }
-    form = InformeArqueoForm(request.POST or None, initial=datadict)
-    #le pasamos el id del objeto mediante un diccionario inicial al formulario
-    #de estado, de manera que el dato con el cual se relaciona la clase
-    #informes estado no haya que rellenarlo    
-    if form.is_valid():
-       instance = form.save()
-       instance.user = request.user 
-       instance.save()
-       messages.success(request, "Se ha registrado el objeto") #esto se ve en el admin
-       return HttpResponseRedirect('/')
-       #si el formulario es valido se registra el objeto, que sera visible tanto desde el admin como desde
-       #la interfaz en la vista de detalle
-              #la interfaz en la vista de detalle
-    context = {
-         "form": form,
-         "instance": instance,
-         "datos": datos,
-    }
+@login_required   
+def newUbicacion(request):
+	return  handlePopAdd(request, UbicacionForm, 'Ubicacion')
     
-    return render(request, "formularios/formulario_informearqueo.html", context)
+@login_required
+def newMovimiento(request):
+	return  handlePopAdd(request, MovimientoForm, 'Movimiento')
+    
+@login_required
+def newEstudio(request):
+    return handlePopAdd(request, EstudioForm, 'Estudio')
 
-def informearqueo_detalle(request, pk):
-      instance = get_object_or_404(InformeArqueo, pk=pk)
-      datos = Arqueologia.objects.filter(pk=instance.objeto)
-      datosobj = Objeto.objects.filter(pk=pk)
-    # Guardar los datos de las consultas sobre el numero de inventario
-    # uso de context para guardar la informacion obtenida mediante las consultas anteriores para poder
-    # utilizarlos en la plantilla
-      context = {
-      "instance": instance,
-      "datos" : datos,
-      "datosobj": datosobj,
-}
-      return render(request, "Informes/informearqueo_detail.html", context)
-      
-#Actualizar un informe de estado   
-def informearqueo_actualizar(request, pk=None):
-    instance = get_object_or_404(InformeArqueo, pk=pk)
-    form = InformeArqueoForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-      instance = form.save()
-      instance.save()
-      return HttpResponseRedirect('/')
-    context = {
-         "instance": instance,
-         "form": form,
-     }
-    return render(request, "Informes/formulario_informearqueo.html", context)
+#vistas de los formularios de adicion de objetos de arqueologia
+@login_required
+def newMaterial(request):
+     return handlePopAdd(request, MaterialForm, 'Material')
+@login_required
+def newSeccion(request):
+    return handlePopAdd(request, SeccionForm, 'Seccion')
+@login_required
+def newYacimiento(request):
+    return handlePopAdd(request, YacimientoForm, 'Yacimiento')
+@login_required
+def newSerie(request):
+    return handlePopAdd(request, SerieForm, 'Serie')
+@login_required
+def newCultura(request):
+    return handlePopAdd(request, CulturaForm, 'Cultura')
 
-        
+#vistas de los formularios de adicion de informacion de objetos de bellas artes
+@login_required
+def newAutor(request):
+     return handlePopAdd(request, AutorForm, 'Autor')
+@login_required
+def newTecnica(request):
+    return handlePopAdd(request, TecnicaForm, 'Tecnica')
+@login_required
+def newSoporte(request):
+    return handlePopAdd(request, SoporteForm, 'Soporte')
+@login_required
+def newDonante(request):
+    return handlePopAdd(request, DonanteForm, 'Donante')
+@login_required    
+def newEstilo(request):
+    return handlePopAdd(request, EstiloForm, 'Estilo')
+@login_required
+def newIconografia(request):
+    return handlePopAdd(request, IconografiaForm, 'Iconografia')
+    
 #Vista que devuelve los autores de bellas artes
 #los cuales tienen obras pertenecientes a ellos en el
 #museo, se presenta una foto y una pequeña biografía
@@ -496,12 +550,7 @@ def autores_lista(request):
       queryset = paginator.page(1)
     except EmptyPage:
       queryset = paginator.page(paginator.num_pages)
-    context = {
-    "object_list": queryset,
-    "page_request_var": page_request_var,
-
-   }
-    return render(request, "Listado/autores_lista.html", context)
+    return render(request, "Listado/autores_lista.html", {"object_list": queryset,"page_request_var": page_request_var,})
 
     
 #vista que une a cada autor con sus obras y una pequeña referencia, tambien
@@ -511,118 +560,7 @@ def autores_lista(request):
 def autores_clasi(request,pk):
     instance = get_object_or_404(Autor, pk=pk)
     cuadros = Bellasartes.objects.filter(autor=instance).values()
-    context = {
-     "instance": instance,
-     "cuadros": cuadros,
-   }
-    return render(request, "Listado/autores_clasi.html", context)
+    return render(request, "Listado/autores_clasi.html",{"instance": instance, "cuadros": cuadros,})
 
 
-####Actualizar elemento lookup
-# editar objeto de arqueologia existente
-def autor_actualizar(request, pk):
-    instance = get_object_or_404(Autor, pk=pk)
-    form = AutorForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-      instance = form.save(commit=False)
-      instance.save()
-      return HttpResponseRedirect('/')
-    context = {
-         "instance": instance,
-         "form": form,
-     }
-    return render(request, "formularios/formulario_autor.html", context)
 
-def iconografia_actualizar(request, pk):
-    instance = get_object_or_404(Iconografia, pk=pk)
-    form =IconografiaForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-      instance = form.save(commit=False)
-      instance.save()
-      return HttpResponseRedirect('/')
-    context = {
-         "instance": instance,
-         "form": form,
-     }
-    return render(request, "formularios/formulario_icon.html", context)
-    
-def soporte_actualizar(request, pk):
-    instance = get_object_or_404(Soporte, pk=pk)
-    form =SoporteForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-      instance = form.save(commit=False)
-      instance.save()
-      return HttpResponseRedirect('/')
-    context = {
-         "instance": instance,
-         "form": form,
-     }
-    return render(request, "formularios/formulario_sopo.html", context)
-    
-def edad_actualizar(request, pk=None):
-    instance = get_object_or_404(Edad, pk=pk)
-    form =EdadForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-      instance = form.save(commit=False)
-      instance.save()
-      return HttpResponseRedirect('/')
-    context = {
-         "instance": instance,
-         "form": form,
-     }
-    return render(request, "formularios/formulario_edad.html", context)
-
-def tecnica_actualizar(request, pk):
-    instance = get_object_or_404(Tecnica, pk=pk)
-    form =TecnicaForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-      instance = form.save(commit=False)
-      instance.save()
-      return HttpResponseRedirect('/')
-    context = {
-         "instance": instance,
-         "form": form,
-     }
-    return render(request, "formularios/formulario_tecnica.html", context)
-    
-def bibliografia_actualizar(request, pk):
-    instance = get_object_or_404(Bibliografia, pk=pk)
-    form = BibliografiaForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-      instance = form.save(commit=False)
-      instance.save()
-      return HttpResponseRedirect('/')
-    context = {
-         "instance": instance,
-         "form": form,
-     }
-    return render(request, "formularios/formulario_biblio.html", context)
-
-
-def cultura_actualizar(request, pk):
-    instance = get_object_or_404(Cultura, pk=pk)
-    form = CulturaForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-      instance = form.save(commit=False)
-      instance.save()
-      return HttpResponseRedirect('/')
-    context = {
-         "instance": instance,
-         "form": form,
-     }
-    return render(request, "formularios/formulario_cultura.html", context)
-
-def yacimiento_actualizar(request, pk):
-    instance = get_object_or_404(Yacimiento, pk=pk)
-    form = YacimientoForm(request.POST or None, request.FILES or None, instance=instance)
-    if form.is_valid():
-      instance = form.save(commit=False)
-      instance.save()
-      return HttpResponseRedirect('/')
-    context = {
-         "instance": instance,
-         "form": form,
-     }
-    return render(request, "formularios/formulario_yacimiento.html", context)
-
-#######FIN###

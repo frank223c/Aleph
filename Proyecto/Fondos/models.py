@@ -6,16 +6,9 @@ from django.core.files import File
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-from django.db.models import Max,Avg
 from django.conf import settings
 import os.path
 from uuid import uuid4
-from django.utils.encoding import smart_text, smart_unicode,smart_str
-
-smart_text(str)
-smart_str(str)
-smart_unicode(str)
-
 
 def path_and_rename(instance, filename):
     upload_to = 'Miniaturas'

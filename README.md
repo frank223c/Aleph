@@ -1,12 +1,12 @@
+[![codebeat badge](https://codebeat.co/badges/1b8469ca-00af-4265-93e2-3bce23b2c0f2)](https://codebeat.co/projects/github-com-usernameistakenlol-aleph-master)
 
 # **PROYECTO ALEPH**
 
-Aleph es una aplicación web creada con el framework Django para digitalizar la tarea de documentación museográfica ,respetando la normativa ya vigente sobre
-dicha tarea. La documentación es una tarea que conlleva varias funciones, desde registrar un objeto de inventario hasta crear un informe sobre la conservación del mismo.
-Está configurado por defecto para utilizar como DB Postgre y como backend de autenticación Active Directory.
+Aleph es una aplicación web creada con el framework Django para digitalizar la tarea de documentación museográfica.
 
 
 ---------------------------------------------------------
+
 [Prueba](http://i.imgur.com/PDJ7839.gif)
 
 ## ¿Cómo utilizarlo?
@@ -31,7 +31,13 @@ python manage.py migrate
 **Cambios realizados**
 
 *Arreglado problema con relaciones 
+
 *Creada la parte de intervención de arqueología
+
 *Probando autenticación con servidor AD de prueba
+
 *Cambios y arreglos menores en templates y css
 
+**TO DO**
+
+[] Dockerizar la aplicación

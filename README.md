@@ -1,14 +1,14 @@
 [![codebeat badge](https://codebeat.co/badges/1b8469ca-00af-4265-93e2-3bce23b2c0f2)](https://codebeat.co/projects/github-com-usernameistakenlol-aleph-master)
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.png?v=103)](https://opensource.org/licenses/GPL-3.0/)
 [![Build Status](https://scrutinizer-ci.com/g/usernameistakenlol/Aleph/badges/build.png?b=master)](https://scrutinizer-ci.com/g/usernameistakenlol/Aleph/build-status/master)
+[![Requirements Status](https://requires.io/github/usernameistakenlol/Aleph/requirements.svg?branch=master)](https://requires.io/github/usernameistakenlol/Aleph/requirements/?branch=master)
+
+![alt text](https://www.djangoproject.com/m/img/badges/djangopowered126x54.gif 'Powered by Django')
 # **PROYECTO ALEPH**
 
-Aleph es una aplicación web creada con el framework Django para digitalizar la tarea de documentación museográfica.
-
+Aleph es una aplicación web creada con Django para digitalizar la tarea de documentación museográfica.
 
 ---------------------------------------------------------
-
-[Prueba](http://i.imgur.com/PDJ7839.gif)
 
 ## ¿Cómo utilizarlo?
 

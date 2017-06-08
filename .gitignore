@@ -2,5 +2,6 @@
 *.sh
 /Proyecto/static/photos/*
 /Proyecto/Fondos/migrations/*
-/Proyecto/static/*
-/Proyecto/staticfiles/*
+*.png
+*.jpg
+*.gif

@@ -1,4 +1,4 @@
-django==1.10.7
+django==1.11
 django-extensions
 ipython
 django-bootstrap3

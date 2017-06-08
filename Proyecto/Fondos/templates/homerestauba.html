@@ -1,0 +1,31 @@
+{% include 'navbar.html' %}
+{% load static %}
+    <!--Es necesario cargar esta variable dentro del fichero-->        <!--Es necesario cargar esta variable dentro del fichero-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="{%static '/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+      </body>
+          <div class="container">
+<div class="left">      
+     <h1>Ultimos informes realizados:</h1>
+          <table class="sortable">
+ <th>Número de inventario</th>
+ <th>Prioridad</th>
+         <th>Ver</th>
+         <th>Añadir intervención</th>
+         <th>Editar</th>
+     {% for ultimos in ultimosinfo.all %}
+     <tr>
+   <td>{{ ultimos.numinv }}</td>
+   <td>{{ ultimos.prioridad }}</td>
+  <td>Ver informe<a href="/estado/{{ ultimos.id }}"><img src="/static/img/status.png" width="30" height="30" alt="Detalles"/></td></a>
+<td>Añadir intervención al informe<a href="/registrarintervencion/{{ ultimos.id }}"><img src="/static/img/add.png" width="30" height="30" alt="Añadir intervención"/></td></a>
+<td>Editar informe<a href="/estadoctualizar/{{ ultimos.id }}"><img src="/static/img/edit.png" width="30" height="30" alt="Añadir intervención"/></td></a>
+      </tr>
+      </table>
+ {% endfor %}             
+          </div>
+    </div>
+      </div>
+</html>

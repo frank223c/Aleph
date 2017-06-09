@@ -13,13 +13,21 @@ from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 from django.forms import extras
 
+########################################
+# Formulario de login
+########################################
+
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label = "Username", max_length=30,
                                widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
     password = forms.CharField(label = "Password", max_length=30,
                                widget=forms.PasswordInput(attrs={'class': 'form-control', 'name': 'password'}))
 
-#Formulario de arqueologia utilizando los widgets personalizados
+########################################
+#Formularios para crear objetos o modificarlos
+#utilizando crispy-forms
+########################################
+
 class ArqueologiaForm(forms.ModelForm): 
     class Meta:
       model = Arqueologia
@@ -75,8 +83,7 @@ class YacimientoForm(forms.ModelForm):
     class Meta:
        model = Yacimiento
        fields = "__all__"
-       
-#Creacion del formulario especifico de bellas artes
+
 
 class BellasArtesForm(forms.ModelForm):
    class Meta:
@@ -125,12 +132,9 @@ class DonanteForm(forms.ModelForm):
          raise forms.ValidationError("No es un DNI válido,compruebe los espacios")
       return dni
 
-#
-# INTERVENCIONES
-#
 
 class InformeEstadoForm(forms.ModelForm):
-   objeto = forms.ModelChoiceField(queryset=Objeto.objects.all(),widget=forms.TextInput(attrs={'readonly':'readonly'}))
+   objeto = forms.ModelChoiceField(queryset=Objeto.objects.all(),widget=forms.TextInput(attrs={'readonly':'readonly'})) #no se permite editar el id del objeto que va ligado a un informe de estado
    fecha = forms.DateField(widget=extras.SelectDateWidget)
 
    class Meta:
@@ -148,7 +152,7 @@ class InformeArqueoForm(forms.ModelForm):
 
 
 class IntervencionForm(forms.ModelForm):
-    estado_rel = forms.ModelChoiceField(queryset=InformeEstado.objects.all(),widget=forms.TextInput(attrs={'readonly':'readonly'}))
+    estado_rel = forms.ModelChoiceField(queryset=InformeEstado.objects.all(),widget=forms.TextInput(attrs={'readonly':'readonly'})) #no se permite editar el estado que va ligado a un informe de intervención
     class Meta:
        model = InformeIntervencion
        fields = "__all__"

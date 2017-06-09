@@ -10,6 +10,11 @@ from django.conf import settings
 import os.path
 from uuid import uuid4
 
+##################################
+#       Ponerle el nombre del
+#       objeto a la foto
+################################
+
 def path_and_rename(instance, filename):
     upload_to = 'Miniaturas'
     ext = filename.split('.')[-1]
@@ -19,6 +24,10 @@ def path_and_rename(instance, filename):
     # return the whole path to the file
     return os.path.join(upload_to, filename)
     
+
+########################################
+# Datos comunes a la clase padre Objeto
+########################################
 
 class Bibliografia(models.Model):
     autor = models.CharField(max_length=20)
@@ -54,6 +63,10 @@ class Estudio(models.Model):
     def __str__(self):
         return str(self.nombre)
 
+
+########################################
+# Datos clase padre Objeto
+########################################
 class Objeto(models.Model):
     anverso = models.ImageField(upload_to=path_and_rename)
     reverso  = models.ImageField(upload_to=path_and_rename)
@@ -76,8 +89,10 @@ class Objeto(models.Model):
 
     def __str__(self):
       return str(self.id)
-
+      
+########################################
 #Campos especificos de arqueologia
+########################################
 
 class Serie(models.Model):
     nombre =  models.CharField(max_length=40)
@@ -173,9 +188,9 @@ class Arqueologia(Objeto):
         return "/arqueologia/%i/" % self.pk
 
 
-# Aqui termina la parte de arqueologia
-# Comienza los modelos
-# de bellas Artes con sus campos especificos
+########################################
+#Campos especificos de Bellas Artes
+########################################
 
 class Tecnica(models.Model):
     nombre = models.CharField(max_length=30)
@@ -307,7 +322,7 @@ class InformeIntervencion(models.Model):
         ordering = ["fecha"]
         verbose_name_plural = "Intervenciones"
 
-      
+
 class InformeArqueo(models.Model):
     objeto = models.ForeignKey(Objeto,verbose_name="Objeto sobre el que se realiza el informe")
     nombre_res = models.CharField(max_length=30,verbose_name=("Nombre restaurador"))

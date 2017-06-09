@@ -32,6 +32,12 @@ TEMPLATES = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+###############################
+#
+#        Aplicaciones necesarias
+#
+###############################
+
 INSTALLED_APPS = [
 #Extra para el admin
     'suitlocale',
@@ -53,9 +59,7 @@ INSTALLED_APPS = [
     'bug',
 ]
 
-HELPDESK_TRANSLATE_TICKET_COMMENTS_LANG = ["es"]
 
-HEALTH_CHECK = ['POSTGRES']
 
 # Django Suit 
 SUIT_CONFIG = {
@@ -101,21 +105,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Proyecto.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
 
 WSGI_APPLICATION = 'Proyecto.wsgi.application'
 LOGIN_REDIRECT_URL = '/'
@@ -123,8 +112,15 @@ LOGIN_REDIRECT_URL = '/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-   'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+
+###############################
+#
+#        Conexión en postgres
+#
+###############################
 
 DATABASES = {
     'default': {
@@ -160,7 +156,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#LOCALES
+
 DEFAULT_CHARSET = 'utf-8'
 
 LANGUAGE_CODE = 'es-es'
@@ -181,11 +177,14 @@ STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'static'),
  )
 
-#
-##La documentacion sobre este apartado se encuentra en
-###http://pythonhosted.org/django-auth-ldap/; he seguido este ejemplo de
-##configuracion
-#
+
+
+###############################
+# Conexión a Active Directory realizada
+# con la siguiente utilidad:
+#    http://pythonhosted.org/django-auth-ldap/; he seguido este ejemplo de
+# ¡¡cuidado con la cadena de conexión!!
+###############################
 
 #le decimos que use unicamente de backend en AD de nuestro servidor
 AUTHENTICATION_BACKENDS = (
@@ -196,7 +195,6 @@ AUTHENTICATION_BACKENDS = (
 
 #AUTENTICACION LDAP CON SERVIDOR DE PRUEBA EN WINDOWS 2008 R2 SERVER CON ACTIVE DIRECTORY
 import ldap
-# For this, you want to be using the -H flag setting you used above.
 AUTH_LDAP_SERVER_URI = "ldap://10.17.11.3:389"
 
 #bindeo simple de root dn
@@ -211,7 +209,6 @@ from django_auth_ldap.config import LDAPSearch,NestedActiveDirectoryGroupType
 AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=MCA_usuarios,ou=Museo,ou=Unidades,DC=junta-andalucia,dc=es",
         ldap.SCOPE_SUBTREE, "(sAMAccountName=%(user)s)")
 
-#AUTH_LDAP_USER_DN_TEMPLATE = "cn=%(user)s,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es"
 
 AUTH_LDAP_USER_ATTR_MAP = {
  "first_name":"givenName", 
@@ -221,7 +218,7 @@ AUTH_LDAP_USER_ATTR_MAP = {
 
 AUTH_LDAP_GROUP_SEARCH = LDAPSearch("ou=MCA_Grupos,ou=Museo,ou=Unidades,dc=junta-andalucia,dc=es",
 ldap.SCOPE_SUBTREE,"(objectClass=group)")
-AUTH_LDAP_GROUP_TYPE = NestedActiveDirectoryGroupType()#GroupOfNamesType()
+AUTH_LDAP_GROUP_TYPE = NestedActiveDirectoryGroupType()
 
 #flags por grupo
 AUTH_LDAP_USER_FLAGS_BY_GROUP = {
@@ -246,7 +243,13 @@ AUTH_LDAP_CONNECTION_OPTIONS = {
 ldap.OPT_DEBUG_LEVEL: 1,
 ldap.OPT_REFERRALS: 0,}
 
-#debug para testeo
+
+##################################
+#   Comentar para entorno de producción
+#   esto aparecerá en la consola cuand
+#   haya un intento de inicio de sesión
+#   se verá como se comprueba la existencia del usuario
+################################
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

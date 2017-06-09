@@ -126,8 +126,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'museo',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
+        'USER': 'dca',
+        'PASSWORD': 'dca',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -278,3 +278,7 @@ LOGGING = {
 }
 
 
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = False

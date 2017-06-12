@@ -24,8 +24,7 @@ from django.template import RequestContext
 from django.template import Context
 from django.contrib import auth
 from django.contrib.auth.models import User
-from django.forms import formset_factory
-
+from funcionpermisos import group_required
 
 def login(request):
     username = request.POST['username']
@@ -40,28 +39,24 @@ def login(request):
         # Muestra pagina de error
         return HttpResponseRedirect("/account/invalid/")
 
-@login_required
-def index(request):
-    #Dependiendo del rol de cada usuario, verá algo distinto en el inicio de la página
-    #en cambio, si es usuario administrador o staff será redirigido a su interfaz de admin
-   if request.user.is_authenticated() and request.user.is_superuser==False :
-      group_name = request.user.groups.all()[0].name
-      if group_name == "Documentador":
-        ultimosarqueo = Arqueologia.objects.all().order_by('-fechaingreso')[:10]
-        ultimosba = Bellasartes.objects.all().order_by('-fechaingreso')[:10]
-        context = { "ultimosarqueo":ultimosarqueo,
-                    "ultimosba":ultimosba }
-        return render(request, "homedocu.html",context)
-      if group_name == "Restauracion":
-          ultimosinfo = InformeEstado.objects.all().order_by('-fecha')[:3]
-          context = { "ultimosinfo":ultimosinfo }
-          return render(request, "homerestauba.html",context)
-      if group_name == "Arqueologia":
-          ultimosinfo = InformeArqueo.objects.all().order_by('-fecha')[:3]
-          context = { "ultimosinfo":ultimosinfo }
-          return render(request, "homerestauar.html",context)
-   else:
-          return HttpResponseRedirect('/')
+
+@group_required('Documentador')
+def index_docu(request):
+    ultimosarqueo = Arqueologia.objects.all().order_by('-fechaingreso')[:10]
+    ultimosba = Bellasartes.objects.all().order_by('-fechaingreso')[:10]
+    return render(request, "homedocu.html",{ "ultimosarqueo":ultimosarqueo,"ultimosba":ultimosba })
+    
+@group_required('RestauradorBA')      
+def index_restauba(request):     
+    
+     ultimosinfo = InformeEstado.objects.all().order_by('-fecha')[:3]
+     return render(request, "homerestauba.html", { "ultimosinfo":ultimosinfo })
+  
+@group_required('RestauradorARQ')
+def index_restauarq(request):
+     ultimosinfo = InformeArqueo.objects.all().order_by('-fecha')[:3]
+     return render(request, "homerestauar.html",{ "ultimosinfo":ultimosinfo })
+
   
 #CREACION DE OBJETOS
 @login_required
@@ -81,12 +76,8 @@ def arqueologia_crear(request):
              form = ArqueologiaForm()
          return render(request, "formularios/formulario_arqueologia.html", {"form": form})
 
-@login_required
+@group_required('Documentador')
 def bellasartes_crear(request):
-    group_name = request.user.groups.all()[0].name
-    if group_name != "Documentador":
-        return PermissionDenied
-    else:
          if request.method == "POST":
             form = BellasArtesForm(request.POST,request.FILES)    
             if form.is_valid():
@@ -98,7 +89,8 @@ def bellasartes_crear(request):
          else:
               form = BellasArtesForm()
          return render(request,'formularios/formulario_bellasartes.html', {'form': form})
- 
+
+@group_required('RestauradorBA')
 def estado_crear(request, pk):
     instance = get_object_or_404(Objeto, pk=pk)
     datos =  Objeto.objects.filter().get(pk=instance.id)
@@ -118,6 +110,7 @@ def estado_crear(request, pk):
          form = InformeEstadoForm(initial=datadict) 
     return render(request, "Informes/formulario_estado.html", {"form": form, "instance": instance, "datos": datos})
 
+@group_required('RestauradorBA')
 def intervencion_crear(request, pk):
     datospre = get_object_or_404(InformeEstado, pk=pk)
     datadict = {'estado_rel': datospre.pk }
@@ -134,7 +127,8 @@ def intervencion_crear(request, pk):
     else:
       form = IntervencionForm(initial=datadict)  
       return render(request, "Informes/formulario_intervencion.html",{"form": form,"datospre": datospre,})
-    
+
+@group_required('RestauradorARQ')
 def informearqueo_crear(request,pk):
     instance = get_object_or_404(Objeto, pk=pk)
     datos =  Objeto.objects.filter().get(pk=instance.id)
@@ -157,6 +151,7 @@ def informearqueo_crear(request,pk):
     return render(request, "formularios/formulario_informearqueo.html", {"form": form,"instance": instance,"datos": datos,})
     
 # ACTUALIZACION DE OBJETOS
+@group_required('Documentador')
 def arqueologia_actualizar(request, pk):
     instance = get_object_or_404(Arqueologia, pk=pk)  
     group_name = request.user.groups.all()[0].name
@@ -173,7 +168,8 @@ def arqueologia_actualizar(request, pk):
         else:
              form = ArqueologiaForm(instance=instance)    
         return render(request, "formularios/formulario_arqueologia.html", {'form':form,'instance':instance})
-        
+
+@group_required('Documentador')       
 def bellasartes_actualizar(request, pk):
     instance = get_object_or_404(Bellasartes, pk=pk)
     group_name = request.user.groups.all()[0].name
@@ -191,6 +187,7 @@ def bellasartes_actualizar(request, pk):
           form  = BellasArtesForm(instance=instance)   
         return render(request, "formularios/formulario_bellasartes.html", {"instance": instance, "form": form,})
 
+@group_required('RestauradorBA')
 def estado_actualizar(request, pk):
     instance = get_object_or_404(InformeEstado, pk=pk)
     if request.method == 'POST':
@@ -204,6 +201,7 @@ def estado_actualizar(request, pk):
     return render(request, "Informes/formulario_estado.html", {"instance": instance,"form": form,})
  
 #Actualizar un informe de estado   
+@group_required('RestauradorARQ')
 def informearqueo_actualizar(request, pk):
     instance = get_object_or_404(InformeArqueo, pk=pk)
     if request.method == 'POST':
@@ -218,6 +216,8 @@ def informearqueo_actualizar(request, pk):
 
 ####Actualizar elemento lookup
 # editar objeto de arqueologia existente
+
+@group_required('Documentador')
 def autor_actualizar(request, pk):
     instance = get_object_or_404(Autor, pk=pk)
     if request.method == 'POST':
@@ -230,6 +230,7 @@ def autor_actualizar(request, pk):
          form = AutorForm(instance=instance)     
     return render(request, "formularios/formulario_autor.html", {"instance": instance,"form": form,})
 
+@group_required('Documentador')
 def iconografia_actualizar(request, pk):
     instance = get_object_or_404(Iconografia, pk=pk)
     if request.method == 'POST':
@@ -241,7 +242,8 @@ def iconografia_actualizar(request, pk):
     else:
         form = IconografiaForm(instance=instance)
     return render(request, "formularios/formulario_icon.html",{"instance": instance,"form": form,})
-    
+
+@group_required('Documentador')    
 def soporte_actualizar(request, pk):
     instance = get_object_or_404(Soporte, pk=pk)
     if method.request == 'POST':
@@ -253,7 +255,8 @@ def soporte_actualizar(request, pk):
     else:
         form = SoporteForm(instance=instance)
     return render(request, "formularios/formulario_sopo.html", {"instance": instance,"form": form,})
-    
+
+@group_required('Documentador')    
 def edad_actualizar(request, pk):
     instance = get_object_or_404(Edad, pk)
     if request.method == 'POST':
@@ -266,6 +269,7 @@ def edad_actualizar(request, pk):
         form = EdadForm(instance=instance)
     return render(request, "formularios/formulario_edad.html",{"instance": instance,"form": form,})
 
+@group_required('Documentador')
 def tecnica_actualizar(request, pk):
     instance = get_object_or_404(Tecnica, pk=pk)
     if request.method == 'POST':
@@ -290,6 +294,7 @@ def bibliografia_actualizar(request, pk):
         form = BibliografiaForm(instance=instance)
     return render(request, "formularios/formulario_biblio.html", {"instance": instance,"form": form,})
 
+@group_required('Documentador')
 def cultura_actualizar(request, pk):
     instance = get_object_or_404(Cultura, pk=pk)
     if request.method == 'POST':
@@ -302,6 +307,7 @@ def cultura_actualizar(request, pk):
         form = CulturaForm(instance=instance)  
     return render(request, "formularios/formulario_cultura.html",{"instance": instance,"form": form,})
 
+@group_required('Documentador')
 def yacimiento_actualizar(request, pk):
     instance = get_object_or_404(Yacimiento, pk=pk)
     if request.method == 'POST':
@@ -316,6 +322,7 @@ def yacimiento_actualizar(request, pk):
 
 
 # BORRADO
+@group_required('Documentador')
 def arqueologia_borrar(request, pk):
     group_name = request.user.groups.all()[0].name
     if group_name != "Documentador":
@@ -324,7 +331,8 @@ def arqueologia_borrar(request, pk):
         instance = get_object_or_404(Arqueologia, pk=pk)
         instance.delete()
     return redirect("/verarqueologia")
-    
+
+@group_required('Documentador')
 def bellasartes_borrar(request, pk):
     if not request.user.is_authenticated() and not request.user.is_documentador():
       raise Http404
@@ -334,18 +342,21 @@ def bellasartes_borrar(request, pk):
     return redirect("/verbellasartes/")
 
 # CONSULTAS DE DETALLE
+@login_required
 def arqueologia_detalle(request, pk):
       instance = get_object_or_404(Arqueologia, pk=pk)
       estado = InformeArqueo.objects.filter(objeto=instance.pk)
       return render(request, "Listado/arqueologia_detail.html",{"titulo": instance.nombre, "instance":instance,"estado": estado})
 
+@login_required
 def bellasartes_detalle(request, pk):
       instance = get_object_or_404(Bellasartes, pk=pk)
       estado = InformeEstado.objects.filter(objeto=instance.id)
       if not request.user.is_authenticated():
          raise Http404
       return render(request, "Listado/bellasartes_detail.html", {"instance": instance, "estado": estado,})
-
+      
+@login_required
 def estado_detalle(request, pk):
       instance = get_object_or_404(InformeEstado, pk=pk)
       datos = Bellasartes.objects.filter(pk=instance.objeto)
@@ -359,6 +370,7 @@ def estado_detalle(request, pk):
       #rellenarlos
       return render(request, "Informes/estado_detail.html", {"instance": instance, "datos": datos,"datosobj": datosobj,"intervencion": intervencion,})
 
+@login_required
 def informearqueo_detalle(request, pk):
       instance = get_object_or_404(InformeArqueo, pk=pk)
       datos = Arqueologia.objects.filter(pk=instance.objeto)
@@ -394,6 +406,7 @@ def arqueologia_lista(request):
       queryset = paginator.page(paginator.num_pages)
     return render(request, "Listado/arqueologia_lista.html", {"nombre": "List","object_list": queryset,"page_request_var": page_request_var,"hoy": hoy,})
 
+@login_required
 def bellasartes_lista(request):
     hoy = timezone.now().date()
     queryset_list = Bellasartes.objects.all()
@@ -509,22 +522,27 @@ def newCultura(request):
     return handlePopAdd(request, CulturaForm, 'Cultura')
 
 #vistas de los formularios de adicion de informacion de objetos de bellas artes
-@login_required
+@group_required('Documentador')
 def newAutor(request):
      return handlePopAdd(request, AutorForm, 'Autor')
-@login_required
+
+@group_required('Documentador')
 def newTecnica(request):
     return handlePopAdd(request, TecnicaForm, 'Tecnica')
-@login_required
+
+@group_required('Documentador')
 def newSoporte(request):
     return handlePopAdd(request, SoporteForm, 'Soporte')
-@login_required
+
+@group_required('Documentador')
 def newDonante(request):
     return handlePopAdd(request, DonanteForm, 'Donante')
-@login_required    
+
+@group_required('Documentador')
 def newEstilo(request):
     return handlePopAdd(request, EstiloForm, 'Estilo')
-@login_required
+
+@group_required('Documentador')
 def newIconografia(request):
     return handlePopAdd(request, IconografiaForm, 'Iconografia')
     
@@ -532,6 +550,7 @@ def newIconografia(request):
 #los cuales tienen obras pertenecientes a ellos en el
 #museo, se presenta una foto y una pequeña biografía
 
+@login_required
 def autores_lista(request):
     queryset_list = Autor.objects.all()
     if request.user.is_authenticated():
@@ -557,6 +576,7 @@ def autores_lista(request):
 #puede ser util para ver colecciones, por ejemplo, algún dia puede ser
 #útil consultar la coleccion de "Alberti"
 
+@login_required
 def autores_clasi(request,pk):
     instance = get_object_or_404(Autor, pk=pk)
     cuadros = Bellasartes.objects.filter(autor=instance).values()

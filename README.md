@@ -31,14 +31,14 @@ python manage.py migrate
 
 **Cambios realizados**
 
-*Arreglado problema con relaciones 
+1.Arreglado problema con relaciones 
 
-*Creada la parte de intervención de arqueología
+2.Creada la parte de intervención de arqueología
 
-*Probando autenticación con servidor AD de prueba
+3.Probando autenticación con servidor AD de prueba
 
-*Cambios y arreglos menores en templates y css
+4.Cambios y arreglos menores en templates y css
 
 **TO DO**
 
-[] Dockerizar la aplicación
+[x] Dockerizar la aplicación

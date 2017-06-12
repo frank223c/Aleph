@@ -7,7 +7,9 @@ from .forms import LoginForm
 from .forms import *
 
 urlpatterns = [
-    url(r'^$',index, name='index'),
+    url(r'^$',index_docu, name='index'),
+    url(r'^$',index_restauba, name='index1'),
+    url(r'^$',index_restauarq, name='index2'),
     url(r'^accounts/login/$', views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}, name='login'),
     url(r'^inicio/logout/$', views.logout, {'next_page': 'login'}),
     #VISTA DEL SUPER FORMULARIO DE ARQUEOLOGIA

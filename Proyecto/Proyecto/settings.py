@@ -118,7 +118,7 @@ STATICFILES_FINDERS = (
 
 ###############################
 #
-#        Conexión en postgres
+#  Conexión en postgres
 #
 ###############################
 
@@ -126,8 +126,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'museo',
-        'USER': 'dca',
-        'PASSWORD': 'dca',
+        'USER': 'postgres',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -278,7 +278,7 @@ LOGGING = {
 }
 
 
-SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE=True
+SESSION_COOKIE_HTTPONLY=True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
 SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = False

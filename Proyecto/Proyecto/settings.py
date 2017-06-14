@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'Fondos',
     'django_filters',
     'widget_tweaks',
+    'django.contrib.humanize',
     'bug',
 ]
 
@@ -188,7 +189,7 @@ STATICFILES_DIRS = (
 
 #le decimos que use unicamente de backend en AD de nuestro servidor
 AUTHENTICATION_BACKENDS = (
- 'django_auth_ldap.backend.LDAPBackend',
+ #'django_auth_ldap.backend.LDAPBackend',
  'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -278,7 +279,7 @@ LOGGING = {
 }
 
 
-SESSION_COOKIE_SECURE=True
-SESSION_COOKIE_HTTPONLY=True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
-SESSION_COOKIE_SECURE = True
+#~ SESSION_COOKIE_SECURE=True
+#~ SESSION_COOKIE_HTTPONLY=True
+#~ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+#~ SESSION_COOKIE_SECURE = True

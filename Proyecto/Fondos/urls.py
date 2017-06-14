@@ -7,19 +7,17 @@ from .forms import LoginForm
 from .forms import *
 
 urlpatterns = [
-    url(r'^$',index_docu, name='index'),
-    url(r'^$',index_restauba, name='index1'),
-    url(r'^$',index_restauarq, name='index2'),
+    url(r'^$',index, name='index'),
+    url(r'^error',error, name='error'),
     url(r'^accounts/login/$', views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}, name='login'),
-    url(r'^inicio/logout/$', views.logout, {'next_page': 'login'}),
+    url(r'^accounts/logout/$', views.logout, {'next_page': 'login'}),
     #VISTA DEL SUPER FORMULARIO DE ARQUEOLOGIA
     url(r'^registrararqueologia', arqueologia_crear , name='registrararqueologia'),
     url(r'^registrarbellasartes', bellasartes_crear , name='registrarbellasartes'),
     url(r'^verarqueologia', arqueologia_lista , name='verarqueologia'),
     url(r'^verbellasartes', bellasartes_lista , name='verbellasartes'),
     url(r'^arqueologia/(?P<pk>\d+)/$', arqueologia_detalle, name='detallearqueo'),
-    url(r'^bellasartes/(?P<pk>\d+)/$', bellasartes_detalle, name='detallebellasartes'),
-    #url(r'^autores/(?P<pk>\d+)/$', autor_detalle, name='detallebeautores'),
+    url(r'^bellasartes/(?P<pk>\d+)/$', bellasartes_detalle, name='detallebellasartes'),    
     url(r'^arqueologia/(?P<pk>\d+)/editar/$', arqueologia_actualizar, name='actualizararqueologia'),
     url(r'^bellasartes/(?P<pk>\d+)/editar/$', bellasartes_actualizar, name='actualizarbellasartes'),
     url(r'^arqueologia/(?P<pk>\d+)/borrar/$', arqueologia_borrar, name='borrararqueologia'),

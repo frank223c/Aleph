@@ -1,15 +1,28 @@
 # -*- encoding: utf-8 -*
 from django.contrib import admin
+import decimal, csv
 # Register your models here.
 from .models import *
 from bug.models import *
+from django.http import HttpResponse
+
+def exportar_arqueo(modeladmin, request, queryset):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="Inventario_arqueología.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['Código','Número de inventario', 'Nombre', 'Cultura', 'Edad', 'Yacimiento',])
+    arqueo = queryset.values_list('codigo','numinv', 'nombre', 'cultura','edad')
+    for arqueo in arqueo:
+        writer.writerow(arqueo)
+    return response
+exportar_arqueo.short_description = 'Exportar a csv'
 
 class AdminArqueologia(admin.ModelAdmin):
  list_display = ["nombre","seccion","edad"]
  list_filter = ["seccion"]
  #list_editable = ["numinv","nombre","edad"]
  search_fields = ["numinv","nombre","seccion","edad","material"]
- 
+ actions = [exportar_arqueo, ]
  class Meta:
      model = Arqueologia
      

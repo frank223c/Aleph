@@ -25,7 +25,17 @@ from django.template import Context
 from django.contrib import auth
 from django.contrib.auth.models import User
 from funcionpermisos import group_required
+from django.views.decorators.debug import sensitive_post_parameters
 
+
+'''
+VISTA DE LOGIN Y DEL INDEX, EL ADMINISTRADOR DE LA APLICACIÓN
+SERÁ REDIRIGIDO A LA INTERFAZ DE ADMINISTRACIÓN, MIENTRAS QUE CADA
+USUARIO DEPENDIENDO DE SU ROL, VERÁ LOS ÚLTIMOS DATOS INSERTADOS
+QUE ESTÉN RELACIONADOS CON EL MISMO
+'''
+
+@sensitive_post_parameters()
 def login(request):
     username = request.POST['username']
     password = request.POST['password']
@@ -39,32 +49,41 @@ def login(request):
         # Muestra pagina de error
         return HttpResponseRedirect("/account/invalid/")
 
+@sensitive_post_parameters()
+@login_required
+def index(request):
+    if request.user.is_superuser:
+      return HttpResponseRedirect("/admin/")
+    else:
+       group_name = request.user.groups.all()[0].name
+       if group_name == "Documentador":
+         ultimosarqueo = Arqueologia.objects.all().order_by('-fechaingreso')[:10]
+         ultimosba = Bellasartes.objects.all().order_by('-fechaingreso')[:10]
+         return render(request, "homedocu.html",{ "ultimosarqueo":ultimosarqueo,"ultimosba":ultimosba })
+       if group_name == "RestauradorBA":
+         ultimosinfo = InformeEstado.objects.all().order_by('-fecha')[:3]
+         return render(request, "homerestauba.html", { "ultimosinfo":ultimosinfo })
+       if group_name == "RestauradorARQ": 
+         ultimosinfo = InformeArqueo.objects.all().order_by('-fecha')[:3]
+         return render(request, "homerestauar.html",{ "ultimosinfo":ultimosinfo })         
+  
+def error(request):
+     return render(request, "error.html")
+     
+'''
+INSERCIÓN DE DATOS EN LA BASE DE DATOS
+REALIZADO POR EL USUARIO CON EL ROL
+DE DOCUMENTADOR
+'''
+
+#En el caso de las vistas de creación, si el método es POST
+#se insertarán los datos en la BBDD, en caso contrario, como puede ser
+#que el formulario no sea válido, se informará de errores al usuario
+#como por ejemplo dejar campos requeridos vacíos y se volverá a mostrar
+#el formulario 
 
 @group_required('Documentador')
-def index_docu(request):
-    ultimosarqueo = Arqueologia.objects.all().order_by('-fechaingreso')[:10]
-    ultimosba = Bellasartes.objects.all().order_by('-fechaingreso')[:10]
-    return render(request, "homedocu.html",{ "ultimosarqueo":ultimosarqueo,"ultimosba":ultimosba })
-    
-@group_required('RestauradorBA')      
-def index_restauba(request):     
-    
-     ultimosinfo = InformeEstado.objects.all().order_by('-fecha')[:3]
-     return render(request, "homerestauba.html", { "ultimosinfo":ultimosinfo })
-  
-@group_required('RestauradorARQ')
-def index_restauarq(request):
-     ultimosinfo = InformeArqueo.objects.all().order_by('-fecha')[:3]
-     return render(request, "homerestauar.html",{ "ultimosinfo":ultimosinfo })
-
-  
-#CREACION DE OBJETOS
-@login_required
 def arqueologia_crear(request): 
-    group_name = request.user.groups.all()[0].name
-    if group_name != "Documentador":
-        return PermissionDenied
-    else:
          if request.method == "POST":
             form = ArqueologiaForm(request.POST,request.FILES)    
             if form.is_valid():
@@ -110,6 +129,14 @@ def estado_crear(request, pk):
          form = InformeEstadoForm(initial=datadict) 
     return render(request, "Informes/formulario_estado.html", {"form": form, "instance": instance, "datos": datos})
 
+
+
+#En el caso de las intervenciones, una intervención está ligada a un objeto, por lo que
+#es necesario que la clave primaria del objeto se ligue a un informe de estado. Por tanto
+#como el hecho de que el usuario inserte una clave surrogada en la aplicación no es buena idea,
+#se utilizan los datos iniciales de la variable datospre y en el fichero forms.py se hace que
+#dicha casilla del formulario sea de sólo lectura.
+
 @group_required('RestauradorBA')
 def intervencion_crear(request, pk):
     datospre = get_object_or_404(InformeEstado, pk=pk)
@@ -150,32 +177,37 @@ def informearqueo_crear(request,pk):
        #la interfaz en la vista de detalle
     return render(request, "formularios/formulario_informearqueo.html", {"form": form,"instance": instance,"datos": datos,})
     
-# ACTUALIZACION DE OBJETOS
+'''
+
+VISTAS DE ACTUALIZACIÓN DE OBJETOS YA EXISTENTES
+EN LA BASE DE DATOS, ESTA TAREA SÓLO LA PUEDE REALIZAR EL DOCUMENTADOR
+MENOS CON LOS INFORMES DE BELLAS ARTES Y DE ESTADO.
+
+'''
+
+#Si recibe una petición post el diccionario perteneciente al formulario de la vista
+#estará ya poblado y se eviará un POST con los cambios realizados que guardará
+#la instancia del objeto actualizado en la base de datos. En cambio si se recibe un GET
+#se verán los datos anteriormente insertados para este objeto.
+
 @group_required('Documentador')
 def arqueologia_actualizar(request, pk):
-    instance = get_object_or_404(Arqueologia, pk=pk)  
-    group_name = request.user.groups.all()[0].name
-    if group_name != "Documentador":
-        return PermissionDenied
-    else:  
-        if request.method == "POST":
-          form = ArqueologiaForm(request.POST,request.FILES,instance=instance)
+    instance = get_object_or_404(Arqueologia, pk=pk)   
+    if request.method == "POST":
+      form = ArqueologiaForm(request.POST,request.FILES,instance=instance)
    
-          if form.is_valid():
-           instance = form.save(commit=False)
-           instance.save()
-           return redirect('/') 
-        else:
-             form = ArqueologiaForm(instance=instance)    
-        return render(request, "formularios/formulario_arqueologia.html", {'form':form,'instance':instance})
+      if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return redirect('/') 
+    else:
+       form = ArqueologiaForm(instance=instance)    
+       return render(request, "formularios/formulario_arqueologia.html", {'form':form,'instance':instance})
+        
 
 @group_required('Documentador')       
 def bellasartes_actualizar(request, pk):
-    instance = get_object_or_404(Bellasartes, pk=pk)
-    group_name = request.user.groups.all()[0].name
-    if group_name != "Documentador":
-        return PermissionDenied
-    else:
+        instance = get_object_or_404(Bellasartes, pk=pk)
         if request.method == "POST":
            form = BellasArtesForm(request.POST,request.FILES, instance=instance)
            if form.is_valid():
@@ -200,7 +232,7 @@ def estado_actualizar(request, pk):
         form = InformeEstadoForm(instance=instance)
     return render(request, "Informes/formulario_estado.html", {"instance": instance,"form": form,})
  
-#Actualizar un informe de estado   
+   
 @group_required('RestauradorARQ')
 def informearqueo_actualizar(request, pk):
     instance = get_object_or_404(InformeArqueo, pk=pk)
@@ -214,9 +246,15 @@ def informearqueo_actualizar(request, pk):
         form = InformeArqueoForm(instance=instance)  
     return render(request, "Informes/formulario_informearqueo.html", {"instance": instance,"form": form,})
 
-####Actualizar elemento lookup
-# editar objeto de arqueologia existente
 
+'''
+
+VISTAS VARIADAS, AQUÍ DEBERÍAN DE IR
+LAS VISTAS AÑADIDAS EXTRAS DE INFORMACIÓN COMO PUEDE
+SER LOS AUTORES CUYAS OBRAS ESTÁN EN COLECCIÓN EN EL MUSEO
+Y LAS OBRAS ALMACENADAS DE CADA UNO.
+
+'''
 @group_required('Documentador')
 def autor_actualizar(request, pk):
     instance = get_object_or_404(Autor, pk=pk)
@@ -321,27 +359,37 @@ def yacimiento_actualizar(request, pk):
     return render(request, "formularios/formulario_yacimiento.html", {"instance": instance,"form": form,})
 
 
-# BORRADO
+'''
+
+VISTAS DE BORRADO DE DATOS, TAREA
+LA CUAL CON LOS OBJETOS DEL INVENTARIO DEL MUSEO
+SÓLO PODRÁ REALIZAR EL DOCUMENTADOR. EN CAMBIO LOS RESTAURADORES PODRÁN
+BORRAR SUS INFORMES.
+
+'''
+
 @group_required('Documentador')
 def arqueologia_borrar(request, pk):
-    group_name = request.user.groups.all()[0].name
-    if group_name != "Documentador":
-        return PermissionDenied
-    else:
-        instance = get_object_or_404(Arqueologia, pk=pk)
-        instance.delete()
+    instance = get_object_or_404(Arqueologia, pk=pk)
+    instance.delete()
     return redirect("/verarqueologia")
 
 @group_required('Documentador')
 def bellasartes_borrar(request, pk):
-    if not request.user.is_authenticated() and not request.user.is_documentador():
-      raise Http404
     instance = get_object_or_404(Bellasartes, pk=pk)
     instance.delete()
     messages.success(request, "Se ha eliminado el objeto.")
     return redirect("/verbellasartes/")
 
-# CONSULTAS DE DETALLE
+
+'''
+
+VISTAS DE DETALLE SOBRE OBJETOS E INFORMES,
+AQUÍ SE VERÁ TODA LA INFORMACIÓN RELACIONADA CON
+LOS OBJEOS INSERTADOS EN LA BASE DE DATOS.
+
+'''
+
 @login_required
 def arqueologia_detalle(request, pk):
       instance = get_object_or_404(Arqueologia, pk=pk)
@@ -352,8 +400,6 @@ def arqueologia_detalle(request, pk):
 def bellasartes_detalle(request, pk):
       instance = get_object_or_404(Bellasartes, pk=pk)
       estado = InformeEstado.objects.filter(objeto=instance.id)
-      if not request.user.is_authenticated():
-         raise Http404
       return render(request, "Listado/bellasartes_detail.html", {"instance": instance, "estado": estado,})
       
 @login_required
@@ -379,12 +425,19 @@ def informearqueo_detalle(request, pk):
     # uso de context para guardar la informacion obtenida mediante las consultas anteriores para poder
     # utilizarlos en la plantilla
       return render(request, "Informes/informearqueo_detail.html",{"instance": instance, "datos" : datos,"datosobj": datosobj,})
+    
       
-# BUSQUEDAS CON Q OBJECTS Y OR      
+'''
+
+BÚSQUEDAS CON OBJETOS Q
+Y CON FILTROS. BÚSQUEDA SIMPLE Y BÚSQUEDA
+CON AND CON MÁS DE UNA COINCIDENCIA
+
+'''      
 @login_required
 def arqueologia_lista(request):
     hoy = timezone.now().date()
-    queryset_list = Arqueologia.objects.all() #filter(draft=False).filter(publish__lte=timezone.now()) #all() #.order_by("-timestamp")
+    queryset_list = Arqueologia.objects.all() 
     if request.user.is_authenticated():
       queryset_list = Arqueologia.objects.all()
       query = request.GET.get("q")

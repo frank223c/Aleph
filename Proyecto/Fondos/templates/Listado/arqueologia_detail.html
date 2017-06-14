@@ -28,7 +28,7 @@ No hay referencias.
 {% else %}
 {% endif %}
 {% for bibliografia in instance.bibliografia.all %}
-<p>Autor: {{ bibliografia.autor }}<a href="/bibliografia/{{ bibliografia.id }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p></p>
+<p>Autor: {{ bibliografia.autor }}<a href="/bibliografia/{{ bibliografia.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p></p>
 <p>Edición: {{ bibliografia.edicion }}</p>
 <p><i>"{{ bibliografia.extracto }}"</i>, Página {{ bibliografia.pagina }}</p>{% endfor %}
 </div>

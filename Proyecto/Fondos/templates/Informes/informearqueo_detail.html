@@ -13,7 +13,7 @@ Informe de {{ datos.codigo }}{{ datos.numinv }}</h1>
       <b><h3>Revisión de arqueología</h3></b>
 <p><b>Nombre restaurador:</b>{{ instance.nombre_res }}</p>
 <p><b>Apellido restaurador:</b>{{ instance.ape_res }}</p>
-<p><b>Ubicación:</b>Sala {{ datos.ubicacionmus }}</p>
+<p><b>Ubicación:</b>{{ datos.ubicacion }}</p>
 </div>
 </div>
 <div class="container">
@@ -40,7 +40,8 @@ Informe de {{ datos.codigo }}{{ datos.numinv }}</h1>
 </div>
 </div>
 <p><b>Proyecto a realizar:</b>
-{{ instance.proyecto }}</p>
+{{ instance.proyecto }}
+{{ instance.observaciones }}</p>
 </div>
 </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^iconografia/(?P<pk>\d+)/actualizar/$', iconografia_actualizar, name='actualizaricon'),
     url(r'^soporte/(?P<pk>\d+)/actualizar/$', soporte_actualizar, name='actualizarsoporte'),
     url(r'^tecnica/(?P<pk>\d+)/actualizar/$', tecnica_actualizar, name='actualizartecnica'),
+    url(r'^ubicacion/(?P<pk>\d+)/actualizar/$', ubicacion_actualizar, name='actualizarubicacion'),
     url(r'^bibliografia/(?P<pk>\d+)/actualizar/$', bibliografia_actualizar, name='actualizarbibliografia'),
     #EDICIÓN DE CAMPOS DE ARQUEO
     url(r'^edad/(?P<pk>\d+)/actualizar/$', edad_actualizar, name='actualizaredad'),
@@ -36,10 +37,12 @@ urlpatterns = [
     url(r'^agregar/bibliografia/',newBibliografia, name='nuevabibliografia'),
     url(r'^agregar/movimientos/', newMovimiento, name='nuevo-movimiento'),
     url(r'^agregar/estudio/' ,newEstudio, name='nuevoestudio'),
+    url(r'^agregar/ubicacion/' ,newUbicacion, name='nuevoubicacion'),
     #VISTAS PARA AGREGAR ELEMENTOS DE TABLAS EXTERNAS DE ARQUEOLOGIA
     url(r'^agregar/material/',newMaterial, name='nuevomaterial'),
     url(r'^agregar/cultura/',newCultura, name='nuevacultura'),
     url(r'^agregar/seccion/',newSeccion, name='nuevaseccion'),
+    url(r'^agregar/produ/',newPais, name='nuevopais'),
     url(r'^agregar/serie/',newSerie, name='nuevaserie'),
     url(r'^agregar/yacimiento/',newYacimiento, name='nuevoyacimiento'),
     #VISTAS PARA AGREGAR ELEMENTOS EXTERNOS DE BA

@@ -43,13 +43,11 @@ def login(request):
     if user is not None and user.is_active:
         # Contraseña correcta y usuario activo
         auth.login(request, user)
-        # Redireccion a una pagina de exito
         return HttpResponseRedirect("/account/loggedin/")
     else:
         # Muestra pagina de error
         return HttpResponseRedirect("/account/invalid/")
 
-@sensitive_post_parameters()
 @login_required
 def index(request):
     if request.user.is_superuser:
@@ -87,9 +85,10 @@ def arqueologia_crear(request):
          if request.method == "POST":
             form = ArqueologiaForm(request.POST,request.FILES)    
             if form.is_valid():
-              instance = form.save(commit=False)
+              instance = form.save()
               instance.user = request.user 
               instance.save()
+              messages.success(request, 'Acción realizada con éxito')
               return HttpResponseRedirect(instance.get_absolute_url())
          else:
              form = ArqueologiaForm()
@@ -100,10 +99,10 @@ def bellasartes_crear(request):
          if request.method == "POST":
             form = BellasArtesForm(request.POST,request.FILES)    
             if form.is_valid():
-              instance = form.save(commit=False)
+              instance = form.save()
               instance.user = request.user 
               instance.save()
-              form.save_m2m()
+              messages.success(request, 'Acción realizada con éxito')
               return redirect('/')
          else:
               form = BellasArtesForm()
@@ -120,10 +119,10 @@ def estado_crear(request, pk):
     #de estado, de manera que el dato con el cual se relaciona la clase
     #informes estado no haya que rellenarlo    
       if form.is_valid():
-          instance = form.save(commit=False)
+          instance = form.save()
           instance.user = request.user
           instance.save()
-          form.save_m2m()
+          messages.success(request, 'Acción realizada con éxito')
           return redirect('/')#si el formulario es valido se registra el objeto, que sera visible tanto desde el admin como desde
     else:
          form = InformeEstadoForm(initial=datadict) 
@@ -144,10 +143,10 @@ def intervencion_crear(request, pk):
     if request.method == "POST":
       form = IntervencionForm(request.POST or None, initial=datadict)  
       if form.is_valid():
-         instance = form.save(commit=False)
+         instance = form.save()
          instance.user = request.user 
          instance.save()
-         messages.success(request, "Se ha registrado el objeto") #esto se ve en el admin
+         messages.success(request, 'Acción realizada con éxito')
          return HttpResponseRedirect('/')
        #si el formulario es valido se registra el objeto, que sera visible tanto desde el admin como desde
        #la interfaz en la vista de detalle
@@ -169,6 +168,7 @@ def informearqueo_crear(request,pk):
          instance = form.save()
          instance.user = request.user 
          instance.save()
+         messages.success(request, 'Acción realizada con éxito')
          return HttpResponseRedirect('/')
     else:
         form = InformeArqueoForm(initial=datadict)
@@ -197,8 +197,9 @@ def arqueologia_actualizar(request, pk):
       form = ArqueologiaForm(request.POST,request.FILES,instance=instance)
    
       if form.is_valid():
-        instance = form.save(commit=False)
+        instance = form.save()
         instance.save()
+        messages.success(request, 'Acción realizada con éxito')
         return redirect('/') 
     else:
        form = ArqueologiaForm(instance=instance)    
@@ -211,9 +212,10 @@ def bellasartes_actualizar(request, pk):
         if request.method == "POST":
            form = BellasArtesForm(request.POST,request.FILES, instance=instance)
            if form.is_valid():
-            instance = form.save(commit=False)
+            instance = form.save()
             instance.save()
             form.save_m2m()
+            messages.success(request, 'Acción realizada con éxito')
             return HttpResponseRedirect(instance.get_absolute_url())
         else:
           form  = BellasArtesForm(instance=instance)   
@@ -225,7 +227,7 @@ def estado_actualizar(request, pk):
     if request.method == 'POST':
        form = InformeEstadoForm(request.POST, instance=instance)
        if form.is_valid():
-         instance = form.save(commit=False)
+         instance = form.save()
          instance.save()
          return HttpResponseRedirect(instance.get_absolute_url())
     else:
@@ -241,6 +243,7 @@ def informearqueo_actualizar(request, pk):
       if form.is_valid():
         instance = form.save()
         instance.save()
+        messages.success(request, 'Acción realizada con éxito')
         return HttpResponseRedirect('/')
     else:
         form = InformeArqueoForm(instance=instance)  
@@ -261,8 +264,9 @@ def autor_actualizar(request, pk):
     if request.method == 'POST':
        form = AutorForm(request.POST, instance=instance)
        if form.is_valid():
-          instance = form.save(commit=False)
+          instance = form.save()
           instance.save()
+          messages.success(request, 'Acción realizada con éxito')
           return HttpResponseRedirect('/')
     else:
          form = AutorForm(instance=instance)     
@@ -274,8 +278,9 @@ def iconografia_actualizar(request, pk):
     if request.method == 'POST':
        form =IconografiaForm(request.POST, instance=instance)
        if form.is_valid():
-        instance = form.save(commit=False)
+        instance = form.save()
         instance.save()
+        messages.success(request, 'Acción realizada con éxito')
         return HttpResponseRedirect('/')
     else:
         form = IconografiaForm(instance=instance)
@@ -284,12 +289,15 @@ def iconografia_actualizar(request, pk):
 @group_required('Documentador')    
 def soporte_actualizar(request, pk):
     instance = get_object_or_404(Soporte, pk=pk)
-    if method.request == 'POST':
+    if request.method == 'POST':
         form = SoporteForm(request.POST, instance=instance)
         if form.is_valid():
-           instance = form.save(commit=False)
+           instance = form.save()
            instance.save()
+           messages.success(request, 'Acción realizada con éxito')
            return HttpResponseRedirect('/')
+        else:
+           messages.error(request, 'Corrija los fallos, por favor') 
     else:
         form = SoporteForm(instance=instance)
     return render(request, "formularios/formulario_sopo.html", {"instance": instance,"form": form,})
@@ -300,8 +308,9 @@ def edad_actualizar(request, pk):
     if request.method == 'POST':
         form =EdadForm(request.POST, instance=instance)
         if form.is_valid():
-          instance = form.save(commit=False)
+          instance = form.save()
           instance.save()
+          messages.success(request, 'Acción realizada con éxito')
           return HttpResponseRedirect('/')
     else:
         form = EdadForm(instance=instance)
@@ -313,8 +322,9 @@ def tecnica_actualizar(request, pk):
     if request.method == 'POST':
        form =TecnicaForm(request.POST,instance=instance)
        if form.is_valid():
-         instance = form.save(commit=False)
+         instance = form.save()
          instance.save()
+         messages.success(request, 'Acción realizada con éxito')
          return HttpResponseRedirect('/')
     else:
         form = TecnicaForm(instance=instance)
@@ -325,7 +335,7 @@ def bibliografia_actualizar(request, pk):
     if request.method == 'POST':
         form = BibliografiaForm(request.POST,instance=instance)
         if form.is_valid():
-          instance = form.save(commit=False)
+          instance = form.save()
           instance.save()
           return HttpResponseRedirect('/')
     else:
@@ -338,8 +348,9 @@ def cultura_actualizar(request, pk):
     if request.method == 'POST':
         form = CulturaForm(request.POST, instance=instance)
         if form.is_valid():
-          instance = form.save(commit=False)
+          instance = form.save()
           instance.save()
+          messages.success(request, 'Acción realizada con éxito')
           return HttpResponseRedirect('/')
     else:
         form = CulturaForm(instance=instance)  
@@ -351,14 +362,28 @@ def yacimiento_actualizar(request, pk):
     if request.method == 'POST':
        form = YacimientoForm(request.POST,instance=instance)
        if form.is_valid():
-         instance = form.save(commit=False)
+         instance = form.save()
          instance.save()
+         messages.success(request, 'Acción realizada con éxito')
          return HttpResponseRedirect('/')
     else:
         form = YacimientoForm(instance=instance)
     return render(request, "formularios/formulario_yacimiento.html", {"instance": instance,"form": form,})
 
 
+@group_required('Documentador')
+def ubicacion_actualizar(request, pk):
+    instance = get_object_or_404(Cultura, pk=pk)
+    if request.method == 'POST':
+        form = UbicacionForm(request.POST, instance=instance)
+        if form.is_valid():
+          instance = form.save()
+          instance.save()
+          messages.success(request, 'Acción realizada con éxito')
+          return HttpResponseRedirect('/')
+    else:
+        form = UbicacionForm(instance=instance)  
+    return render(request, "formularios/formulario_ubicacion.html",{"instance": instance,"form": form,})
 '''
 
 VISTAS DE BORRADO DE DATOS, TAREA
@@ -372,13 +397,14 @@ BORRAR SUS INFORMES.
 def arqueologia_borrar(request, pk):
     instance = get_object_or_404(Arqueologia, pk=pk)
     instance.delete()
+    messages.success(request, 'Acción realizada con éxito')
     return redirect("/verarqueologia")
 
 @group_required('Documentador')
 def bellasartes_borrar(request, pk):
     instance = get_object_or_404(Bellasartes, pk=pk)
     instance.delete()
-    messages.success(request, "Se ha eliminado el objeto.")
+    messages.success(request, 'Acción realizada con éxito')
     return redirect("/verbellasartes/")
 
 
@@ -446,16 +472,14 @@ def arqueologia_lista(request):
             Q(nombre__icontains=query)|
             Q(numinv__icontains=query)
             ).distinct()
-    paginator = Paginator(queryset_list, 3) # Show 25 contacts per page
+    paginator = Paginator(queryset_list, 10) 
     page_request_var = "list"
     page = request.GET.get(page_request_var)
     try:
        queryset = paginator.page(page)
     except PageNotAnInteger:
-      # If page is not an integer, deliver first page.
       queryset = paginator.page(1)
     except EmptyPage:
-      # If page is out of range (e.g. 9999), deliver last page of results.
       queryset = paginator.page(paginator.num_pages)
     return render(request, "Listado/arqueologia_lista.html", {"nombre": "List","object_list": queryset,"page_request_var": page_request_var,"hoy": hoy,})
 
@@ -587,6 +611,10 @@ def newTecnica(request):
 def newSoporte(request):
     return handlePopAdd(request, SoporteForm, 'Soporte')
 
+@group_required('Documentador')
+def newPais(request):
+    return handlePopAdd(request, PaisForm, 'Soporte')
+    
 @group_required('Documentador')
 def newDonante(request):
     return handlePopAdd(request, DonanteForm, 'Donante')

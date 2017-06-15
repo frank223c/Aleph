@@ -3,7 +3,6 @@ from django.contrib import admin
 import decimal, csv
 # Register your models here.
 from .models import *
-from bug.models import *
 from django.http import HttpResponse
 
 def exportar_arqueo(modeladmin, request, queryset):
@@ -20,7 +19,6 @@ exportar_arqueo.short_description = 'Exportar a csv'
 class AdminArqueologia(admin.ModelAdmin):
  list_display = ["nombre","seccion","edad"]
  list_filter = ["seccion"]
- #list_editable = ["numinv","nombre","edad"]
  search_fields = ["numinv","nombre","seccion","edad","material"]
  actions = [exportar_arqueo, ]
  class Meta:
@@ -28,19 +26,18 @@ class AdminArqueologia(admin.ModelAdmin):
      
      
 class AdminArte(admin.ModelAdmin):
- list_display = ["numinv","titulo","autor","ubicacionmus","formaingreso"]
+ list_display = ["numinv","titulo","autor","ubicacion","formaingreso"]
  list_display_links =["numinv"]
  list_filter = ["autor"]
- list_editable = ["titulo","ubicacionmus"]
+ list_editable = ["titulo","ubicacion"]
  search_fields = ["numinv","titulo","autor","fechaingreso","ubicacionmus"]
  
         
  class Meta:
      model = Bellasartes
      
-     
 class AdminAutor(admin.ModelAdmin):
- list_display = ["nombre","apellidos","alias","fnac","fdef","procedencia"]
+ list_display = ["nombre","apellidos","alias","fnac","fdef"]
  list_filter = ["nombre"]
  list_editable = ["apellidos","alias"]
  search_fields = ["nombre","alias","apellido"]
@@ -49,10 +46,9 @@ class AdminAutor(admin.ModelAdmin):
      model = Autor 
 
 class AdminBibliografia(admin.ModelAdmin):
- list_display = ["autor","anio","pagina","isbn","edicion","url"]
- list_filter = ["autor","anio"]
- list_editable = ["url"]
- search_fields = ["anio","isbn","edicion"]
+ list_display = ["autor","pagina","edicion"]
+ list_filter = ["autor"]
+ search_fields = ["anio","edicion"]
       
  class Meta:
      model = Bibliografia 
@@ -72,8 +68,16 @@ admin.site.register(Material)
 admin.site.register(Yacimiento)
 admin.site.register(Objeto)
 admin.site.register(Estudio)
+admin.site.register(Continente)
+admin.site.register(Pais)
 admin.site.register(InformeEstado)
 admin.site.register(InformeIntervencion)
 admin.site.register(InformeArqueo)
 admin.site.register(Iconografia)
+admin.site.register(Ca)
+admin.site.register(Ubicacion)
+admin.site.register(Provincia)
+admin.site.register(Municipio)
+admin.site.register(Museo)
+admin.site.register(Exposicion)
 admin.site.register(Autor,AdminAutor)

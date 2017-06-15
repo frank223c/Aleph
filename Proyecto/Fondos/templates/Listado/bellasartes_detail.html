@@ -24,8 +24,10 @@
 <div class="right">
 <p><b>Autor:</b>{{ instance.autor }}<a href="/autor/{{ instance.autor.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p> 
 <p><b>Descripción:</b>{{ instance.descripcion }}</p>
-<p><b>Iconografía</b>{{ instance.iconografia }}<a href="/iconografia/{{ instance.iconografia.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p> 
-<p><b>Adquirido por:</b>{{ instance.adquirido }}</p>
+<p><b>Iconografía</b>
+<p>{% for iconografia in instance.iconografia.all %}<ul>{{ iconografia.nombre }}<a href="/soporte/{{ soporte.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p></ul></ul>
+{% endfor %}
+<p><b>Procedencia:</b>{{ instance.procedencia }}</p>
 <p><b>Tamaño:</b>{{ instance.altura }} cm x {{ instance.ancho }} cm</p>
 <p><b>Ubicación</b>{{ instance.ubicacion }}</p>
 <p><b>Soporte</b>{% for soporte in instance.soporte.all %}<ul>{{ soporte.nombre }}<a href="/soporte/{{ soporte.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p></ul>
@@ -39,7 +41,7 @@ No hay referencias.
 {% for bibliografia in instance.bibliografia.all %}<a href="/bibliografia/{{ bibliografia.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p>
 <p>Autor: {{ bibliografia.autor }}</p>
 <p>Edición: {{ bibliografia.edicion }}</p>
-<p>Referencias: <a>{{ bibliografia.url }} </a></p>
+<p>Referencias: <i>{{ bibliografia.extracto }} </i></p>
 {% endfor %}
 </p>
 </div>

@@ -63,7 +63,12 @@ class MaterialForm(forms.ModelForm):
     class Meta:
        model = Material
        fields = "__all__"
-
+       
+class PaisForm(forms.ModelForm):
+    class Meta:
+       model = Pais
+       fields = "__all__"
+       
 class SeccionForm(forms.ModelForm):
     class Meta:
        model = Seccion
@@ -84,6 +89,10 @@ class YacimientoForm(forms.ModelForm):
        model = Yacimiento
        fields = "__all__"
 
+class UbicacionForm(forms.ModelForm):
+    class Meta:
+       model = Ubicacion
+       fields = "__all__"
 
 class BellasArtesForm(forms.ModelForm):
    class Meta:
@@ -97,8 +106,10 @@ class BellasArtesForm(forms.ModelForm):
             'movimientos': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'donante': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'contexto': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
+            'produ': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
+            'procedencia': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'estilo': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
-            'iconografia': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
+            'iconografia': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20}),
         }
        fields = "__all__"
 
@@ -122,15 +133,9 @@ class TecnicaForm(forms.ModelForm):
 class DonanteForm(forms.ModelForm):
     class Meta:
        model = Donante
-       fields = [ "nombre","apellidos","dni"]
+       fields = "__all__"
 
-    def cleandni(self):
-      diccionario_limpio = self.cleaned_data
-      dni = diccionario_limpio.get('dni')
 
-      if len(dni) != 9:
-         raise forms.ValidationError("No es un DNI válido,compruebe los espacios")
-      return dni
 
 
 class InformeEstadoForm(forms.ModelForm):

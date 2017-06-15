@@ -1,10 +1,8 @@
 {% include 'navbar.html' %}
 {% load static %}
-    <!--Es necesario cargar esta variable dentro del fichero-->        <!--Es necesario cargar esta variable dentro del fichero-->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="{%static '/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>     
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{%static '/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>     
 <div class="left">      
 <table class="sortable">
  <th>Arqueología</th>
@@ -15,9 +13,9 @@
    <td>{{ ultimos.numinv }}</td>
   <td><a href="{{ ultimos.get_absolute_url }}"  role="button"><img src="/static/img/lupa.png" width="30" height="30" alt="Agregar otro"/></a></td>
   <td><a href="arqueologia/{{ ultimos.pk }}/editar/" role="button"><img src="/static/img/edit.png" width="30" height="30" alt="Agregar otro"/></a></td>
+{% endfor %}
       </tr>
       </table>
- {% endfor %}
    </div>
    </div>
    </div>

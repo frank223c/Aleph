@@ -30,43 +30,88 @@ def path_and_rename(instance, filename):
 ########################################
 
 class Bibliografia(models.Model):
-    autor = models.CharField(max_length=20)
+    autor = models.CharField(max_length=40)
     titulo = models.CharField(max_length=60)
-    anio = models.CharField(max_length=30,verbose_name="Año la publicacion")
     pagina = models.CharField(max_length=30,verbose_name="Página")
     edicion = models.CharField(max_length=10,verbose_name="Edicion")
-    extracto = models.TextField(blank=True)
-    isbn = models.CharField(max_length=13, blank=True,verbose_name="ISBN")
-    url = models.URLField(max_length=500, blank=True,default='') #referencias externas
+    extracto = models.TextField()
+    
     def __str__(self):
-      return str(self.titulo) + str(self.anio)
+      return str(self.titulo)
 
     class Meta:
         ordering = ["edicion"]
         verbose_name_plural = "Bibliografias"
 
-class Movimiento(models.Model): 
-    ciudad = models.CharField(max_length=20,verbose_name="Ciudad")
-    museo = models.CharField(max_length=30,verbose_name="Museo")
-    nombre_exposicion = models.CharField(max_length=30,verbose_name="Exposicion")
-    fecha_prestado = models.DateField(auto_now=False)
-    fecha_devuelto = models.DateField(auto_now=False)
-    
-    def __str__(self):
-      return str(self.fecha_prestado) + " "  + str(self.fecha_devuelto) + " " + str(self.ciudad) +   " " + str(self.museo) + " " +  str(self.nombre_exposicion) 
-    class Meta:
-        ordering = ["fecha_prestado"]
-        verbose_name_plural = "Movimientos"
 
+class Continente(models.Model):
+    nombre = models.CharField(max_length=40)
+    def __str__(self):
+        return str(self.nombre)
+class Pais(models.Model):
+    continente = models.ForeignKey(Continente)
+    nombre = models.CharField(max_length=40)
+    def __str__(self):
+        return str(self.nombre)
+        
+class Ca(models.Model):
+    nombre = models.CharField(max_length=20)
+    pais = models.ForeignKey(Pais)
+    def __str__(self):
+        return str(self.nombre)
+        
+    class Meta:
+        ordering = ["nombre"]
+        verbose_name_plural = "Comunidades autónomas"
+ 
+#En España, un municipio es, según la Ley reguladora de las Bases del Régimen Local, la entidad local básica de la organización territorial del Estado.            
+# municipio pertenece a provincia que pertenece a comunidad autonoma en ESPAÑA
+
+class Provincia(models.Model):
+    ca = models.ForeignKey(Ca)
+    nombre = models.CharField(max_length=20)
+    def __str__(self):
+        return str(self.nombre)
+    class Meta:
+        ordering = ["nombre"]
+        verbose_name_plural = "Provincias"
+        
+class Municipio(models.Model):
+    provincia = models.ForeignKey(Provincia)
+    nombre = models.CharField(max_length=20)
+    def __str__(self):
+        return str(self.nombre)
+    class Meta:
+        ordering = ["nombre"]
+        verbose_name_plural = "Municipio"
+        
 class Estudio(models.Model):
     nombre = models.CharField(max_length=20)
     def __str__(self):
         return str(self.nombre)
 
 
+class Ubicacion(models.Model):
+    tipo_selec = (('Sala','Sala'),
+                  ('Peine','Peine'),
+                  ('Almacén','Almacén'),
+                  )
+    tipo = models.CharField(choices = tipo_selec,max_length=10,verbose_name="Tipo")   
+    nombre = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return str(self.tipo) + " " + str(self.nombre) 
+        
+    class Meta:
+        ordering = ["nombre"]
+        verbose_name_plural = "Ubicaciones del Museo"
+        
+
 ########################################
 # Datos clase padre Objeto
 ########################################
+
+
 class Objeto(models.Model):
     anverso = models.ImageField(upload_to=path_and_rename)
     reverso  = models.ImageField(upload_to=path_and_rename)
@@ -81,18 +126,55 @@ class Objeto(models.Model):
     ancho = models.DecimalField(max_digits=10, decimal_places=2,verbose_name="Ancho en cm")
     datacion = models.CharField(max_length=30,default='Desconocida',verbose_name="Fecha de la que data el objeto")
     bibliografia = models.ManyToManyField(Bibliografia)
-    fechaingreso = models.CharField(max_length=30,verbose_name="Fecha de ingreso")
-    ubicacionmus = models.CharField(max_length=30,verbose_name="Ubicacion en el museo")
-    movimientos = models.ManyToManyField(Movimiento,blank=True) #histórico de prestamos a otros museos para exposiciones
+    fechaingreso = models.DateField(auto_now=True)
+    numero_entrada = models.IntegerField(verbose_name="Numero entrada")
+    ubicacion = models.ForeignKey(Ubicacion, default='1',verbose_name ="Ubicación dentro del museo")
     descripcion = models.TextField()
     observaciones = models.TextField()
 
     def __str__(self):
       return str(self.id)
       
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Inventario general"  
+      
 ########################################
 #Campos especificos de arqueologia
 ########################################
+
+class Museo(models.Model):
+    nombre = models.CharField(max_length=30,verbose_name="Museo")
+    ciudad = models.ForeignKey(Municipio)
+
+    def __str__(self):
+       return str(self.nombre) 
+    class Meta:
+        ordering = ["nombre"]
+        verbose_name_plural = "Museos"
+
+class Exposicion(models.Model):
+    nombre = models.CharField(max_length=30,verbose_name="Exposicion")
+    museo = models.ForeignKey(Museo)
+
+    def __str__(self):
+	    return str(self.nombre) 
+    class Meta:
+        ordering = ["nombre"]
+        verbose_name_plural = "Exposiciones"
+
+
+    
+class Movimiento(models.Model): # Préstamos
+    expo = models.ForeignKey(Exposicion,default="")
+    fecha_prestado = models.DateField(auto_now=False)
+    fecha_devuelto = models.DateField(auto_now=False)
+    
+    def __str__(self):
+      return str(self.fecha_prestado) + " "  + str(self.fecha_devuelto) + " " + str(self.expo)
+    class Meta:
+        ordering = ["fecha_prestado"]
+        verbose_name_plural = "Movimientos"
 
 class Serie(models.Model):
     nombre =  models.CharField(max_length=40)
@@ -139,8 +221,7 @@ class Cultura(models.Model):
 
 class Yacimiento(models.Model):
     yacimiento = models.CharField(max_length=30)
-    municipio =  models.CharField(max_length=30)
-    localidad =  models.CharField(max_length=30)
+    municipio =  models.ForeignKey(Municipio)
    
     def __str__(self):
 	    return str(self.yacimiento) + " , " +  str(self.municipio)
@@ -154,7 +235,7 @@ class Arqueologia(Objeto):
     blank=True,
     null=True,)
     hallazgos = models.TextField(blank=True, null=True)
-    depositado =  models.CharField(max_length=20,null=False)
+    depositado =  models.CharField(max_length=20,null=False,verbose_name="Depositado por")
     cultura = models.ForeignKey(Cultura,models.SET_NULL,
     blank=True,
     null=True,)
@@ -164,9 +245,7 @@ class Arqueologia(Objeto):
                ('3', 'Malo'),
                )
     conservacion = models.CharField(choices = conservacion_selec,max_length=1,default='1') 
-    yacimiento = models.ForeignKey(Yacimiento,models.SET_NULL,
-    blank=True,
-    null=True,)
+    yacimiento = models.ForeignKey(Yacimiento)
     edad_selec = (('Edad de piedra', 'Edad de piedra'),
                ('Edad de bronce', 'Edad de bronce'),
                ('Edad de metal', 'Edad de metal'),
@@ -174,8 +253,7 @@ class Arqueologia(Objeto):
                ('Edad moderna', 'Edad moderna'),
                ('Edad de piedra', 'Edad desconocida'),
                )
-    edad = models.CharField(choices = edad_selec,
-                            default='Edad desconocida',max_length=17)
+    edad = models.CharField(choices = edad_selec, default='Edad desconocida',max_length=17)
     material = models.ManyToManyField(Material)
    
     def __str__(self):
@@ -212,10 +290,9 @@ class Soporte(models.Model):
 
 
 class Donante(models.Model):
-    nombre = models.CharField(max_length=30)
-    apellidos = models.CharField(max_length=30)
-    dni = models.CharField(max_length=9,blank=True)
-    
+    nombre = models.CharField(max_length=60)
+    apellidos = models.CharField(max_length=60)  
+      
     def __str__(self):
 	    return str(self.nombre) +  " " + str(self.apellidos)
     class Meta:
@@ -224,7 +301,6 @@ class Donante(models.Model):
         
 class Iconografia(models.Model):
     nombre = models.CharField(max_length=30,verbose_name="Iconografia")
-    descripcion = models.TextField(blank=True)
     
     def __str__(self):
 	    return str(self.nombre) 
@@ -233,37 +309,32 @@ class Iconografia(models.Model):
         verbose_name_plural = "Iconografias"
 
 class Autor(models.Model):
-    foto = models.ImageField(upload_to='autores',default='nofoto.png')
+    foto = models.ImageField(upload_to='autores/',default='nofoto.png')
     alias = models.CharField(max_length=30)
     nombre = models.CharField(max_length=30)
-    apellidos = models.CharField(max_length=40,default='Desconocida')
-    procedencia = models.CharField(max_length=40,default='Desconocida')
-    fnac = models.CharField(max_length=14,default='Desconocida')
-    fdef = models.CharField(max_length=14,default='Desconocida')
-    refbiografia = models.URLField(max_length=50, blank=True)
+    procedencia = models.ForeignKey(Pais)
+    apellidos = models.CharField(max_length=60,default='Desconocida')
+    fnac = models.CharField(max_length=14,default='Desconocida',verbose_name="Fecha de nacimiento")
+    fdef = models.CharField(max_length=14,default='Desconocida',verbose_name="Fecha de defunción")
 
     def __str__(self):
 	      return str(self.nombre) + " ," + str(self.alias)
     class Meta:
         ordering = ["nombre"]
         verbose_name_plural = "Autores"
-     
-     
+         
 class Bellasartes(Objeto):
-    titulo = models.CharField(max_length=40)
-    iconografia = models.ForeignKey(Iconografia,models.SET_NULL,
-    blank=True,
-    null=True,)
-    procedencia = models.CharField(max_length=20)
+    titulo = models.CharField(max_length=100)
+    iconografia = models.ManyToManyField(Iconografia)
+    produ = models.ForeignKey(Pais,verbose_name="Producido en",blank=True)
     soporte = models.ManyToManyField(Soporte)
+    procedencia = models.ForeignKey(Yacimiento,models.SET_NULL,blank=True,null=True,)
     tecnica = models.ManyToManyField(Tecnica)
     adquirido_selec = (('Compra', 'Compra'),
                ('Donacion', 'Donacion'),
                ('Legado', 'Legado'),
                )
-    autor = models.ForeignKey(Autor,models.SET_NULL,
-    blank=True,
-    null=True,)
+    autor = models.ForeignKey(Autor,models.SET_NULL,blank=True,null=True,)
     formaingreso = models.CharField(choices = adquirido_selec,max_length=8,default='1',verbose_name="Forma de ingreso")
     donante = models.ForeignKey(Donante,models.SET_NULL,
     blank=True,

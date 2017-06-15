@@ -9,16 +9,12 @@
      <h1>Ultimos informes realizados:</h1>
           <table class="sortable">
  <th>Número de inventario</th>
- <th>Prioridad</th>
          <th>Ver</th>
-         <th>Añadir intervención</th>
          <th>Editar</th>
      {% for ultimos in ultimosinfo.all %}
      <tr>
-   <td>{{ ultimos.numinv }}</td>
-   <td>{{ ultimos.prioridad }}</td>
+   <td>{{ ultimos.objeto.codigo }}{{ ultimos.objeto.numinv }}</td>
   <td>Ver informe<a href="/informearqueo_ver/{{ ultimos.id }}"><img src="/static/img/status.png" width="30" height="30" alt="Detalles"/></td></a>
-<td>Añadir intervención al informe<a href="/registrarintervencion/{{ ultimos.id }}"><img src="/static/img/add.png" width="30" height="30" alt="Añadir intervención"/></td></a>
 <td>Editar informe<a href="/informearqueo_actu/{{ ultimos.id }}"><img src="/static/img/edit.png" width="30" height="30" alt="Añadir intervención"/></td></a>
       </tr>
       </table>

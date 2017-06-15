@@ -18,7 +18,7 @@
 <p><b>Descripción:</b>{{ instance.descripcion }}</p>
 <p><b>Cultura:</b>{{ instance.cultura }}<a href="/cultura/{{ instance.cultura.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p>
 <p><b>Tamaño:</b>{{ instance.altura }} cm x {{ instance.ancho }} cm</p>
-<p><b>Ubicación</b>{{ instance.ubicacionmus }}</p>
+<p><b>Ubicación</b>{{ instance.ubicacion }}</p>
 <p><b>Hallazgos:</b><p>{{ instance.hallazgos }}</p>
 <p><b>Encontrado en:</b>{{ instance.yacimiento }}<a href="/yacimiento/{{ instance.yacimiento.pk }}/actualizar"><img src="/static/img/edit.png" width="30" height="30" alt="Detalles"/></a></p>
 <p><b>Materiales:</b>{% for material in instance.material.all %}<td>{{ material.nombre }}</td></p>

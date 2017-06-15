@@ -2,7 +2,6 @@
 {% load static %}
 {% for misticket in misticket %}
 {% if misticket.gravedad >= 5 %}
-
 <div class="panel panel-danger">
       <div class="panel-heading">{{ misticket.asunto }}</div>
       <div class="panel-body">{{ misticket.descripcion }}</div>

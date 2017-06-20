@@ -8,6 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
   <form method="get">
 {% endblock %}
 <div class ="left">
@@ -38,25 +39,22 @@
          <div class="col-5">
           {{ filter.form.depositado.label_tag }}
           {% render_field filter.form.depositado class="form-control" %}
-        </div>
-         <button type="submit" style="background-color:transparent; border-color:transparent;" class="btn btn-default"><img src="{% static 'img/lupa.png' %}" height="40"/> Realizar búsqueda</button>
-  </form>
-      </head>
+          </div>
+ </form>
+<button class="button button1"  class="btn btn-primary btn-md">Buscar</button></a></p>
       </div>
       </div>  
       </div>
       </div>
-      </div>
-      <body>
+</div>
 <div class="container">
 <div class="right">
 <table class="sortable" width="50 %">
 	  <tr>
-    <th>Numinv</th>
+    <th>Número de inventario</th>
     <th>Nombre del objeto</th>
     </tr>
-  <tr>         {% for objeto in filter.qs %}
-
+  <tr>{% for objeto in filter.qs %}
      <td> {{ objeto.codigo }}{{ objeto.numinv }} <a href="/arqueologia/{{ objeto.pk }}"><img src="/static/img/see.png" width="30" height="30" alt="Detalles"/></a></td>
     <td>{{ objeto.nombre }}</td>
 </tr>
@@ -70,7 +68,6 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="{%static '/js/bootstrap.min.js' %}"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
 </html>
 

@@ -14,6 +14,7 @@ urlpatterns = [
     #VISTA DEL SUPER FORMULARIO DE ARQUEOLOGIA
     url(r'^registrararqueologia', arqueologia_crear , name='registrararqueologia'),
     url(r'^registrarbellasartes', bellasartes_crear , name='registrarbellasartes'),
+    url(r'^anadir_prestamo', movimiento_crear , name='crearmovimiento'),
     url(r'^verarqueologia', arqueologia_lista , name='verarqueologia'),
     url(r'^verbellasartes', bellasartes_lista , name='verbellasartes'),
     url(r'^arqueologia/(?P<pk>\d+)/$', arqueologia_detalle, name='detallearqueo'),
@@ -29,6 +30,7 @@ urlpatterns = [
     url(r'^tecnica/(?P<pk>\d+)/actualizar/$', tecnica_actualizar, name='actualizartecnica'),
     url(r'^ubicacion/(?P<pk>\d+)/actualizar/$', ubicacion_actualizar, name='actualizarubicacion'),
     url(r'^bibliografia/(?P<pk>\d+)/actualizar/$', bibliografia_actualizar, name='actualizarbibliografia'),
+    url(r'^material/(?P<pk>\d+)/actualizar/$', material_actualizar, name='actualizarmaterial'),
     #EDICIÓN DE CAMPOS DE ARQUEO
     url(r'^edad/(?P<pk>\d+)/actualizar/$', edad_actualizar, name='actualizaredad'),
     url(r'^cultura/(?P<pk>\d+)/actualizar/$', cultura_actualizar, name='actualizarcultura'),
@@ -44,6 +46,8 @@ urlpatterns = [
     url(r'^agregar/seccion/',newSeccion, name='nuevaseccion'),
     url(r'^agregar/produ/',newPais, name='nuevopais'),
     url(r'^agregar/serie/',newSerie, name='nuevaserie'),
+    url(r'^agregar/escritor/',newEscritor, name='nuevoescritor'),
+    url(r'^agregar/procedencia/',newYacimiento, name='nuevaprocedencia'),
     url(r'^agregar/yacimiento/',newYacimiento, name='nuevoyacimiento'),
     #VISTAS PARA AGREGAR ELEMENTOS EXTERNOS DE BA
     url(r'^agregar/donante/',newDonante, name='nuevodonante'),

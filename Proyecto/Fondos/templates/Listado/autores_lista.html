@@ -23,21 +23,15 @@
 </div>
 </div>
 {% endfor %}
-<ul class="pagination">
-    <span class="step-links">
+<div class="pagination">
         {% if object_list.has_previous %}
             <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">anterior</a>
         {% endif %}
-        <ul class="pagination">
-        <span class="current">
-            Pag {{ object_list.number }} de {{ object_list.paginator.num_pages }}
-        </span>
         {% if object_list.has_next %}
             <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">siguiente</a>
         {% endif %}
-    </span>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="{%static '/js/bootstrap.min.js' %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>

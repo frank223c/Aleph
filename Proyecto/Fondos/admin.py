@@ -30,7 +30,7 @@ class AdminArte(admin.ModelAdmin):
  list_display_links =["numinv"]
  list_filter = ["autor"]
  list_editable = ["titulo","ubicacion"]
- search_fields = ["numinv","titulo","autor","fechaingreso","ubicacionmus"]
+ search_fields = ["numinv","titulo","autor","fechaingreso","ubicacion"]
  
         
  class Meta:
@@ -46,8 +46,7 @@ class AdminAutor(admin.ModelAdmin):
      model = Autor 
 
 class AdminBibliografia(admin.ModelAdmin):
- list_display = ["autor","pagina","edicion"]
- list_filter = ["autor"]
+ list_display = ["pagina","edicion"]
  search_fields = ["anio","edicion"]
       
  class Meta:

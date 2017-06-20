@@ -13,7 +13,7 @@
       <b><h3>Revisión colección expuesta</h3></b>
 <p><b>Nombre restaurador:</b>{{ instance.nombre_res }}</p>
 <p><b>Apellido restaurador:</b>{{ instance.ape_res }}</p>
-<p><b>Ubicación:</b>{{ datos.ubicacionmus }}</p>
+<p><b>Ubicación:</b>{{ datos.ubicacion }}</p>
 <div class="container">
 <table class="table">
   <b><h3>Descripción de la obra</h3></b>
@@ -29,7 +29,7 @@
 </th></tr>      
 <tr>
 <td>{{ instance.fecha }}</td>
-<td>{{ datos.propietario }}{{ datos.numinv }}</td>
+<td>{{ datos.codigo }}{{ datos.numinv }}</td>
 <td>{{ datos.titulo }}</td>
 <td>{{ datos.autor }}</td>
 <td>{{ datos.datacion }}</td>
@@ -42,23 +42,18 @@
 </table>
 </div>
 </div>
-<h1>Fotos generales</h1>
 <p align="center"><img src="{{ datos.anverso.url }}" width="240px"><img src="{{ datos.reverso.url }}" width="240px"></p>
 <div class="container">
     {% endfor %}
 <table class="table">
   <b><h3>Características del examen</h3></b>
 <tr>
-<th>Metodología</th>
-<th>Muestras</th>
+<th>Sala</th>
 <th>Estudios</th>
 <th>Observaciones</th>
 </th></tr>
 <tr>
-<td>{{ instance.metodologia }}</td>
-{% if instance.muestras == True %}
-<td>Sí</td>
-{% endif %}
+<td>Características de la sala</td>
 {% for estudio in instance.estudio.all %}
 <td>{{ estudio.nombre }}</td>
 {% endfor %}

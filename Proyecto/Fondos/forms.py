@@ -43,10 +43,12 @@ class ArqueologiaForm(forms.ModelForm):
       fields = "__all__"
       
 
-
 class BibliografiaForm(forms.ModelForm):
     class Meta:
        model = Bibliografia
+       widgets = {
+            'escritor': SelectWithPop(attrs={'cols': 80, 'rows': 30}),
+            }
        fields = "__all__"
 
 class MovimientoForm(forms.ModelForm):
@@ -63,6 +65,7 @@ class MaterialForm(forms.ModelForm):
     class Meta:
        model = Material
        fields = "__all__"
+
        
 class PaisForm(forms.ModelForm):
     class Meta:
@@ -94,6 +97,7 @@ class UbicacionForm(forms.ModelForm):
        model = Ubicacion
        fields = "__all__"
 
+
 class BellasArtesForm(forms.ModelForm):
    class Meta:
        model = Bellasartes
@@ -102,7 +106,7 @@ class BellasArtesForm(forms.ModelForm):
             'bibliografia': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'tecnica': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'autor': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
-            'soporte': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20}),
+            'soporte': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'movimientos': MultipleSelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'donante': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
             'contexto': SelectWithPop(attrs={'cols': 80, 'rows': 20}),
@@ -136,8 +140,6 @@ class DonanteForm(forms.ModelForm):
        fields = "__all__"
 
 
-
-
 class InformeEstadoForm(forms.ModelForm):
    objeto = forms.ModelChoiceField(queryset=Objeto.objects.all(),widget=forms.TextInput(attrs={'readonly':'readonly'})) #no se permite editar el id del objeto que va ligado a un informe de estado
    fecha = forms.DateField(widget=extras.SelectDateWidget)
@@ -155,7 +157,11 @@ class InformeArqueoForm(forms.ModelForm):
       model = InformeArqueo
       fields = "__all__"
 
-
+class EscritorForm(forms.ModelForm):
+    class Meta:
+       model = Escritor
+       fields = "__all__"
+       
 class IntervencionForm(forms.ModelForm):
     estado_rel = forms.ModelChoiceField(queryset=InformeEstado.objects.all(),widget=forms.TextInput(attrs={'readonly':'readonly'})) #no se permite editar el estado que va ligado a un informe de intervención
     class Meta:
@@ -165,4 +171,14 @@ class IntervencionForm(forms.ModelForm):
 class IconografiaForm(forms.ModelForm):
     class Meta:
        model = Iconografia
+       fields = "__all__"
+    
+class ExposicionForm(forms.ModelForm):
+    class Meta:
+       model = Exposicion
+       fields = "__all__"
+
+class MovimientoForm(forms.ModelForm):
+    class Meta:
+       model = Movimiento
        fields = "__all__"

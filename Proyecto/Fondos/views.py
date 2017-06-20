@@ -11,6 +11,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.http import HttpResponse 
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
@@ -55,8 +56,8 @@ def index(request):
     else:
        group_name = request.user.groups.all()[0].name
        if group_name == "Documentador":
-         ultimosarqueo = Arqueologia.objects.all().order_by('-fechaingreso')[:10]
-         ultimosba = Bellasartes.objects.all().order_by('-fechaingreso')[:10]
+         ultimosarqueo = Arqueologia.objects.all().order_by('-fechaingreso')[:5]
+         ultimosba = Bellasartes.objects.all().order_by('-fechaingreso')[:5]
          return render(request, "homedocu.html",{ "ultimosarqueo":ultimosarqueo,"ultimosba":ultimosba })
        if group_name == "RestauradorBA":
          ultimosinfo = InformeEstado.objects.all().order_by('-fecha')[:3]
@@ -141,7 +142,7 @@ def intervencion_crear(request, pk):
     datospre = get_object_or_404(InformeEstado, pk=pk)
     datadict = {'estado_rel': datospre.pk }
     if request.method == "POST":
-      form = IntervencionForm(request.POST or None, initial=datadict)  
+      form = IntervencionForm(request.POST, initial=datadict)  
       if form.is_valid():
          instance = form.save()
          instance.user = request.user 
@@ -176,7 +177,21 @@ def informearqueo_crear(request,pk):
        #la interfaz en la vista de detalle
        #la interfaz en la vista de detalle
     return render(request, "formularios/formulario_informearqueo.html", {"form": form,"instance": instance,"datos": datos,})
-    
+
+@group_required('Documentador')
+def movimiento_crear(request):
+    if request.method == 'POST':
+       form = MovimientoForm(request.POST)
+       if form.is_valid():
+         instance = form.save()
+         instance.user = request.user 
+         instance.save()
+         messages.success(request, 'Acción realizada con éxito')
+         return HttpResponseRedirect('/')
+    else:
+        form =MovimientoForm()
+    return render(request, "formularios/formulario_movimiento.html", {"form": form,})   
+
 '''
 
 VISTAS DE ACTUALIZACIÓN DE OBJETOS YA EXISTENTES
@@ -214,7 +229,6 @@ def bellasartes_actualizar(request, pk):
            if form.is_valid():
             instance = form.save()
             instance.save()
-            form.save_m2m()
             messages.success(request, 'Acción realizada con éxito')
             return HttpResponseRedirect(instance.get_absolute_url())
         else:
@@ -329,7 +343,8 @@ def tecnica_actualizar(request, pk):
     else:
         form = TecnicaForm(instance=instance)
     return render(request, "formularios/formulario_tecnica.html", {"instance": instance,"form": form,})
-    
+ 
+@group_required('Documentador')
 def bibliografia_actualizar(request, pk):
     instance = get_object_or_404(Bibliografia, pk=pk)
     if request.method == 'POST':
@@ -369,6 +384,20 @@ def yacimiento_actualizar(request, pk):
     else:
         form = YacimientoForm(instance=instance)
     return render(request, "formularios/formulario_yacimiento.html", {"instance": instance,"form": form,})
+
+def material_actualizar(request, pk):
+    instance = get_object_or_404(Material, pk=pk)
+    if request.method == 'POST':
+       form = MaterialForm(request.POST,instance=instance)
+       if form.is_valid():
+         instance = form.save()
+         instance.save()
+         messages.success(request, 'Acción realizada con éxito')
+         return HttpResponseRedirect('/')
+    else:
+        form = MaterialForm(instance=instance)
+    return render(request, "formularios/formulario_material.html", {"instance": instance,"form": form,})
+
 
 
 @group_required('Documentador')
@@ -507,12 +536,7 @@ def bellasartes_lista(request):
       queryset = paginator.page(1)
     except EmptyPage:     
       queryset = paginator.page(paginator.num_pages)   
-    context = {
-     "object_list": queryset,
-     "page_request_var": page_request_var,
-     "hoy": hoy,
-   }
-    return render(request, "Listado/bellasartes_lista.html", context)
+    return render(request, "Listado/bellasartes_lista.html", {"object_list": queryset,"page_request_var": page_request_var, "hoy": hoy, })
 
 
 #BUSQUEDAS DE ARQUEOLOGIA A PARTIR DE UNA VISTA DE LISTADO
@@ -543,8 +567,7 @@ def handlePopAdd(request, addForm, field):
        else:
             newObject = None
        if newObject:
-           return HttpResponse('<script type="text/javascript">opener.dismissAddAnotherPopup(window, "%s", "%s");</script>' % \
-            (escape(newObject._get_pk_val()), escape(newObject)))
+           return HttpResponse('<h2>Agregado con éxito, cierre la página</h2>')
        else:
             form = addForm()
             pageContext = {'form': form, 'field': field}
@@ -626,6 +649,10 @@ def newEstilo(request):
 @group_required('Documentador')
 def newIconografia(request):
     return handlePopAdd(request, IconografiaForm, 'Iconografia')
+    
+@group_required('Documentador')
+def newEscritor(request):
+    return handlePopAdd(request, EscritorForm, 'Escritor')
     
 #Vista que devuelve los autores de bellas artes
 #los cuales tienen obras pertenecientes a ellos en el

@@ -22,7 +22,7 @@ class BellasArtesFilter(django_filters.FilterSet):
     titulo = django_filters.CharFilter(lookup_expr='icontains')
     tecnica = django_filters.ModelMultipleChoiceFilter(queryset= Tecnica.objects.all(),
         widget=forms.CheckboxSelectMultiple)
-    procedencia = django_filters.CharFilter(lookup_expr='icontains')
+         
     class Meta:
         model = Bellasartes
-        fields = ['numinv','tecnica', 'iconografia', 'titulo','autor','procedencia']
+        fields = ['numinv','tecnica', 'iconografia', 'titulo','autor','procedencia','donante']

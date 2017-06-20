@@ -2,25 +2,28 @@
 {% load static %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="{%static '/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>     
-<div class="left">      
-<table class="sortable">
- <th>Arqueología</th>
+<script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script> 
+<div class="panel panel-info">
+<div class="panel-heading">Últimas piezas registradas:</div>
+<div class="panel-body">Hola, {{ user }},haga click en el botón para abrir el desplegable para ver su último trabajo realizado</div>
+</div>
+<button type="button" class="button button1" data-toggle="collapse" data-target="#informes"> Mis últimas tareas
+</button>
+<div id="informes" class="collapse in">
+<div class="body">
+<table class="table">
+<th>Arqueología</th>
          <th>Ver</th>
          <th>Editar</th>
      {% for ultimos in ultimosarqueo.all %}
      <tr>
-   <td>{{ ultimos.numinv }}</td>
+   <td>{{ ultimos.codigo }}{{ ultimos.numinv }}</td>
   <td><a href="{{ ultimos.get_absolute_url }}"  role="button"><img src="/static/img/lupa.png" width="30" height="30" alt="Agregar otro"/></a></td>
   <td><a href="arqueologia/{{ ultimos.pk }}/editar/" role="button"><img src="/static/img/edit.png" width="30" height="30" alt="Agregar otro"/></a></td>
 {% endfor %}
-      </tr>
-      </table>
-   </div>
-   </div>
-   </div>
-<div class="right">
-<table class="sortable">
+</tr>
+</table>
+<table class="table">
 <th>Bellas artes</th>
    <th>Ver</th>
    <th>Editar</th>
